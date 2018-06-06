@@ -1,0 +1,94 @@
+/**
+* CSS themes for simplePagination.js
+* Author: Flavius Matis - http://flaviusmatis.github.com/
+* URL: https://github.com/flaviusmatis/simplePagination.js
+*/
+
+ul.simple-pagination {
+	list-style: none;
+}
+
+.simple-pagination ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	float: right;
+}
+
+.simple-pagination li {
+	display: inline-block;
+    margin: 0 4px;
+}
+
+
+
+/*------------------------------------*\
+	Light Theme Styles
+\*------------------------------------*/
+
+.light-theme a, .light-theme span {
+	float: left;
+	line-height:24px;
+	width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 500;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    text-align: center;
+    background-color: transparent;
+    color: #151515;
+}
+
+/*.light-theme>li>a, .light-theme>li>span {
+    
+}
+
+.light-theme>li>a, .light-theme>li>span {
+    
+}*/
+
+.light-theme a:hover {
+	color: #ffd481;
+    background-color: #2f353f;
+    border-color: #2f353f;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.light-theme .current {
+	    color: #ffd481;
+    background-color: #2f353f;
+    border-color: #2f353f;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-weight: 500;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    text-align: center;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+.light-theme .ellipse {
+	background: none;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	font-weight: bold;
+	cursor: default;
+}
+.pagination-holder{
+	display:inline-block;
+	}
+.footer_first{
+	text-align: center;
+}
+

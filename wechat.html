@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="zh">
+<head>
+  <!-- Site Title-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>详情</title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <!-- Page-->
+  <div class="text-center page">
+    <!-- Page Header-->
+      <section class="section-md text-left">
+        <div class="shell">
+          <div class="range range-60">
+            <div class="cell-md-12 post-blog--single">
+              <h3></h3>
+              <hr>
+              <div class="post-blog__meta post-blog-single__meta">
+                <div class="post-blog__meta-views"></div>
+                <div class="post-blog__meta-date"></div>
+              </div>
+              <hr>
+              <p></p>
+
+              <h4></h4>
+              <div id="commentlist">
+              </div>
+              <!-- <div class="comment">
+                <div class="unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal">
+                  <div class="unit__left"><img src="images/blog-post-10-65x66.jpg" alt="" width="65" height="66"/>
+                  </div>
+                  <div class="unit__body">
+                    <div class="comment-top-panel">
+                      <h5 class="comment__author">John</h5>
+                      <div class="comment__date">3 days ago</div>
+                    </div>
+                    <p>I’m glad I found these wedding photography tips on your website. I have already said in one of your latest posts that your articles open the world of photography to beginner photographers, models, and just ordinary people. This post is no exception. Though I knew some of the tips described here, it has been a surprise to read about some techniques, which I haven’t used before as a professional wedding photographer</p>
+                    <div class="comment__footer">
+                      <ol class="grid">
+                        <li class="grid__item">
+                          <button class="icobutton icobutton--thumbs-up"><span class="fa fa-thumbs-up"></span></button>11
+                        </li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div class="comment-box">
+                <div class="isnext">
+                  <!-- <a class="button button-lined" id="showmore">查看更多</a> -->
+                </div>
+                <div class="unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal">
+                  <!-- <div class="unit__left"><img src="images/blog-post-11-65x66.jpg" alt="" width="65" height="66"/> -->
+                  </div>
+                  <div class="unit__body" id="commentbox">
+                    <!-- <h5 class="comment__author">未登录</h5> -->
+                    <div class="form-wrap">
+                      <textarea class="form-input" id="comment-message" name="comment-message" placeholder="写下你的评论" oninput="btnchange()" onpropertychange="btnchange()"></textarea>
+                    </div>
+                    <!-- <button class="button button-default button-square" type="button" id="comment">评论</button> -->
+                    <button class='button button-square btn-dis' type='button' id='comment' disabled='disabled'>评论</button>
+                  </div>
+                  <!-- <div class="unit__body" id="commentbox">
+                    <div class="comment_form">
+                    <div class="form-wrap">
+                      <span>目前您尚未登录，请<a data-toggle='modal' data-target='#myModal'>登录</a>或<a data-toggle='modal' data-target='#myModal1'>注册</a>后进行评论</span>
+                    </div>
+                  </div>
+                  </div> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="row">
+              <div class="col-md-5">
+                <img src="images/tu1.jpg" class="loginbox">
+                <img src="images/tu.png" class="registerbox">
+              </div>
+              <div class="col-md-7" class="loginbox">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4><span class="activespan" onclick="activespan()">登录</span>&nbsp;/&nbsp;<span class="grey" onclick="grey()">注册</span></h4>
+                </div>
+                <div class="modal-body loginbox">
+                  <div class="form-wrap form-wrap-validation">
+                    <input class="form-control" id="forms-name1" autocomplete="off" type="text" name="username1" placeholder="用户名">
+                    <span class="form-validation"></span>
+                  </div>
+                  <div class="form-wrap form-wrap-validation">
+                    <input class="form-control" id="forms-phone1" autocomplete="off" type="password" name="phone1" placeholder="密码">
+                    <span class="form-validation"></span>
+                  </div>
+                  <div class="juz">
+                    <button type="button" class="btn button-sm btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn button-sm btn-warning" id="login">登录</button>
+                  </div>
+                </div>
+                <div class="modal-body registerbox">
+                  <div class="form-wrap form-wrap-validation">
+                <input class="form-control" id="forms-name" autocomplete="off" type="text" name="username" placeholder="用户名">
+                <span class="form-validation"></span>
+              </div>
+              <div class="form-wrap form-wrap-validation">
+                <input class="form-control" id="forms-phone" autocomplete="off" type="password" name="password" placeholder="密码">
+                <span class="form-validation"></span>
+              </div>
+              <div class="form-wrap form-wrap-validation">
+                <input class="form-control" id="forms-message" autocomplete="off" type="password" name="repass" placeholder="确认密码">
+                <span class="form-validation"></span>
+              </div>
+              <div class="form-wrap form-wrap-validation">
+                <input class="form-control" id="forms-email" autocomplete="off" type="email" name="email" placeholder="E-mail">
+                <span class="form-validation"></span>
+              </div>
+              <div class="form-wrap form-wrap-validation">
+                <input class="form-control" id="forms-address" autocomplete="off" type="text" id="code_input" style="display: none;">
+                <div class="seltbox">
+                  <select id="cmbProvince" name="cmbProvince" class="form-control"></select>
+                  <select id="cmbCity" name="cmbCity" class="form-control"></select>
+                  <select id="cmbArea" name="cmbArea" class="form-control"></select>
+                </div>
+              </div>
+              <div class="form-wrap form-wrap-validation row">
+                <div class="col-md-8" id="yzmcol">
+                <input class="form-control" id="forms-yzm" autocomplete="off" type="text" placeholder="验证码"></div>
+                <div class="col-md-4" id="cavcol">
+                <span id="v_container" class="form-validation form-validation1" style="width: 100%;height: 50px;"></span></div>
+              </div>
+              <div class="juz1">
+                    <button type="button" class="btn button-sm btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn button-sm btn-warning" id="register">注册</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="#" id="ui-to-top" class="ui-to-top fa fa-angle-up"></a>
+      <!-- PANEL-->
+      <!-- END PANEL-->
+      <!-- Global Mailform Output-->
+      <div class="snackbars" id="form-output-global"></div>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/sweet-alert.min.js"></script>
+      <script src="js/domain.js"></script>
+      <script src="js/mo.min.js"></script>
+      <script src="js/demo.js"></script>
+      <script src="js/gVerify.js"></script>
+      <script src="js/addAddress.js"></script>
+      <script src="js/login.js"></script>
+      <script src="js/blogpost.js"></script>
+      <script src="js/core.min.js"></script>
+      <script src="js/script.js"></script>
+      <script src="js/jQuery.md5.js"></script>
+    </body>
+    </html>

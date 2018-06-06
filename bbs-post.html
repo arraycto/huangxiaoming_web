@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="zh">
+<head>
+  <!-- Site Title-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/simplePagination.css" />
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bbs.css">
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <!-- Page-->
+  <div class="text-center page">
+    <!-- Page preloader-->
+    <div class="page-loader loaded">
+      <div>
+        <div class="circle">
+          <img src="images/logo-yellow1.png">
+        </div>
+      </div>
+    </div>
+    <!-- Page Header-->
+    <header class="page-header">
+      <!-- RD Navbar-->
+      <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-default" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fullwidth" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static" data-lg-device-layout="rd-navbar-static" data-md-stick-up-offset="1px" data-lg-stick-up-offset="1px" data-stick-up="true" data-sm-stick-up="true" data-md-stick-up="true" data-lg-stick-up="true">
+          <div class="rd-navbar-inner">
+            <!-- RD Navbar Panel-->
+            <div class="rd-navbar-panel">
+              <!-- RD Navbar Toggle-->
+              <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+              <!-- RD Navbar Brand--><a class="rd-navbar-brand" href="index-video.html">
+                <div class="brand-name"><img src="images/logo.png"></div>
+              </a>
+            </div>
+            <div class="rd-navbar-aside-right" id="animate">
+              <div class="rd-navbar-nav-wrap">
+                <!-- RD Navbar Navigation-->
+                <ul class="rd-navbar-nav">
+                  <li><a href="index-video.html">主页</a>
+                    <!-- RD Navbar Dropdown-->
+                  </li>
+                  <li><a>M-资讯库</a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="understandxm.html">了解晓明</a></li>
+                      <li><a href="xmsvoice.html">亲爱的留言</a></li>
+                      <li><a href="tabs-and-accordions.html">资讯</a></li>
+                      <li><a href="blog.html">行程</a></li>
+                    </ul>
+                  </li>
+                  <li><a>M-影像馆</a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="album-gallery.html">图库</a></li>
+                      <li><a href="album-video.html">影像</a></li>
+                    </ul>
+                  </li>
+                  <li><a>影友会</a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="fansclub.html">简介</a></li>
+                      <li><a href="tip.html">活动召集</a></li>
+                    </ul>
+                  </li>
+                  <li><a>M-关联站</a>
+                    <!-- RD Navbar Dropdown-->
+                    <ul class="rd-navbar-dropdown">
+                      <li><a href="http://hxm.nbxuanma.com/blessing/index.html">明天公益</a></li>
+                      <li><a href="http://www.hxmmt.cn">明天爱心基金</a></li>
+                    </ul>
+                  </li>
+                  <li class="active"><a href="albums-1.html">BBS</a>
+                    <!-- RD Navbar Megamenu-->
+                  </li>
+                </ul>
+              </div>
+              <!--RD Navbar Socials-->
+              <div class="rd-navbar-socials">
+                <div class="rd-navbar-socials-toggle" data-rd-navbar-toggle=".rd-navbar-collapse"><a class="icon icon-xs icon-circle fa-user-o"></a></div>
+              </div>
+
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Blog Post-->
+      <div class="shell shell-wide section-breadcrumb context-dark">
+        <div class="range range-middle">
+          <div class="cell-sm-6 text-sm-left">
+            <!-- <h3></h3> -->
+          </div>
+          <div class="cell-sm-6 text-sm-right">
+            <ol class="breadcrumb-custom">
+              <li><a href="index-video.html">主页</a></li>
+              <li><a href="albums-1.html">BBS</a></li>
+              <li id="firsturl" onblur="hidebox()">
+                <div class="tooltip bottom" role="tooltip" id="firsttip">
+                <div class="tooltip-arrow"></div>
+                <div class="tooltip-inner" id="firstbox">
+                  <!-- 动态获取菜单 -->
+                </div>
+              </div>
+              </li>
+              <!-- <li id="lasturl">BBS</li> -->
+              <!-- <li id="firsturl"><a>BBS</a></li>
+              <li id="secordurl"><a>BBS</a></li>
+              <li id="lasturl">BBS</li> -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="section-md text-left">
+      <div class="shell">
+        <div class="range range-60">
+          <div class="cell-md-8 post-blog--single">
+            <h3></h3><!-- 标题 -->
+            <hr>
+            <div class="post-blog__meta post-blog-single__meta">
+              <div class="post-blog__meta-date"></div>
+              <div class="post-blog__meta-look"></div><a class="post-blog__meta-comments"></a>
+            </div>
+            <hr>
+            <div id="contentbox">
+              <p></p><!-- 内容 -->
+            </div>
+            <div class="bshare-custom">
+                <div class="bsPromo bsPromo2"></div>
+                分享到：
+                <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                <a title="分享到微信" class="bshare-weixin"></a>
+                <a title="分享到豆瓣" class="bshare-douban"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到QQ好友" class="bshare-qqim"></a>
+                <a title="分享到淘宝" class="bshare-taojianghu" href="javascript:void(0);"></a>
+                <a title="分享到Twitter" class="bshare-twitter" href="javascript:void(0);"></a><a title="分享到Facebook" class="bshare-facebook" href="javascript:void(0);"></a>
+                <!-- <a title="分享到人人网" class="bshare-renren"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a> -->
+              </div>
+              <script type="text/javascript" charset="utf-8" src="https://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script>
+              <script type="text/javascript" charset="utf-8" src="https://static.bshare.cn/b/bshareC0.js"></script>
+            <!-- <hr> -->
+
+            <h4 id="commentcount">2条评论</h4><!-- 评论数 -->
+            <hr/>
+            <div id="commentlist">
+              <!-- <hr>
+              <div class="comment">
+                <div class="unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal">
+                  <div class="unit__left"><img src="http://HXM.nbxuanma.com/Uploads/IconImage/78861.jpg" alt="" width="100" height="100"/>
+                    <h4>John</h4>
+                    <ul class="list-marked list-marked-variant-2">
+                      <li><span>发帖</span><span id="Postnum">12</span></li>
+                      <li><span>铜币</span><span id='money'>10</span></li>
+                      <li><span>威望</span><span id="Rvrc">10</span></li>
+                      <li><span>贡献值</span><span id="credit">14</span></li>
+                    </ul>
+                  </div>
+                  <div class="unit__body">
+                    <div class="comment-top-panel">
+                      <h5 class="comment__author"><img src="http://HXM.nbxuanma.com/Uploads/IconImage/78861.jpg" alt="" width="65" height="66"/><span>aaa</span></h5><div class="comment__date">1楼</div>
+                    </div>
+                    <p>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</p>
+                    <div class="comment__footer"><div class="comment-top-panel">
+                      <a class="comment__reply">回复</a>
+                      
+                    </div>
+                    <div class="replybox fadeInDown animated row" style="display: none;">
+                      <div class="col-md-10">
+                        <textarea class="form-control" id="erea" rows="1" cols="10" onkeyup="changerow()"></textarea>
+                      </div>
+                      <div class="col-md-2">
+                        <button type="button" class="btn btn-warning" id="reply">评论</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="comment comment-reply">
+                    <div class="unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal">
+                      <div class="unit__left"><img src="http://HXM.nbxuanma.com/Uploads/IconImage/78861.jpg" alt="" width="60" height="62">
+                      </div>
+                      <div class="unit__body">
+                        <div class="comment-top-panel">
+                          <h5 class="comment__author">bbb</h5>
+                          <div class="comment__date">2018-01-01</div>
+                        </div>
+                        <p>测试</p>
+                        <div class="comment__footer"><div class="comment-top-panel">
+                          <a class="comment__reply">回复</a>
+                        </div>
+                        <div class="replybox fadeInDown animated row" style="display: none;">
+                          <div class="col-md-10">
+                            <textarea class="form-control" id="erea" rows="1" cols="10" onkeyup="changerow()"></textarea>
+                          </div>
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-warning" id="reply">评论</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        -->
+
+      </div>
+      <div class="comment-box">
+        <div class="pagination-custom" style="text-align: center;">
+          <div class="pagination-holder clearfix">
+            <div id="fenghui-pagination" class="pagination">
+            </div>
+          </div>
+        </div> 
+
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="UEtidor/ueditor.config.js"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="UEtidor/ueditor.all.min.js"></script>
+        <!-- 实例化编辑器 -->
+        <script type="text/javascript">
+      //var ue = UE.getEditor('container');
+      //对编辑器的操作最好在编辑器ready之后再做
+      //ue.ready(function() {
+        //设置编辑器的内容
+//        ue.setContent('hello');
+        //获取html内容，返回: <p>hello</p>
+//        var html = ue.getContent();
+        //获取纯文本内容，返回: hello
+//        var txt = ue.getContentTxt();
+      //});
+    </script>
+    <div class="unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal">
+      <!-- <div class="unit__left"><img src="images/blog-post-11-65x66.jpg" alt="" width="65" height="66"/> -->
+      </div>
+
+      <div class="unit__body" id="bbscommentbox">
+        <script id="container" name="content" type="text/plain">
+
+        </script>
+        <button class='button button-square button-default' type='button' id='bbscomment' style='margin-top:20px;'>评论</button>
+      </div>
+
+      <!-- <div class="unit__body" id="phonebbscommentbox">
+        <textarea class="form-control" rows="10" cols="20" id="posttext"></textarea>
+        <button class='button button-square button-default' type='button' id='bbscommentphone' style='margin-top:20px;'>评论</button>
+      </div> -->
+
+    </div>
+  </div>
+  <div class="cell-md-4">
+    <div class="inset-lg-left-40" id="aboutathor">
+      <div class="shell">
+        <div class="range range-60 range-xs-center" style="transform:none">
+          <div class="cell-md-12 cell-sm-8 cell-xs-10"><img id="iconimage"><span class="nickname">nicheng</span>
+            <h4 class="offset-top-30 text-medium">关于作者</h4>
+            <div class="divider-text">
+              <ul class="list-marked list-marked-variant-2">
+                <li><span>发帖</span><span id="Postnum">12</span></li>
+                <li><span>铜币</span><span id='money'>10</span></li>
+                <li><span>威望</span><span id="Rvrc">10</span></li>
+                <li><span>贡献值</span><span id="credit">14</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- Page Footer-->
+<footer class="page-footer">
+  <div class="shell shell-wide">
+    <div class="range range-justify range-sm-reverse range-15">
+      <div class="cell-sm-6 text-sm-right">
+        <p>
+          <div class="eqcode">
+            <img src="images/erweima.png" style="width: 100px;height: 100px;">
+            <p>影友会微博</p>
+          </div>
+        </p>
+      </div>
+      <div class="cell-sm-6 text-sm-left">
+        <p>Copyright<label style="font-family:Arial;">&copy;</label>2008-2018. 黄晓明. 版权所有.</p>
+        <p><a href="understandxm.html">关于我们</a>|<a href="user.html?vip=true">加入会员</a>|<a href="https://shop442171967.taobao.com" target="_blank">淘宝链接</a>|<a href="http://www.hxmmt.cn/" target="_blank">明天爱心基金</a></p>
+        <p>京ICP备xxxxxxx号</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-md-5">
+          <img src="images/tu1.jpg" class="loginbox">
+          <img src="images/tu.png" class="registerbox">
+        </div>
+        <div class="col-md-7" class="loginbox">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4><span class="activespan" onclick="activespan()">登录</span>&nbsp;/&nbsp;<span class="grey" onclick="grey()">注册</span></h4>
+          </div>
+          <div class="modal-body loginbox">
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-name1" autocomplete="off" type="text" name="username1" placeholder="用户名">
+              <span class="form-validation"></span>
+            </div>
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-phone1" autocomplete="off" type="password" name="phone1" placeholder="密码">
+              <span class="form-validation"></span>
+            </div>
+            <div class="forgetpwd">
+              <a onclick="forget()">忘记密码？</a>
+            </div>
+            <div class="juz">
+              <button type="button" class="btn button-sm btn-default" data-dismiss="modal">关闭</button>
+              <button type="button" class="btn button-sm btn-warning" id="login">登录</button>
+            </div>
+          </div>
+          <div class="modal-body registerbox">
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-name" autocomplete="off" type="text" name="username" placeholder="用户名">
+              <span class="form-validation"></span>
+            </div>
+            <span class="red">*用户名一旦注册不可更改</span>
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-phone" autocomplete="off" type="password" name="password" placeholder="密码">
+              <span class="form-validation"></span>
+            </div>
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-message" autocomplete="off" type="password" name="repass" placeholder="确认密码">
+              <span class="form-validation"></span>
+            </div>
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-email" autocomplete="off" type="email" name="email" placeholder="E-mail">
+              <span class="form-validation"></span>
+            </div>
+            <div class="form-wrap form-wrap-validation">
+              <input class="form-control" id="forms-address" autocomplete="off" type="text" id="code_input" style="display: none;">
+              <div class="seltbox">
+                <select id="cmbProvince" name="cmbProvince" class="form-control"></select>
+                <select id="cmbCity" name="cmbCity" class="form-control"></select>
+                <select id="cmbArea" name="cmbArea" class="form-control"></select>
+              </div>
+            </div>
+            <div class="form-wrap form-wrap-validation row">
+              <div class="col-md-8" id="yzmcol">
+                <input class="form-control" id="forms-yzm" autocomplete="off" type="text" placeholder="验证码"></div>
+                <div class="col-md-4" id="cavcol">
+                  <span id="v_container" class="form-validation form-validation1" style="width: 100%;height: 50px;"></span></div>
+                </div>
+                <div class="juz1">
+                  <button type="button" class="btn button-sm btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn button-sm btn-warning" id="register">注册</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="forgetmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-md-5">
+              <img src="images/zhaohui.png" style="height: 355px;">
+            </div>
+            <div class="col-md-7">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>忘记密码</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-wrap form-wrap-validation">
+                  <input class="form-control" autocomplete="off" type="email" placeholder="注册邮箱" id="forgetemail">
+                  <span class="form-validation"></span>
+                </div>
+                <div class="form-wrap form-wrap-validation row">
+                  <div class="col-md-8" id="yzmcol">
+                    <input class="form-control" id="forms-czm" autocomplete="off" type="text" placeholder="重置码">
+                  </div>
+                  <div class="col-md-4" id="cavcol">
+                    <span class="form-validation form-validation1 getymz">获取重置码</span>
+                  </div>
+                </div>
+                <div class="form-wrap form-wrap-validation">
+                  <input class="form-control" autocomplete="off" type="password" placeholder="密码" id="forgetpassword">
+                  <span class="form-validation"></span>
+                </div>
+                <div class="form-wrap form-wrap-validation">
+                  <input class="form-control" autocomplete="off" type="password" placeholder="确认密码" id="forgetpassword1">
+                  <span class="form-validation"></span>
+                </div>
+                <div class="juz">
+                  <button type="button" class="btn button-sm btn-default" data-dismiss="modal">关闭</button>
+                  <button type="button" class="btn button-sm btn-warning" id="editpwdbyemail">确定</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#" id="ui-to-top" class="ui-to-top fa fa-angle-up"></a>
+    <!-- PANEL-->
+    <!-- END PANEL-->
+    <!-- Global Mailform Output-->
+    <div class="snackbars" id="form-output-global"></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script src="js/domain.js"></script>
+    <script src="js/gVerify.js"></script>
+    <script src="js/addAddress.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/bbsdetail.js"></script>
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery.simplePagination.js"></script>
+    
+    <script src="js/jQuery.md5.js"></script>
+  </body>
+  </html>

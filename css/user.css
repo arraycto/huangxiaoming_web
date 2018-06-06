@@ -1,0 +1,444 @@
+/* 分页 */
+
+.pagination-custom {
+    text-align: center;
+}
+
+/* 站内信 */
+
+.datainfoXin {
+    padding: 0 20px;
+}
+
+.datainfoXin h3 {
+    color: #4d4d4d;
+    font-size: 20px;
+}
+
+.xinBox {
+    /* display: flex;
+    justify-content: space-around; */
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 10px 0 10px 10px;
+    border: 1px solid #efefef;
+    cursor: pointer;
+}
+
+.xinImg {
+    width: 100px;
+    /* height: 100px; */
+    float: left;
+}
+
+.xinImg img {
+    width: 100px;
+    height: 100px;
+}
+
+.xinMsg {
+    padding: 0 20px;
+    font-size: 16px;
+    float: left;
+    width: calc(100% - 120px);
+}
+
+.xinMsg h4 {
+    color: #000;
+    font-size: 20px;
+}
+
+.xinClose {
+    width: 20px;
+    height: 20px;
+    float: right;
+}
+
+.xinTop {
+    overflow: hidden;
+    color: #C8A86E;
+    font-size: 14px;
+}
+
+.xinTop h3 {
+    padding: 0 20px 11px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    float: left;
+}
+
+.xinDetal {
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #000;
+}
+
+.totalNum {
+    color: #3f3f3f;
+    font-size: 16px;
+}
+
+.noRead {
+    color: #FF6969;
+}
+
+.xinlable {
+    font-size: 16px;
+    padding: 10px 0;
+    color: #3f3f3f;
+}
+
+.xinlable .lableName {
+    display: inline-block;
+    width: 10%;
+}
+
+.xinlable .lableInfo {
+    float: right;
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+    font-size: 16px;
+}
+
+/* 我的活动 */
+
+.activityBox {
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+.activityBox>div {
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.post-blog {
+    box-shadow: 0 2px 2px #C8A86E;
+}
+
+.post-blog__body {
+    padding: 10px;
+}
+
+.post-blog__title {
+    padding: 0;
+}
+
+.post-blog__meta {
+    margin-top: 5px;
+}
+
+[class*="cell-"] {
+    padding: 0;
+}
+
+.detailBtn {
+    float: right;
+    margin-right: 20px;
+    border: 1px solid #C8A86E;
+    color: #C8A86E;
+    padding: 3px 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.closeBtn {
+    border: 1px solid #C8A86E;
+    color: #C8A86E;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#actDetail p {
+    font-size: 18px;
+    color: #000;
+}
+
+#actDetail p,
+#actDetail .footer {
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+}
+
+#actDetail .modal-dialog {
+    margin-top: 20% !important;
+    width: 30%;
+}
+
+#actDetail .activityDetail {
+    padding: 20px 0;
+}
+
+#actDetail .activityDetail>div {
+    overflow: hidden;
+    padding: 10px 20px;
+}
+
+#actDetail .lableName {
+    display: inline-block;
+    width: 25%;
+}
+
+#actDetail .lableInfo {
+    float: right;
+    display: inline-block;
+    width: 75%;
+    text-align: left;
+    font-size: 16px;
+}
+
+.shell.phone {
+    padding-top: 80px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    #actDetail .modal-dialog {
+        width: 80%;
+        margin: 150px auto !important;
+    }
+    .button.userChange_btn {
+        padding: 5px 15px;
+        margin: 20px;
+    }
+    .pagination-custom {
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+    #actDetail .lableName {
+        width: 35%;
+    }
+    #actDetail .lableInfo {
+        width: 65%;
+    }
+    .shell.phone {
+        padding-bottom: 100%;
+        text-align: center;
+    }
+}
+
+.mustStar {
+    color: #B88E42;
+}
+
+.activityBox {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#ProductName,
+.ProductName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: box;
+    line-clamp: 2;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+/*我的发帖*/
+
+@media (min-width: 768px) {
+    #userpost {
+        color: #9f9f9f;
+    }
+    #mypost .unit__body {
+        width: 50%;
+    }
+    #mypost .unit__Modular {
+        width: 17.5%;
+    }
+    #mypost .unit__left,
+    #mypost .unit__right {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    #mypost .unit__Modular {
+        display: none;
+    }
+    #mypost .post-blog__meta-comments {
+        margin-left: 0;
+    }
+}
+
+#mypost .unit__Modular p {
+    color: #9f9f9f;
+}
+
+#mypost .post-blog__meta-comments {
+    cursor: pointer;
+}
+
+#mypost .unit__body:hover,
+#mypost .post-blog__meta-comments:hover {
+    color: #B88E42;
+}
+
+#mypost .post-blog-sm:hover,
+#mypost .post-blog__meta-comments,
+#mypost .post-blog__meta-comments:before {
+    color: #0d0d0d;
+}
+
+#mypost .text-snow {
+    font-family: FZZQJW
+}
+
+/* vip俱乐部 */
+#vip.novip{
+    display: none;
+}
+
+#vip .joinvip p:first-child{
+    font-size: 16px;
+}
+#vip .joinbtn{
+    font-size: 14px;
+}
+
+#vip .showP .photo{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+#vip .vipdeal{
+    margin: 10px 50px;
+}
+.dealh3{
+    margin-top: 20px;
+}
+#vip .vipdeal span{
+    padding: 10px 20px;
+}
+#vip .vipdeal .row{
+    padding: 25px 50px;
+    font-size: 16px;
+}
+#vip .vipqa{
+    margin-top: 20px;
+}
+#vip .vipqa *+p{
+    margin-top: 0;
+}
+#vip .vipjq{
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+/* 报名表 */
+#vipClub .jointable{
+    display: none;
+}
+#vipClub .row{
+    padding: 10px;
+}
+#vipClub .form-inline{
+    width: 80%;
+    margin-left: 10%;
+}
+#vipClub .form-inline input.col-md-8,
+#vipClub .form-inline input.col-md-10,
+#vipClub .form-inline textarea.col-md-10{
+    min-height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+    -o-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
+}
+#vipClub .form-inline input.col-md-8:focus ,
+#vipClub .form-inline input.col-md-10:focus,
+#vipClub .form-inline textarea.col-md-10:focus{
+    border-color: #b88e42;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
+}
+#vipClub .form-inline center{
+    margin-top: 20px;
+}
+#vipClub .form-inline center button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.vipTop h3{
+    color: #C8A86E;
+    font-size: 14px;
+    cursor: pointer;
+}
+#vipinfo{
+    display: none;
+}
+#vipinfo input ,#vipinfo textarea {
+    display: none;
+}
+#saveinfo{
+    display: none;
+}
+#vipinfo .form-inline{
+    margin-top: 30px;
+}
+.step{
+    text-align: center;
+    width: 80%;
+    margin-left: 10%;
+    font-size: 16px;
+}
+.step p{
+    text-align: left;
+}
+#accordion1,.explain{
+    width: 80%;
+    margin-left: 10%;
+}
+#vipClub #vip h3.dealh3{
+    margin-left: 10%;
+    font-weight: bolder;
+}
+#accordion1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.panel-custom-title a{
+    font-weight: bolder;
+}
+@media (min-width: 768px) {
+    #vip .showP{
+        margin-right: 50px;
+        text-align: center;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    #vip .joinvip p:first-child{
+        margin: 20px 0 40px 0;
+    }
+    #vip .joinvip{
+        padding: 20px;
+        position: relative;
+    }
+    #vip .joinbtn{
+        padding: 6px 12px;
+    }
+}
+@media (max-width: 768px) {
+    #vip .joinbtn{
+        padding: 0.5rem 1rem;
+        margin-left: 0.8rem;
+    }
+}
