@@ -432,19 +432,20 @@ Your browser does not support the audio element.
                 </div>
                 <!-- vip俱乐部 -->
                 <div role="tabpanel" class="tab-pane" id="vipClub">
-                  <div class="datainfoXin yes" id="vip">
+                  <div class="datainfoXin" id="vip">
                     <h3>会员中心</h3>
                     <div class="joinvip">
-                      <p>尊敬的会员，您好！</p>
-                      <button type="button" class="btn btn-warning">会员续费</button>
-                      <button class="button button-default button-shadow btn-yellow joinbtn" onclick="vipinfo()">会员资料</button>
-                      <button class="button button-default button-shadow btn-yellow joinbtn">购买记录</button>
                       <div class="showP">
                         <img class="photo" src="images/95eef01f3a292df5bbb1a8f1b7315c6035a873e7.jpg" id="icon">
                         <p>昵称</p>
                       </div>
+                      <p class="yesvip">尊敬的会员，您好！</p>
+                      <p class='novip'>您还不是会员，点击加入立刻享受会员权益！</p>
+                      <button type="button" class="btn btn-warning yesvip">会员续费</button>
+                      <button class="button button-default button-shadow btn-yellow joinbtn yesvip" onclick="vipinfo()">会员资料</button>
+                      <button class="button button-default button-shadow btn-yellow joinbtn yesvip">购买记录</button>
+                      <button type="button" class="btn btn-warning novip" onclick="joinvipbtn()">加入会员</button>
                     </div>
-
                     <h3 class="dealh3">会员充值流程</h3>
                     <div class="vipdeal">
                       <ul class="orderprogress-topcard">
@@ -473,17 +474,34 @@ Your browser does not support the audio element.
                         </li>
                       </ul>
                     </div>
+
                     <div class="step">
                       <div class="row">
-                        <div class="col-md-6">
-                          <p>Step1:申请者填写并提交申请资料</p>
-                          <p>Step2:申请者填写并提交申请资料</p>
-                          <p>Step3:申请者填写并提交申请资料</p>
+                        <div class="col-md-5">
+                          <p>
+                            <strong>Step1：</strong>申请者填写并提交申请资料</p>
+                          <p>
+                            <strong>Step2：</strong>审核资料
+                            <span class="littletx">（2个工作日）</span>
+                          </p>
+                          <p>
+                            <strong>Step3：</strong>向申请人反馈申请结果
+                            <span class="littletx">（1个工作日）</span>
+                          </p>
                         </div>
-                        <div class="col-md-6">
-                          <p>Step4:申请者填写并提交申请资料</p>
-                          <p>Step5:申请者填写并提交申请资料</p>
-                          <p>Step6:申请者填写并提交申请资料</p>
+                        <div class="col-md-7">
+                          <p>
+                            <strong>Step4：</strong>审核通过，申请者汇款
+                            <span class="littletx">（视申请者而定，自通知起超过1个月未完成会费缴纳环节将视为自动放弃申请）</span>
+                          </p>
+                          <p>
+                            <strong>Step5：</strong>确认汇款到帐
+                            <span class="littletx">（1个工作日）</span>
+                          </p>
+                          <p>
+                            <strong>Step6：</strong>为申请者邮寄VIP会员卡、VIP会员手册、入会礼物等
+                            <span class="littletx">（3个工作日）</span>
+                          </p>
                         </div>
                       </div>
                       <p>说明：如无会员自身资料填写不完备、汇款不及时等因素阻碍流程进度，俱乐部将在七个工作日内为您完成全部VIP会员申请流程。</p>
@@ -493,277 +511,218 @@ Your browser does not support the audio element.
                       <br/>会员加入以自愿为前提，并遵守各项准则和行动要求为原则。</p>
                     <h3 class="dealh3">VIP会员的准入标准</h3>
                     <p class="explain">诚挚热爱并尊敬黄晓明先生及黄晓明全球影友会（明教），有责任感、使命感、荣誉感，支持并积极参与明教官方及所属分会组织的各项活动。</p>
-                  </div>
-                  <div class="panel-custom-group text-left" id="accordion1" role="tablist" aria-multiselectable="true">
-                    <!-- Bootstrap panel-->
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading1" role="tab">
-                        <p class="panel-custom-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse1" aria-controls="accordion1Collapse1"
-                            aria-expanded="true">办理VIP会员卡方式</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse in" id="accordion1Collapse1" role="tabpanel" aria-labelledby="accordion1Heading1">
-                        <div class="panel-custom-body">
-                          <p>
-                            <strong>1.邮件办理</strong>
-                            <br/> 1）打开网页 http://bbs.huangxiaoming.com.cn/images/hxmgg/VIP.HTML 并下载《黄晓明全球影友会（明教）VIP会员申请表》；
-                            <br/> 2）详细、完整填写《黄晓明全球影友会（明教）VIP会员申请表》，并将填写好的申请表发送至hxm_vip@vip.163.com
-                            <br/> 3）资料齐备且审核通过者，服务人员将在2个工作日内通知您缴纳会费（邮件通知）；
-                            <br/> 4）申请人缴费后，将本人的官网ID、真实姓名、汇款银行（或支付宝账号）及汇款时间短信至15010898007，或邮件至hxm_vip@vip.163.com认证。
-                            <br/> 5）缴款认证后7个工作日内，服务人员完成所有建档工作，并发放VIP卡及相关物品。
-                            <br/>
-                            <strong>2.微信办理</strong>
-                            <br/> 关注“黄晓明全球影友会”微信公众号（hxmfansclub）——→发送“加入VIP”+真实姓名，性别，出生年月，手机号，邮寄地址，email——→等候邮件通知——→办理汇款后，将本人的真实姓名、汇款截图发送至公众号或短信至15010898007，或邮件至hxm_vip@vip.163.com认证——→申请成功——→获得会员卡及享受相关服务。
-                            <br/>
-                            <strong>3.在线办理</strong>
-                            <br/> 晓晓：QQ：1656677062
-                            <br/>
-                            <strong>手机短信办理</strong>
-                            <br/> 偏远地区不便上网的明亲，可将以下9个（必填项）编写短信发送至服务人员的手机15010898007即可（为免重复登记请择其中一人发送即可，谢绝电联）；
-                            <br/> 1.黄晓明官方网站注册名或微信号： 2.真实姓名： 3.性别： 4.出生年月
-                            <br/> 5.联系手机： 6.目前所在地国家\省市\地区 7.邮寄地址 8. email：</p>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- Bootstrap panel-->
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading2" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse2" aria-controls="accordion1Collapse2">VIP会员审核流程：</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse2" role="tabpanel" aria-labelledby="accordion1Heading2">
-                        <div class="panel-custom-body">
-                          <p>
-                            <strong>1、审核流程（6道工序）：</strong>
-                            <br/> 申请者填写并提交申请资料——→审核资料（2个工作日）——→向申请人反馈申请结果（1个工作日）——→审核通过，申请者汇款（视申请者而定，自通知起超过1个月未完成会费缴纳环节将视为自动放弃申请）——→确认汇款到帐（1个工作日）——→为申请者邮寄VIP会员卡、VIP会员手册、入会礼物等（3个工作日）
-                          </br>
-                          <strong>2、流程时间（7个工作日）：</strong>
-                          <br/> 如无会员自身资料填写不完备、汇款不及时等因素阻碍流程进度，俱乐部将在七个工作日内为您完成全部VIP会员申请流程。
+                    <div class="panel-custom-group text-left" id="accordion1" role="tablist" aria-multiselectable="true">
+                      <!-- Bootstrap panel-->
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading1" role="tab">
+                          <p class="panel-custom-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse1" aria-controls="accordion1Collapse1"
+                              aria-expanded="true">办理VIP会员卡方式</a>
                           </p>
                         </div>
+                        <div class="panel-custom-collapse collapse in" id="accordion1Collapse1" role="tabpanel" aria-labelledby="accordion1Heading1">
+                          <div class="panel-custom-body">
+                            <p>
+                              <strong>1.邮件办理</strong>
+                              <br/> 1）打开网页 http://bbs.huangxiaoming.com.cn/images/hxmgg/VIP.HTML 并下载《黄晓明全球影友会（明教）VIP会员申请表》；
+                              <br/> 2）详细、完整填写《黄晓明全球影友会（明教）VIP会员申请表》，并将填写好的申请表发送至hxm_vip@vip.163.com
+                              <br/> 3）资料齐备且审核通过者，服务人员将在2个工作日内通知您缴纳会费（邮件通知）；
+                              <br/> 4）申请人缴费后，将本人的官网ID、真实姓名、汇款银行（或支付宝账号）及汇款时间短信至15010898007，或邮件至hxm_vip@vip.163.com认证。
+                              <br/> 5）缴款认证后7个工作日内，服务人员完成所有建档工作，并发放VIP卡及相关物品。
+                              <br/>
+                              <strong>2.微信办理</strong>
+                              <br/> 关注“黄晓明全球影友会”微信公众号（hxmfansclub）——→发送“加入VIP”+真实姓名，性别，出生年月，手机号，邮寄地址，email——→等候邮件通知——→办理汇款后，将本人的真实姓名、汇款截图发送至公众号或短信至15010898007，或邮件至hxm_vip@vip.163.com认证——→申请成功——→获得会员卡及享受相关服务。
+                              <br/>
+                              <strong>3.在线办理</strong>
+                              <br/> 晓晓：QQ：1656677062
+                              <br/>
+                              <strong>手机短信办理</strong>
+                              <br/> 偏远地区不便上网的明亲，可将以下9个（必填项）编写短信发送至服务人员的手机15010898007即可（为免重复登记请择其中一人发送即可，谢绝电联）；
+                              <br/> 1.黄晓明官方网站注册名或微信号： 2.真实姓名： 3.性别： 4.出生年月
+                              <br/> 5.联系手机： 6.目前所在地国家\省市\地区 7.邮寄地址 8. email：</p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <!-- Bootstrap panel-->
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading3" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse3" aria-controls="accordion1Collapse3">会员会费收取方式</a>
-                        </p>
+                      <!-- Bootstrap panel-->
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading2" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse2" aria-controls="accordion1Collapse2">VIP会员审核流程：</a>
+                          </p>
+                        </div>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse2" role="tabpanel" aria-labelledby="accordion1Heading2">
+                          <div class="panel-custom-body">
+                            <p>
+                              <strong>1、审核流程（6道工序）：</strong>
+                              <br/> 申请者填写并提交申请资料——→审核资料（2个工作日）——→向申请人反馈申请结果（1个工作日）——→审核通过，申请者汇款（视申请者而定，自通知起超过1个月未完成会费缴纳环节将视为自动放弃申请）——→确认汇款到帐（1个工作日）——→为申请者邮寄VIP会员卡、VIP会员手册、入会礼物等（3个工作日）
+                              </br>
+                              <strong>2、流程时间（7个工作日）：</strong>
+                              <br/> 如无会员自身资料填写不完备、汇款不及时等因素阻碍流程进度，俱乐部将在七个工作日内为您完成全部VIP会员申请流程。
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse3" role="tabpanel" aria-labelledby="accordion1Heading3">
-                        <div class="panel-custom-body">
-                          <p>明教VIP俱乐部实行VIP会员年度会费缴纳制。除首年年费外，请VIP会员在每年12月会员资格到期前及时续费以免影响正常会员权利。
-                            <br/> 所有会费都统一转至黄晓明全球影友会专用帐号。会费用于VIP会员会服、礼物制作、福利开支、短信费、邮寄费、活动费、服务费等，及所在分会参与影友会和VIP俱乐部统筹的各项活动。
-                            <br/>
-                            <strong>1.缴费标准</strong>
-                            <br/> 1）首次缴费：168元/年（中国内地），40美金/年（海外）
-                            <br/> 2）次年续费：128元/年（中国内地），35美金/年（海外）
-                            <br/> 3）一次性缴三年会费：380元/3年（内地）
-                            <br/> 凡持卡会员原则上一年缴一次会费，会费有效期为当年1月1日至12月31日。
-                            <br/>
+                      <!-- Bootstrap panel-->
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading3" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse3" aria-controls="accordion1Collapse3">会员会费收取方式</a>
+                          </p>
+                        </div>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse3" role="tabpanel" aria-labelledby="accordion1Heading3">
+                          <div class="panel-custom-body">
+                            <p>明教VIP俱乐部实行VIP会员年度会费缴纳制。除首年年费外，请VIP会员在每年12月会员资格到期前及时续费以免影响正常会员权利。
+                              <br/> 所有会费都统一转至黄晓明全球影友会专用帐号。会费用于VIP会员会服、礼物制作、福利开支、短信费、邮寄费、活动费、服务费等，及所在分会参与影友会和VIP俱乐部统筹的各项活动。
+                              <br/>
+                              <strong>1.缴费标准</strong>
+                              <br/> 1）首次缴费：168元/年（中国内地），40美金/年（海外）
+                              <br/> 2）次年续费：128元/年（中国内地），35美金/年（海外）
+                              <br/> 3）一次性缴三年会费：380元/3年（内地）
+                              <br/> 凡持卡会员原则上一年缴一次会费，会费有效期为当年1月1日至12月31日。
+                              <br/>
 
-                            <strong></strong>2.缴费办法</strong>
-                            <br/>
-                            <strong>●中国内地支付</strong>
-                            <br/> 1）银行汇款
-                            <br/>
-                            <strong>●建设银行 </strong>
-                            <br/> 户名：郭荣海
-                            <br/> 卡号：6227 0000 1448 0480 361
-                            <br/> 开户行：中国北京金源支行
-                            <br/>
-                            <strong>●招商银行 </strong>
-                            <br/> 户名：郭荣海
-                            <br/> 卡号：6225 8801 2878 2696
-                            <br/> 开户行：中国北京分行世纪城支行
-                            <br/>
-                            <strong>2）网络支付</strong>
-                            <br/> 支付宝帐号：hxm_vip@vip.163.com
-                            <br/> 注：海外会员可提出其他可行付款方式，但当中产生的手续费及其他相关费用由会员自行承担。
-                          </p>
+                              <strong></strong>2.缴费办法</strong>
+                              <br/>
+                              <strong>●中国内地支付</strong>
+                              <br/> 1）银行汇款
+                              <br/>
+                              <strong>●建设银行 </strong>
+                              <br/> 户名：郭荣海
+                              <br/> 卡号：6227 0000 1448 0480 361
+                              <br/> 开户行：中国北京金源支行
+                              <br/>
+                              <strong>●招商银行 </strong>
+                              <br/> 户名：郭荣海
+                              <br/> 卡号：6225 8801 2878 2696
+                              <br/> 开户行：中国北京分行世纪城支行
+                              <br/>
+                              <strong>2）网络支付</strong>
+                              <br/> 支付宝帐号：hxm_vip@vip.163.com
+                              <br/> 注：海外会员可提出其他可行付款方式，但当中产生的手续费及其他相关费用由会员自行承担。
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <!-- Bootstrap panel-->
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading4" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse4" aria-controls="accordion1Collapse4">VIP会员待遇</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse4" role="tabpanel" aria-labelledby="accordion1Heading4">
-                        <div class="panel-custom-body">
-                          <p>1.VIP会员卡一套（含会员卡、卡套、卡绳）、使用手册一本（VIP会员使用说明书）；
-                            <br/> 2.黄晓明全球影友会会服一件（明教活动统一着装会服）；
-                            <br/> 3.手机短信服务（每月至少1条短信服务，内容包括晓明近期行程动态、各地重大活动通知、明教重大动态等。海外区域由于通信限制，此项服务改为EMAIL提示服务）；
-                            <br/> 4.VIP邮件服务（独家视频、高清图包等独家内容邮件放送）；
-                            <br/> 5.优先优惠参加11月“黄晓明生日会”资格（非VIP收取双倍活动费）；
-                            <br/> 6.获参加“黄晓明见面会”活动资格（一年两次，时间为上半年一次，下半年和生日会合并一次，非VIP无见面会报名资格）；
-                            <br/> 7.VIP会员获“黄晓明年度抽奖”福利（每半年抽取1次，被抽中者可参与与黄晓明微信语音聊天+礼物1份）；
-                            <br/> 8.VIP会员每年可获专属签名贺卡+生日礼物一份；
-                            <br/> 9.VIP会员优先活动资格。官方统一组织的活动，在有人数限制的活动中具有优先权；
-                            <br/> 10.获VIP俱乐部专属活动年度抽奖资格（VIP俱乐部每年举行1次以上VIP会员专属网络活动，仅VIP会员具有参与资格，凡中奖者免费获纪念品一份）；
-                            <br/> 11.享受黄晓明官方网店推出明教专属商品8折优惠价；
-                            <br/> 12.合作商户专属VIP折扣（具体名单以公布为准）；
-                            <br/> 13.VIP俱乐部专项“每天一分钱”慈善项目，将每年代每位VIP会员捐出3.65元（人民币）用于慈善事业，慈善款项的使用和捐赠将及时发起公示。
-                            <br/> 14.VIP会员入会达到5年以上，即有资格申请“资深会员”，通过审核的“资深会员”都将获得定制“资深会员”奖章/奖杯+“资深大礼”1份。
+                      <!-- Bootstrap panel-->
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading4" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse4" aria-controls="accordion1Collapse4">VIP会员待遇</a>
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <!-- Bootstrap panel-->
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading5" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse5" aria-controls="accordion1Collapse5">VIP会员规范</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse5" role="tabpanel" aria-labelledby="accordion1Heading5">
-                        <div class="panel-custom-body">
-                          <p>.每位会员限办一张VIP卡，须签名使用；
-                            <br/> 2. VIP会员卡仅适用于明教VIP俱乐部、黄晓明官方网站暨黄晓明全球影友会之标志及确认，内部使用，在部分合作商户处消费，可享受一定优惠，具体以VIP俱乐部公布为准；
-                            <br/> 3.VIP会员所在地区有明教分会者，活动需听从当地会长或指定负责人的统一安排；
-                            <br/> 4.VIP会员出席明教VIP俱乐部、黄晓明官方网站、黄晓明全球影友会及所属分会的各项活动，需佩戴VIP卡以作身份识别凭证，未携卡者皆视其为非VIP会员，组织者有权拒绝其参与活动；
-                            <br/> 5.未经授权，VIP会员不得以明教VIP俱乐部、黄晓明官方网站或黄晓明影友会的名义私自向报社、电台、电视台等媒体或企业提出相关活动的申请和接洽；
-                            <br/> 6.VIP会员不得以会员身份向其他会员中借贷财务或贵重物品，如确实需要帮助且当事双方自愿，均属个人行为，与明教VIP俱乐部、黄晓明官网网站和黄晓明全球影友会无关；
-                            <br/> 7.严禁任何个人或团体冒用VIP会员及明教分会名义，散播不实消息妨害他人名誉、隐私，张贴虚假不实及从事不法行为。任一VIP会员如牵涉上述相关行为，均与明教VIP俱乐部、黄晓明官网网站和黄晓明全球影友会无关，并有权提供涉事人资料配合相关方面配合调查；
-                            <br/> 8.如有因个人行为破坏VIP会员之宗旨，情节严重者，影友会有权即时单方面终止其VIP会员资格。
-                          </p>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse4" role="tabpanel" aria-labelledby="accordion1Heading4">
+                          <div class="panel-custom-body">
+                            <p>1.VIP会员卡一套（含会员卡、卡套、卡绳）、使用手册一本（VIP会员使用说明书）；
+                              <br/> 2.黄晓明全球影友会会服一件（明教活动统一着装会服）；
+                              <br/> 3.手机短信服务（每月至少1条短信服务，内容包括晓明近期行程动态、各地重大活动通知、明教重大动态等。海外区域由于通信限制，此项服务改为EMAIL提示服务）；
+                              <br/> 4.VIP邮件服务（独家视频、高清图包等独家内容邮件放送）；
+                              <br/> 5.优先优惠参加11月“黄晓明生日会”资格（非VIP收取双倍活动费）；
+                              <br/> 6.获参加“黄晓明见面会”活动资格（一年两次，时间为上半年一次，下半年和生日会合并一次，非VIP无见面会报名资格）；
+                              <br/> 7.VIP会员获“黄晓明年度抽奖”福利（每半年抽取1次，被抽中者可参与与黄晓明微信语音聊天+礼物1份）；
+                              <br/> 8.VIP会员每年可获专属签名贺卡+生日礼物一份；
+                              <br/> 9.VIP会员优先活动资格。官方统一组织的活动，在有人数限制的活动中具有优先权；
+                              <br/> 10.获VIP俱乐部专属活动年度抽奖资格（VIP俱乐部每年举行1次以上VIP会员专属网络活动，仅VIP会员具有参与资格，凡中奖者免费获纪念品一份）；
+                              <br/> 11.享受黄晓明官方网店推出明教专属商品8折优惠价；
+                              <br/> 12.合作商户专属VIP折扣（具体名单以公布为准）；
+                              <br/> 13.VIP俱乐部专项“每天一分钱”慈善项目，将每年代每位VIP会员捐出3.65元（人民币）用于慈善事业，慈善款项的使用和捐赠将及时发起公示。
+                              <br/> 14.VIP会员入会达到5年以上，即有资格申请“资深会员”，通过审核的“资深会员”都将获得定制“资深会员”奖章/奖杯+“资深大礼”1份。
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading6" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse6" aria-controls="accordion1Collapse6">转会及退会</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse6" role="tabpanel" aria-labelledby="accordion1Heading6">
-                        <div class="panel-custom-body">
-                          <p>
-                            <strong>1.转会：</strong>
-                            <br/> 1）凡VIP会员均成为明教官方高级会员，所持VIP卡在明教各分会通用；
-                            <br/> 2）VIP会员如因工作、学习或其他原因要离开所在地区或分会，需提前通知VIP的服务人员自己所去地区及在该地区居住时间的长短，以便服务人员与该地区分会取得联系并做资料移交手续，以免影响VIP会员在所去城市参加活动的机会，会员卡无需重新办理。
-                            <br/>
-                            <strong>2.退会：</strong>
-                            <br/> 1）VIP会员的加入以自愿为原则，VIP会员享有入会和退会的自由，黄晓明全球影友会保留对退会会员再加入的审核权；
-                            <br/> 2）VIP会员退会，新入会未满一个月且未参加任何活动者，可退还一半会费，超过一个月，一律只退还会员卡工本费。老会员在已续费情况下，在3月31日前申请退会，可退还当年会费的一半，以及剩余年份的会员；3月31日后，可退还第二年及之后的会费；
-                            <br/> 3）VIP会员退会前需先提交退会书面申请并将VIP会员卡退回，有分会的可直接将VIP会员卡交回会长，无分会的需将VIP卡邮寄至指定地址。
-                            <br/> 4)VIP会员未在会员资格有效期终止前未交纳会费者，俱乐部将为会员保留一个月资格，并短信提醒，逾期仍未续费，则视为自动退会，相应VIP会员卡作废且不再享受任何VIP会员待遇。
-                            <br/> 5）若续费延期，则未续费期间不享受续费的优惠待遇。
-                            <br/> 6）老会员超过1年以上时间再重新续费，则视为新会员，重新计算会员年限资格。
+                      <!-- Bootstrap panel-->
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading5" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse5" aria-controls="accordion1Collapse5">VIP会员规范</a>
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading7" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse7" aria-controls="accordion1Collapse7">VIP俱乐部服务人员</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse7" role="tabpanel" aria-labelledby="accordion1Heading7">
-                        <div class="panel-custom-body">
-                          <p>明教VIP俱乐部，是服务于黄晓明官方网站和黄晓明全球影友会的机构，主要职责是协助黄晓明全球影友会（明教）发展VIP会员，主要服务人员两名，他们是晓晓和明明。晓晓和明明隶属于VIP俱乐部，其主要职责就是为VIP会员提供各种服务上的协助，VIP会员的管理、运营及账务接受黄晓明全球影友会的协助管理与监督。
-                            <br/>
-                            <strong>服务人员：</strong>晓晓、明明
-                            <br/>
-                            <strong>2.联系方式：</strong>
-                            <br/> 晓晓 QQ号：1656677062 明明 QQ号：1642341691
-                            <br/> 晓晓微信号：hxm19771113vip
-                            <br/> 黄晓明全球影友会微信公众号：hxmfansclub
-                            <br/> 手机：15010898007 （接受短信咨询，谢绝电联）
-                            <br/>
-                            <strong>3.VIP会员服务专属邮箱：</strong>hxm_vip@vip.163.com
-                            <br/>
-                            <strong>4. VIP会员俱乐部QQ群：</strong>
-                            <br/> 1号群：117330854 2号群：123749177 3号群：123749393
-                            <br/>
-                            <strong>5.VIP会会员官方微信群</strong>
-                            <br/> 注：VIP会员群限加一个，请按服务人员邮件提示加入自己应加入的群。
-                            <br/>
-                            <strong>6. VIP会员专版：</strong>黄晓明官方网站VIP会员专版
-                            <br/>
-                          </p>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse5" role="tabpanel" aria-labelledby="accordion1Heading5">
+                          <div class="panel-custom-body">
+                            <p>.每位会员限办一张VIP卡，须签名使用；
+                              <br/> 2. VIP会员卡仅适用于明教VIP俱乐部、黄晓明官方网站暨黄晓明全球影友会之标志及确认，内部使用，在部分合作商户处消费，可享受一定优惠，具体以VIP俱乐部公布为准；
+                              <br/> 3.VIP会员所在地区有明教分会者，活动需听从当地会长或指定负责人的统一安排；
+                              <br/> 4.VIP会员出席明教VIP俱乐部、黄晓明官方网站、黄晓明全球影友会及所属分会的各项活动，需佩戴VIP卡以作身份识别凭证，未携卡者皆视其为非VIP会员，组织者有权拒绝其参与活动；
+                              <br/> 5.未经授权，VIP会员不得以明教VIP俱乐部、黄晓明官方网站或黄晓明影友会的名义私自向报社、电台、电视台等媒体或企业提出相关活动的申请和接洽；
+                              <br/> 6.VIP会员不得以会员身份向其他会员中借贷财务或贵重物品，如确实需要帮助且当事双方自愿，均属个人行为，与明教VIP俱乐部、黄晓明官网网站和黄晓明全球影友会无关；
+                              <br/> 7.严禁任何个人或团体冒用VIP会员及明教分会名义，散播不实消息妨害他人名誉、隐私，张贴虚假不实及从事不法行为。任一VIP会员如牵涉上述相关行为，均与明教VIP俱乐部、黄晓明官网网站和黄晓明全球影友会无关，并有权提供涉事人资料配合相关方面配合调查；
+                              <br/> 8.如有因个人行为破坏VIP会员之宗旨，情节严重者，影友会有权即时单方面终止其VIP会员资格。
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="panel panel-custom panel-custom-default">
-                      <div class="panel-custom-heading" id="accordion1Heading8" role="tab">
-                        <p class="panel-custom-title">
-                          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse8" aria-controls="accordion1Collapse8">添砖加瓦</a>
-                        </p>
-                      </div>
-                      <div class="panel-custom-collapse collapse" id="accordion1Collapse8" role="tabpanel" aria-labelledby="accordion1Heading8">
-                        <div class="panel-custom-body">
-                          <p>明教VIP俱乐部欢迎VIP会员们提供自身的资源和技能，并积极吸纳大家的创新意识。如你具备平面设计、电子书制作、播音主持、活动组织等特长，那么请将你的个人简历（附作品）发至hxm_vip@vip.163.com，我们将择优邀请您成为明教VIP俱乐部的特约服务人员。明教VIP俱乐部服务团队随时欢迎您的加入。
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading6" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse6" aria-controls="accordion1Collapse6">转会及退会</a>
                           </p>
+                        </div>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse6" role="tabpanel" aria-labelledby="accordion1Heading6">
+                          <div class="panel-custom-body">
+                            <p>
+                              <strong>1.转会：</strong>
+                              <br/> 1）凡VIP会员均成为明教官方高级会员，所持VIP卡在明教各分会通用；
+                              <br/> 2）VIP会员如因工作、学习或其他原因要离开所在地区或分会，需提前通知VIP的服务人员自己所去地区及在该地区居住时间的长短，以便服务人员与该地区分会取得联系并做资料移交手续，以免影响VIP会员在所去城市参加活动的机会，会员卡无需重新办理。
+                              <br/>
+                              <strong>2.退会：</strong>
+                              <br/> 1）VIP会员的加入以自愿为原则，VIP会员享有入会和退会的自由，黄晓明全球影友会保留对退会会员再加入的审核权；
+                              <br/> 2）VIP会员退会，新入会未满一个月且未参加任何活动者，可退还一半会费，超过一个月，一律只退还会员卡工本费。老会员在已续费情况下，在3月31日前申请退会，可退还当年会费的一半，以及剩余年份的会员；3月31日后，可退还第二年及之后的会费；
+                              <br/> 3）VIP会员退会前需先提交退会书面申请并将VIP会员卡退回，有分会的可直接将VIP会员卡交回会长，无分会的需将VIP卡邮寄至指定地址。
+                              <br/> 4)VIP会员未在会员资格有效期终止前未交纳会费者，俱乐部将为会员保留一个月资格，并短信提醒，逾期仍未续费，则视为自动退会，相应VIP会员卡作废且不再享受任何VIP会员待遇。
+                              <br/> 5）若续费延期，则未续费期间不享受续费的优惠待遇。
+                              <br/> 6）老会员超过1年以上时间再重新续费，则视为新会员，重新计算会员年限资格。
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading7" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse7" aria-controls="accordion1Collapse7">VIP俱乐部服务人员</a>
+                          </p>
+                        </div>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse7" role="tabpanel" aria-labelledby="accordion1Heading7">
+                          <div class="panel-custom-body">
+                            <p>明教VIP俱乐部，是服务于黄晓明官方网站和黄晓明全球影友会的机构，主要职责是协助黄晓明全球影友会（明教）发展VIP会员，主要服务人员两名，他们是晓晓和明明。晓晓和明明隶属于VIP俱乐部，其主要职责就是为VIP会员提供各种服务上的协助，VIP会员的管理、运营及账务接受黄晓明全球影友会的协助管理与监督。
+                              <br/>
+                              <strong>服务人员：</strong>晓晓、明明
+                              <br/>
+                              <strong>2.联系方式：</strong>
+                              <br/> 晓晓 QQ号：1656677062 明明 QQ号：1642341691
+                              <br/> 晓晓微信号：hxm19771113vip
+                              <br/> 黄晓明全球影友会微信公众号：hxmfansclub
+                              <br/> 手机：15010898007 （接受短信咨询，谢绝电联）
+                              <br/>
+                              <strong>3.VIP会员服务专属邮箱：</strong>hxm_vip@vip.163.com
+                              <br/>
+                              <strong>4. VIP会员俱乐部QQ群：</strong>
+                              <br/> 1号群：117330854 2号群：123749177 3号群：123749393
+                              <br/>
+                              <strong>5.VIP会会员官方微信群</strong>
+                              <br/> 注：VIP会员群限加一个，请按服务人员邮件提示加入自己应加入的群。
+                              <br/>
+                              <strong>6. VIP会员专版：</strong>黄晓明官方网站VIP会员专版
+                              <br/>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="panel panel-custom panel-custom-default">
+                        <div class="panel-custom-heading" id="accordion1Heading8" role="tab">
+                          <p class="panel-custom-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#accordion1Collapse8" aria-controls="accordion1Collapse8">添砖加瓦</a>
+                          </p>
+                        </div>
+                        <div class="panel-custom-collapse collapse" id="accordion1Collapse8" role="tabpanel" aria-labelledby="accordion1Heading8">
+                          <div class="panel-custom-body">
+                            <p>明教VIP俱乐部欢迎VIP会员们提供自身的资源和技能，并积极吸纳大家的创新意识。如你具备平面设计、电子书制作、播音主持、活动组织等特长，那么请将你的个人简历（附作品）发至hxm_vip@vip.163.com，我们将择优邀请您成为明教VIP俱乐部的特约服务人员。明教VIP俱乐部服务团队随时欢迎您的加入。
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <!-- 不是VIP -->
-                  <div class="datainfoXin novip" id="vip">
-                    <h3>会员中心</h3>
-                    <div class="joinvip">
-                      <p>您还不是会员，点击加入立刻享受会员权益！</p>
-                      <button type="button" class="btn btn-warning" onclick="joinvipbtn()">加入会员</button>
-                      <div class="showP">
-                        <img class="photo" src="images/95eef01f3a292df5bbb1a8f1b7315c6035a873e7.jpg" id="icon">
-                        <p>昵称</p>
-                      </div>
-                    </div>
 
-                    <h3 class="dealh3">会员权益</h3>
-                    <div class="vipdeal">
-                      <div class="row row-no-gutter grid-system-row">
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                      </div>
-                      <div class="row row-no-gutter grid-system-row">
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                        <div class="col-xs-4">
-                          <p>会员权益吧啦啦啦</p>
-                        </div>
-                      </div>
-                    </div>
-                    <h3 class="dealh3">会员解读</h3>
-                    <div class="vipqa">
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                    </div>
-                    <h3 class="dealh3">常见问题解读</h3>
-                    <div class="vipjq">
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                      <strong>解读一</strong>
-                      <p>吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦吧啦</p>
-                    </div>
-                  </div>
                   <!-- 加入vip -->
                   <div class="jointable">
                     <div class="datainfoXin">
@@ -775,127 +734,155 @@ Your browser does not support the audio element.
                         <ul class="orderprogress-topcard">
                           <li>
                             <div class="firstbz">1</div>
-                            <div>
-                              <p>信息填写</p>
-                            </div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
                             <div class="twobz greycard">2</div>
-                            <div>支付会费</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
                             <div class="threebz greycard">3</div>
-                            <div>&nbsp;完成&nbsp;</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
-                            <div class="twobz greycard">2</div>
-                            <div>支付会费</div>
+                            <div class="twobz greycard">4</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
-                            <div class="twobz greycard">2</div>
-                            <div>支付会费</div>
+                            <div class="twobz greycard">5</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
-                            <div class="twobz greycard">2</div>
-                            <div>支付会费</div>
+                            <div class="twobz greycard">6</div>
                           </li>
                         </ul>
+                        <div class="step">
+                          <div class="row">
+                            <div class="col-md-5">
+                              <p>
+                                <strong>Step1：</strong>申请者填写并提交申请资料</p>
+                              <p>
+                                <strong>Step2：</strong>审核资料
+                                <span class="littletx">（2个工作日）</span>
+                              </p>
+                              <p>
+                                <strong>Step3：</strong>向申请人反馈申请结果
+                                <span class="littletx">（1个工作日）</span>
+                              </p>
+                            </div>
+                            <div class="col-md-7">
+                              <p>
+                                <strong>Step4：</strong>审核通过，申请者汇款
+                                <span class="littletx">（视申请者而定，自通知起超过1个月未完成会费缴纳环节将视为自动放弃申请）</span>
+                              </p>
+                              <p>
+                                <strong>Step5：</strong>确认汇款到帐
+                                <span class="littletx">（1个工作日）</span>
+                              </p>
+                              <p>
+                                <strong>Step6：</strong>为申请者邮寄VIP会员卡、VIP会员手册、入会礼物等
+                                <span class="littletx">（3个工作日）</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="datainfoXin">
+                          <div class="vipinfo row">
+                            <div class=" col-xs-12 col-md-6">
+                              <div class="viptable">
+                                <label>真实姓名：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                              <div class="viptable">
+                                <label>出生日期：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                            </div>
+                            <div class=" col-xs-12 col-md-6">
+                              <div class="viptable">
+                                <label>性别：</label>
+                                <span id="Username"></span>
+                                <label class="inforadio">
+                                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" class="inforadio"> 男
+                                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="1" class="inforadio"> 女
+                                </label>
+                              </div>
+                              <div class="viptable">
+                                <label>所在地：</label>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                            </div>
+                            <div class=" col-xs-12 col-md-12">
+                              <div class="viptable">
+                                <label>联系电话：</label>
+                                <span id="Phone"></span>
+                                <input type="text" class="form-control" id="Phone1">
+                              </div>
+                              <div class="viptable">
+                                <label>邮寄地址：</label>
+                                <span id="Occupation"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                            </div>
+                            <div class=" col-xs-12 col-md-6">
+                              <div class="viptable">
+                                <label>邮政编码：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                              <div class="viptable">
+                                <label>MSN号：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                              <div class="viptable">
+                                <label>从事职业：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                            </div>
+                            <div class=" col-xs-12 col-md-6">
+                              <div class="viptable">
+                                <label>QQ号码：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                              <div class="viptable">
+                                <label>EMAIL：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                              <div class="viptable">
+                                <label>会服尺码：</label>
+                                <span id="Username"></span>
+                                <input type="text" class="form-control" id="Username1">
+                              </div>
+                            </div>
+                            <div class="col-xs-12 col-md-12">
+                              <div class="viptable">
+                                <label>兴趣特长：</label>
+                                <span id="Phone"></span>
+                                <input type="text" class="form-control" id="Phone1">
+                              </div>
+                              <div class="viptable">
+                                <label class="toptext">申请理由：</label>
+                                <span id="Occupation"></span>
+                                <textarea class="form-control" rows="3"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <center>
+                              <div class="form-wrap">
+                                  <label class="checkbox-inline">
+                                    <input name="input-group-radio" value="checkbox-1" type="checkbox" checked="" class="checkbox-custom"><span class="checkbox-custom-dummy"></span>我已仔细阅读注意事项
+                                  </label>
+                                </div>
+                            <button type="button" class="btn btn-warning" id="savetable">申请加入</button>
+                          </center>
+                        </div>
                       </div>
-                      <form class="form-inline">
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>真实姓名：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>性别：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>出生日期：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>所在地：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <label class='col-md-2 inputtext'>联系电话：</label>
-                            <input type="text" class="col-md-10">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <label class='col-md-2 inputtext'>邮寄地址：</label>
-                            <input type="text" class="col-md-10">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>邮政编码：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>QQ号码：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>MSN号：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>EMAIL：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>从事职业：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>会服尺码：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>兴趣特长：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6">
-                            <label class='col-md-4 inputtext'>性别：</label>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <label class='col-md-2 inputtext'>申请理由：</label>
-                            <textarea class="col-md-10" rows="3"></textarea>
-                          </div>
-                        </div>
-                        <center>
-                          <div class="form-wrap">
-                            <label class="checkbox-inline">
-                              <input name="input-group-radio" value="checkbox-1" type="checkbox" checked="" class="checkbox-custom">
-                              <span class="checkbox-custom-dummy"></span>我已仔细阅读注意事项
-                            </label>
-                          </div>
-                          <button type="button" class="btn btn-warning" onclick="joinvipbtn()">申请加入</button>
-                        </center>
-                      </form>
-
                     </div>
                   </div>
                   <!-- 会员资料 -->
@@ -905,205 +892,100 @@ Your browser does not support the audio element.
                         <h3>返回上一页</h3>
                       </div>
                       <h3 class="dealh3">会员资料</h3>
-                      <form class="form-inline">
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>真实姓名：</label>
-                            <span class="col-md-8">郑嘉怡</span>
-                            <input type="text" class="col-md-8">
+                      <div class="vipinfo row">
+                        <div class=" col-xs-12 col-md-6">
+                          <div class="viptable">
+                            <label>真实姓名：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>性别：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>出生日期：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>所在地：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
+                          <div class="viptable">
+                            <label>出生日期：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>联系电话：</label>
-                            <span class="col-md-8">1825877356</span>
-                            <input type="text" class="col-md-10">
+                        <div class=" col-xs-12 col-md-6">
+                          <div class="viptable">
+                            <label>性别：</label>
+                            <span id="Username"></span>
+                            <label class="inforadio">
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" class="inforadio"> 男
+                              <input type="radio" name="optionsRadios" id="optionsRadios2" value="1" class="inforadio"> 女
+                            </label>
+                          </div>
+                          <div class="viptable">
+                            <label>所在地：</label>
+                            <span id="Username">111</span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>邮寄地址：</label>
-                            <span class="col-md-8">浙江省宁波市</span>
-                            <input type="text" class="col-md-10">
+                        <div class=" col-xs-12 col-md-12">
+                          <div class="viptable">
+                            <label>联系电话：</label>
+                            <span id="Phone"></span>
+                            <input type="text" class="form-control" id="Phone1">
+                          </div>
+                          <div class="viptable">
+                            <label>邮寄地址：</label>
+                            <span id="Occupation"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>邮政编码：</label>
-                            <span class="col-md-8">314000</span>
-                            <input type="text" class="col-md-8">
+                        <div class=" col-xs-12 col-md-6">
+                          <div class="viptable">
+                            <label>邮政编码：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>QQ号码：</label>
-                            <span class="col-md-8">296579033</span>
-                            <input type="text" class="col-md-8">
+                          <div class="viptable">
+                            <label>MSN号：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>MSN号：</label>
-                            <span class="col-md-8">296579033</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>EMAIL：</label>
-                            <span class="col-md-8">296579033@qq.com</span>
-                            <input type="text" class="col-md-8">
+                          <div class="viptable">
+                            <label>从事职业：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>从事职业：</label>
-                            <span class="col-md-8">搬砖</span>
-                            <input type="text" class="col-md-8">
+                        <div class=" col-xs-12 col-md-6">
+                          <div class="viptable">
+                            <label>QQ号码：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>会服尺码：</label>
-                            <span class="col-md-8">S</span>
-                            <input type="text" class="col-md-8">
+                          <div class="viptable">
+                            <label>EMAIL：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>兴趣特长：</label>
-                            <span class="col-md-10">听歌看书</span>
-                            <input type="text" class="col-md-8">
+                          <div class="viptable">
+                            <label>会服尺码：</label>
+                            <span id="Username"></span>
+                            <input type="text" class="form-control" id="Username1">
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>申请理由：</label>
-                            <span class="col-md-8">开心</span>
-                            <textarea class="col-md-10" rows="3"></textarea>
+                        <div class="col-xs-12 col-md-12">
+                          <div class="viptable">
+                            <label>兴趣特长：</label>
+                            <span id="Phone"></span>
+                            <input type="text" class="form-control" id="Phone1">
+                          </div>
+                          <div class="viptable">
+                            <label class="toptext">申请理由：</label>
+                            <span id="Occupation"></span>
+                            <textarea class="form-control" rows="3"></textarea>
                           </div>
                         </div>
-                        <center>
-                          <button type="button" class="btn btn-warning" id="editinfo">编辑</button>
-                          <button type="button" class="btn btn-warning" id="saveinfo">保存</button>
-                        </center>
-                      </form>
-                    </div>
-                  </div>
-                  <!-- 购买记录 -->
-                  <div id="vipinfo">
-                    <div class="datainfoXin">
-                      <div class="vipTop">
-                        <h3>返回上一页</h3>
                       </div>
-                      <h3 class="dealh3">会员资料</h3>
-                      <form class="form-inline">
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>真实姓名：</label>
-                            <span class="col-md-8">郑嘉怡</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>性别：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>出生日期：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>所在地：</label>
-                            <span class="col-md-8">女</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>联系电话：</label>
-                            <span class="col-md-8">1825877356</span>
-                            <input type="text" class="col-md-10">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>邮寄地址：</label>
-                            <span class="col-md-8">浙江省宁波市</span>
-                            <input type="text" class="col-md-10">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>邮政编码：</label>
-                            <span class="col-md-8">314000</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>QQ号码：</label>
-                            <span class="col-md-8">296579033</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>MSN号：</label>
-                            <span class="col-md-8">296579033</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>EMAIL：</label>
-                            <span class="col-md-8">296579033@qq.com</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>从事职业：</label>
-                            <span class="col-md-8">搬砖</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                          <div class="col-md-6 vipinput">
-                            <label class='col-md-4 inputtext'>会服尺码：</label>
-                            <span class="col-md-8">S</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>兴趣特长：</label>
-                            <span class="col-md-10">听歌看书</span>
-                            <input type="text" class="col-md-8">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-12 vipinput">
-                            <label class='col-md-2 inputtext'>申请理由：</label>
-                            <span class="col-md-8">开心</span>
-                            <textarea class="col-md-10" rows="3"></textarea>
-                          </div>
-                        </div>
-                        <center>
-                          <button type="button" class="btn btn-warning" id="editinfo">编辑</button>
-                          <button type="button" class="btn btn-warning" id="saveinfo">保存</button>
-                        </center>
-                      </form>
+                      <center>
+                        <button type="button" class="btn btn-warning" id="editinfo">编辑</button>
+                        <button type="button" class="btn btn-warning" id="saveinfo">保存</button>
+                      </center>
                     </div>
                   </div>
+
                 </div>
                 <!-- 站内信 -->
                 <!-- 

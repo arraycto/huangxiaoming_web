@@ -291,133 +291,116 @@
 }
 
 /* vip俱乐部 */
-#vip.novip{
+
+#vip .yesvip {
     display: none;
 }
 
-#vip .joinvip p:first-child{
+#vip .joinvip p:first-child {
     font-size: 16px;
 }
-#vip .joinbtn{
+
+#vip .joinbtn {
     font-size: 14px;
 }
 
-#vip .showP .photo{
+#vip .showP .photo {
     border-radius: 50%;
     width: 100px;
     height: 100px;
 }
-#vip .vipdeal{
-    margin: 10px 50px;
-}
-.dealh3{
+
+.dealh3 {
     margin-top: 20px;
 }
-#vip .vipdeal span{
+
+#vip .vipdeal span {
     padding: 10px 20px;
 }
-#vip .vipdeal .row{
+
+#vip .vipdeal .row {
     padding: 25px 50px;
     font-size: 16px;
 }
-#vip .vipqa{
+
+#vip .vipqa {
     margin-top: 20px;
 }
-#vip .vipqa *+p{
+
+#vip .vipqa *+p {
     margin-top: 0;
 }
-#vip .vipjq{
+
+#vip .vipjq {
     margin-top: 20px;
     padding-bottom: 30px;
 }
+
 /* 报名表 */
-#vipClub .jointable{
+
+#vipClub .jointable {
     display: none;
 }
-#vipClub .row{
-    padding: 10px;
-}
-#vipClub .form-inline{
-    width: 80%;
-    margin-left: 10%;
-}
-#vipClub .form-inline input.col-md-8,
-#vipClub .form-inline input.col-md-10,
-#vipClub .form-inline textarea.col-md-10{
-    min-height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857;
-    color: #555555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    -webkit-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
-    -o-transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s,box-shadow ease-in-out 0.15s;
-}
-#vipClub .form-inline input.col-md-8:focus ,
-#vipClub .form-inline input.col-md-10:focus,
-#vipClub .form-inline textarea.col-md-10:focus{
-    border-color: #b88e42;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(102,175,233,0.6);
-}
-#vipClub .form-inline center{
+
+#vipClub .form-inline center {
     margin-top: 20px;
 }
-#vipClub .form-inline center button{
+
+#vipClub .form-inline center button {
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.vipTop h3{
+
+.vipTop h3 {
     color: #C8A86E;
     font-size: 14px;
     cursor: pointer;
 }
-#vipinfo{
+
+#vipinfo {
     display: none;
 }
-#vipinfo input ,#vipinfo textarea {
+
+#vipinfo input,
+#vipinfo textarea {
     display: none;
 }
-#saveinfo{
+
+#saveinfo {
     display: none;
 }
-#vipinfo .form-inline{
+
+#vipinfo .form-inline {
     margin-top: 30px;
 }
-.step{
+
+.step {
     text-align: center;
-    width: 80%;
-    margin-left: 10%;
     font-size: 16px;
 }
-.step p{
+
+.step p {
     text-align: left;
+    color: #4d4d4d;
+    position: relative;
 }
-#accordion1,.explain{
-    width: 80%;
-    margin-left: 10%;
-}
-#vipClub #vip h3.dealh3{
-    margin-left: 10%;
+
+#vipClub #vip h3.dealh3 {
     font-weight: bolder;
 }
-#accordion1{
+
+#accordion1 {
     margin-top: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
     font-size: 16px;
 }
-.panel-custom-title a{
+
+.panel-custom-title a {
     font-weight: bolder;
 }
+
 @media (min-width: 768px) {
-    #vip .showP{
+    #vip .showP {
         margin-right: 50px;
         text-align: center;
         font-size: 16px;
@@ -425,20 +408,112 @@
         top: 20px;
         right: 20px;
     }
-    #vip .joinvip p:first-child{
+    #vip .joinvip p:first-child {
         margin: 20px 0 40px 0;
     }
-    #vip .joinvip{
+    #vip .joinvip {
         padding: 20px;
         position: relative;
     }
-    #vip .joinbtn{
+    #vip .joinbtn {
         padding: 6px 12px;
     }
+    #vipClub #vip h3.dealh3 {
+        margin-left: 5%;
+    }
+    #vip .vipdeal {
+        margin: 10px 50px;
+    }
+    .step {
+        width: 90%;
+        margin-left: 5%;
+    }
+    #accordion1,
+    .explain {
+        width: 90%;
+        margin-left: 5%;
+    }
+    #vipClub .form-inline {
+        width: 80%;
+        margin-left: 10%;
+    }
+    #vipClub .row {
+        padding: 10px;
+    }
+    .viptable input[type=text] {
+        width: 200px;
+    }
+    .col-md-12 .viptable input[type=text] {
+        width: 82%;
+    }
+    .col-md-12 .viptable textarea {
+        width: 82%;
+    }
+    .vipinfo {
+        width: 80%;
+        margin-left: 10%;
+    }
 }
+
 @media (max-width: 768px) {
-    #vip .joinbtn{
+    #vip .joinbtn {
         padding: 0.5rem 1rem;
         margin-left: 0.8rem;
+    }
+    #vip .showP {
+        text-align: center;
+    }
+    .vipdeal .orderprogress-topcard li div {
+        width: 2.5rem !important;
+        height: 2.5rem;
+        line-height: 2.5rem;
+    }
+    /* .col-xs-12 .viptable:first-child{
+        margin-top: 0;
+    } */
+}
+
+.viptable {
+    margin: 20px 0 !important;
+}
+
+.viptable label {
+    width: 100px;
+    color: #4d4d4d;
+    font-size: 15px;
+}
+
+.vipinfo {
+    margin-top: 20px;
+}
+
+#vipinfo .vipinfo .inforadio {
+    display: none;
+}
+
+.vipinfo .toptext {
+    vertical-align: top;
+}
+
+.vipinfo input,
+.vipinfo textarea {
+    display: inline-block;
+}
+
+#savetable {
+    margin-bottom: 20px;
+}
+.littletx{
+    font-size: 12px;
+    color: #888a8c;
+}
+.step strong{
+    margin-right: 5px;
+}
+@media (min-width: 1200px){
+    .littletx{
+        position: absolute;
+        top: 22px;
+        left: 0;
     }
 }

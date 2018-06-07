@@ -1122,25 +1122,24 @@ function vip() {
 }
 // 加入vip
 function joinvipbtn(){
-    $(".yes").hide();
-    $(".novip").hide();
+    $("#vip").hide();
     $(".jointable").show()
 }
 $(".vipTop>h3").click(function () {
     $(".jointable").hide();
-    $(".yes").show();
+    $("#vip").show();
     $("#vipinfo").hide();
 })
 // 会员资料
 function vipinfo(){
-    $(".yes").hide();
-    $(".novip").hide();
+    $("#vip").hide();
     $("#vipinfo").show();
 }
 $("#editinfo").click(function () {
-    $(".vipinput").each(function () {
+    $(".viptable").each(function () {
         $("#editinfo").hide();
         $("#saveinfo").show();
+        $(".inforadio").show();
         $(this).children("span").hide();
         $(this).children("input").show();
         $(this).children("textarea").show();
@@ -1148,9 +1147,10 @@ $("#editinfo").click(function () {
 })
 
 $("#saveinfo").click(function () {
-    $(".vipinput").each(function () {
+    $(".viptable").each(function () {
         $("#editinfo").show();
         $("#saveinfo").hide();
+        $(".inforadio").hide();
         $(this).children("span").show();
         $(this).children("input").hide();
         $(this).children("textarea").hide();
