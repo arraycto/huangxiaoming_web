@@ -437,13 +437,13 @@ Your browser does not support the audio element.
                     <div class="joinvip">
                       <div class="showP">
                         <img class="photo" src="images/95eef01f3a292df5bbb1a8f1b7315c6035a873e7.jpg" id="icon">
-                        <p>昵称</p>
+                        <p id="vipname">昵称</p>
                       </div>
                       <p class="yesvip">尊敬的会员，您好！</p>
                       <p class='novip'>您还不是会员，点击加入立刻享受会员权益！</p>
                       <button type="button" class="btn btn-warning yesvip">会员续费</button>
                       <button class="button button-default button-shadow btn-yellow joinbtn yesvip" onclick="vipinfo()">会员资料</button>
-                      <button class="button button-default button-shadow btn-yellow joinbtn yesvip">购买记录</button>
+                      <button class="button button-default button-shadow btn-yellow joinbtn yesvip" onclick="buydetail()">购买记录</button>
                       <button type="button" class="btn btn-warning novip" onclick="joinvipbtn()">加入会员</button>
                     </div>
                     <h3 class="dealh3">会员充值流程</h3>
@@ -734,76 +734,37 @@ Your browser does not support the audio element.
                         <ul class="orderprogress-topcard">
                           <li>
                             <div class="firstbz">1</div>
+                            <div>填写信息</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
                             <div class="twobz greycard">2</div>
+                            <div>支付会费</div>
                           </li>
                           <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
                           <li>
                             <div class="threebz greycard">3</div>
-                          </li>
-                          <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
-                          <li>
-                            <div class="twobz greycard">4</div>
-                          </li>
-                          <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
-                          <li>
-                            <div class="twobz greycard">5</div>
-                          </li>
-                          <i class="fa fa-long-arrow-right fa-4" aria-hidden="true"></i>
-                          <li>
-                            <div class="twobz greycard">6</div>
+                            <div>完成</div>
                           </li>
                         </ul>
-                        <div class="step">
-                          <div class="row">
-                            <div class="col-md-5">
-                              <p>
-                                <strong>Step1：</strong>申请者填写并提交申请资料</p>
-                              <p>
-                                <strong>Step2：</strong>审核资料
-                                <span class="littletx">（2个工作日）</span>
-                              </p>
-                              <p>
-                                <strong>Step3：</strong>向申请人反馈申请结果
-                                <span class="littletx">（1个工作日）</span>
-                              </p>
-                            </div>
-                            <div class="col-md-7">
-                              <p>
-                                <strong>Step4：</strong>审核通过，申请者汇款
-                                <span class="littletx">（视申请者而定，自通知起超过1个月未完成会费缴纳环节将视为自动放弃申请）</span>
-                              </p>
-                              <p>
-                                <strong>Step5：</strong>确认汇款到帐
-                                <span class="littletx">（1个工作日）</span>
-                              </p>
-                              <p>
-                                <strong>Step6：</strong>为申请者邮寄VIP会员卡、VIP会员手册、入会礼物等
-                                <span class="littletx">（3个工作日）</span>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="datainfoXin">
+                        <div class="datainfoXin" id='joinfirst'>
                           <div class="vipinfo row">
                             <div class=" col-xs-12 col-md-6">
                               <div class="viptable">
                                 <label>真实姓名：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>出生日期：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                             </div>
                             <div class=" col-xs-12 col-md-6">
                               <div class="viptable">
                                 <label>性别：</label>
-                                <span id="Username"></span>
+                                <span></span>
                                 <label class="inforadio">
                                   <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" class="inforadio"> 男
                                   <input type="radio" name="optionsRadios" id="optionsRadios2" value="1" class="inforadio"> 女
@@ -811,75 +772,104 @@ Your browser does not support the audio element.
                               </div>
                               <div class="viptable">
                                 <label>所在地：</label>
-                                <input type="text" class="form-control" id="Username1">
+                                <input type="text" class="form-control">
                               </div>
                             </div>
                             <div class=" col-xs-12 col-md-12">
                               <div class="viptable">
                                 <label>联系电话：</label>
-                                <span id="Phone"></span>
-                                <input type="text" class="form-control" id="Phone1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>邮寄地址：</label>
                                 <span id="Occupation"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <input type="text" class="form-control">
                               </div>
                             </div>
                             <div class=" col-xs-12 col-md-6">
                               <div class="viptable">
                                 <label>邮政编码：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>MSN号：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>从事职业：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                             </div>
                             <div class=" col-xs-12 col-md-6">
                               <div class="viptable">
                                 <label>QQ号码：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>EMAIL：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label>会服尺码：</label>
-                                <span id="Username"></span>
-                                <input type="text" class="form-control" id="Username1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                             </div>
                             <div class="col-xs-12 col-md-12">
                               <div class="viptable">
                                 <label>兴趣特长：</label>
-                                <span id="Phone"></span>
-                                <input type="text" class="form-control" id="Phone1">
+                                <span></span>
+                                <input type="text" class="form-control">
                               </div>
                               <div class="viptable">
                                 <label class="toptext">申请理由：</label>
-                                <span id="Occupation"></span>
+                                <span></span>
                                 <textarea class="form-control" rows="3"></textarea>
                               </div>
                             </div>
                           </div>
                           <center>
-                              <div class="form-wrap">
-                                  <label class="checkbox-inline">
-                                    <input name="input-group-radio" value="checkbox-1" type="checkbox" checked="" class="checkbox-custom"><span class="checkbox-custom-dummy"></span>我已仔细阅读注意事项
-                                  </label>
-                                </div>
+                            <div class="form-wrap">
+                              <label class="checkbox-inline">
+                                <input name="input-group-radio" value="checkbox-1" type="checkbox" checked="" class="checkbox-custom">
+                                <span class="checkbox-custom-dummy"></span>我已仔细阅读注意事项
+                              </label>
+                            </div>
                             <button type="button" class="btn btn-warning" id="savetable">申请加入</button>
+                          </center>
+                        </div>
+                        <div class="datainfoXin" id='joinsecond'>
+
+                          <div class="form-wrap">
+                            <span>选择类型:</span>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" checked="checked" onchange="choosechange(this)">
+                              <span class="radio-custom-dummy"></span>首年一年
+                            </label>
+                            <label class="radio-inline">
+                              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" onchange="choosechange(this)">
+                              <span class="radio-custom-dummy"></span>三年支付
+                            </label>
+                            <span id="vipmoney">￥168</span>
+                          </div>
+                          <div class="list-group">
+                            <a class="list-group-item active" onclick="choosetype(this)" id='ailpay'>
+                              <h4 class="list-group-item-heading">支付宝支付</h4>
+                              <p class="list-group-item-text">使用支付宝支付</p>
+                            </a>
+                            <a class="list-group-item" onclick="choosetype(this)" id='bank'>
+                              <h4 class="list-group-item-heading">银行汇款</h4>
+                              <p class="list-group-item-text">汇款到银行账户，上传后需上传凭证</p>
+                            </a>
+                          </div>
+                          <center>
+                            <button type="button" class="btn btn-warning" id="gotopay">去支付</button>
                           </center>
                         </div>
                       </div>
@@ -896,19 +886,19 @@ Your browser does not support the audio element.
                         <div class=" col-xs-12 col-md-6">
                           <div class="viptable">
                             <label>真实姓名：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>出生日期：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                         <div class=" col-xs-12 col-md-6">
                           <div class="viptable">
                             <label>性别：</label>
-                            <span id="Username"></span>
+                            <span></span>
                             <label class="inforadio">
                               <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" class="inforadio"> 男
                               <input type="radio" name="optionsRadios" id="optionsRadios2" value="1" class="inforadio"> 女
@@ -916,65 +906,65 @@ Your browser does not support the audio element.
                           </div>
                           <div class="viptable">
                             <label>所在地：</label>
-                            <span id="Username">111</span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                         <div class=" col-xs-12 col-md-12">
                           <div class="viptable">
                             <label>联系电话：</label>
-                            <span id="Phone"></span>
-                            <input type="text" class="form-control" id="Phone1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>邮寄地址：</label>
-                            <span id="Occupation"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                         <div class=" col-xs-12 col-md-6">
                           <div class="viptable">
                             <label>邮政编码：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>MSN号：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>从事职业：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                         <div class=" col-xs-12 col-md-6">
                           <div class="viptable">
                             <label>QQ号码：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>EMAIL：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label>会服尺码：</label>
-                            <span id="Username"></span>
-                            <input type="text" class="form-control" id="Username1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                         </div>
                         <div class="col-xs-12 col-md-12">
                           <div class="viptable">
                             <label>兴趣特长：</label>
-                            <span id="Phone"></span>
-                            <input type="text" class="form-control" id="Phone1">
+                            <span></span>
+                            <input type="text" class="form-control">
                           </div>
                           <div class="viptable">
                             <label class="toptext">申请理由：</label>
-                            <span id="Occupation"></span>
+                            <span></span>
                             <textarea class="form-control" rows="3"></textarea>
                           </div>
                         </div>
@@ -985,6 +975,58 @@ Your browser does not support the audio element.
                       </center>
                     </div>
                   </div>
+
+                  <!-- 购买记录 -->
+                  <div class="table-custom-wrap" id="buytable">
+                    <div class="datainfoXin">
+                      <div class="vipTop">
+                        <h3>返回上一页</h3>
+                      </div>
+                      <h3 class="dealh3">购买记录</h3>
+                      <table class="table-custom table-gray-light table-fixed">
+                        <tbody>
+                          <tr>
+                            <th>流水号</th>
+                            <th>购买说明</th>
+                            <th>下单时间</th>
+                            <th>有效时间</th>
+                            <th>操作</th>
+                          </tr>
+                          <tr>
+                            <td>Item #1</td>
+                            <td>Description:</td>
+                            <td>Subtotal:</td>
+                            <td>$1.00</td>
+                          </tr>
+                          <tr>
+                            <td>Item #2</td>
+                            <td>Description</td>
+                            <td>Discount:</td>
+                            <td>$2.00</td>
+                          </tr>
+                          <tr>
+                            <td>Item #3</td>
+                            <td>Description</td>
+                            <td>Shipping:</td>
+                            <td>$3.00</td>
+                          </tr>
+                          <tr>
+                            <td>Item #4</td>
+                            <td>Description</td>
+                            <td>Tax:</td>
+                            <td>$4.00</td>
+                          </tr>
+                          <tr>
+                            <td>All Items</td>
+                            <td>Description</td>
+                            <td>Your Total:</td>
+                            <td>$5.00</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
 
                 </div>
                 <!-- 站内信 -->

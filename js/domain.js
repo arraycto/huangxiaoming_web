@@ -1,7 +1,8 @@
 
 // var mainurl = "http://192.168.1.125/HXM/api/";
 var url = "https://api.huangxiaoming.com.cn/";
-var mainurl = "https://api.huangxiaoming.com.cn/api/";
+// var mainurl = "https://api.huangxiaoming.com.cn/api/";
+var mainurl = "http://192.168.1.125/HXM/";
 var isfresh = 0;
 var liid = 0;
 function setCookie(name,value)

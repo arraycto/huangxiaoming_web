@@ -1118,7 +1118,42 @@ if (!ispc) {
 }
 //vip
 function vip() {
-    $(".page-loader").addClass("loaded");
+    $.ajax({
+        type: "get",
+        url: mainurl + "api/User/CheckVip",
+        data: {
+            token: token
+        },
+        success: function (data) {
+            $(".page-loader").addClass("loaded");
+            $("#vipname").html(data.Result.Username)
+            $(".photo").attr("src",url+data.Result.icon)
+            if (data.Status == 1) {
+                
+            } else if (data.Status == -1) {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function () {
+            $(".page-loader").addClass("loaded");
+            $('#animate').addClass('fadeInLeftBig' + ' animated');
+            setTimeout(removeClass, 1200);
+
+            function removeClass() {
+                $('#animate').removeClass('fadeInLeftBig' + ' animated');
+            }
+            $("section").html("");
+            layer.msg('服务器异常', {
+                icon: 5
+            });
+        }
+    })
 }
 // 加入vip
 function joinvipbtn(){
@@ -1129,6 +1164,7 @@ $(".vipTop>h3").click(function () {
     $(".jointable").hide();
     $("#vip").show();
     $("#vipinfo").hide();
+    $("#buytable").hide()
 })
 // 会员资料
 function vipinfo(){
@@ -1154,5 +1190,68 @@ $("#saveinfo").click(function () {
         $(this).children("span").show();
         $(this).children("input").hide();
         $(this).children("textarea").hide();
+    })
+})
+
+// 购买记录
+function buydetail(){
+    $("#vip").hide();
+    $("#buytable").show()
+}
+
+$("#savetable").click(function(){
+    $("#joinfirst").hide();
+    $("#joinsecond").show();
+})
+var paytype = 0;
+// 确认支付
+function choosetype(enent){
+    console.log($(enent).attr("id"))
+    if ($(enent).attr("id") == "ailpay") {
+        paytype = 0;
+    }else{
+        paytype = 1;
+    }
+    $(".list-group-item").removeClass("active")
+    $(enent).addClass("active")
+}
+
+function choosechange(e){
+    if(e.value == 1){
+        $(vipmoney).html("￥168")
+    }else {
+        $(vipmoney).html("￥380")
+    }
+}
+// 去支付
+$("#gotopay").click(function(){
+    if ($("input[name='inlineRadioOptions']:checked").val() == 1) {
+        var price = 168
+    }else{
+        var price = 380
+    }
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'api/Order/AddZFBOrder',
+        data:{
+            month:$("input[name='inlineRadioOptions']:checked").val(),
+            price:'0.01',
+            type:paytype,
+            token:getCookie("token")
+        },
+        success: function (data) {
+            if (data.Status == 1) {
+                window.open("pay.html?data="+data.Result+"")
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg("登录失效,请重新登录", {
+                icon: 5
+            });
+        }
     })
 })

@@ -453,6 +453,14 @@
         width: 80%;
         margin-left: 10%;
     }
+    #joinsecond .form-wrap{
+        width: 80%;
+        margin-left: 10%;
+    }
+    #joinsecond .list-group{
+        width: 80%;
+        margin-left: 10%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -516,4 +524,41 @@
         top: 22px;
         left: 0;
     }
+}
+#joinsecond{
+    display: none;
+}
+#jointhree{
+    display: none;
+}
+
+/* 购买记录 */
+#buytable{
+    display: none;
+}
+#buytable table{
+    margin-top: 30px;
+}
+
+/* 确认支付 */
+#joinsecond .form-wrap{
+    text-align: left;
+    position: relative;
+    margin-top: 30px;
+}
+#vipmoney{
+    position: absolute;
+    right: 20px;
+    color: #B88E42;
+    font-size: 22px;
+    top: 0;
+}
+#joinsecond .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+    z-index: 2;
+    color: #fff;
+    background-color: #B88E42;
+    border-color: #B88E42;
+}
+#joinsecond .list-group{
+    margin-top: 30px;
 }
