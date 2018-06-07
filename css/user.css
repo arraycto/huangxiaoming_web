@@ -292,7 +292,7 @@
 
 /* vip俱乐部 */
 
-#vip .yesvip {
+#vip .yesvip , #vip .novip {
     display: none;
 }
 
@@ -362,11 +362,12 @@
 }
 
 #vipinfo input,
-#vipinfo textarea {
+#vipinfo textarea,
+#vipinfo select{
     display: none;
 }
 
-#saveinfo {
+#saveinfo,#resetinfo {
     display: none;
 }
 
@@ -449,6 +450,9 @@
     .col-md-12 .viptable textarea {
         width: 82%;
     }
+    .viptable select{
+        width: 63%;
+    }
     .vipinfo {
         width: 80%;
         margin-left: 10%;
@@ -504,7 +508,8 @@
 }
 
 .vipinfo input,
-.vipinfo textarea {
+.vipinfo textarea,
+.vipinfo select{
     display: inline-block;
 }
 
@@ -561,4 +566,7 @@
 }
 #joinsecond .list-group{
     margin-top: 30px;
+}
+#joinfirst .viptable .red{
+    color: #B88E42;
 }

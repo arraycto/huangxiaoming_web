@@ -1117,27 +1117,27 @@ if (!ispc) {
     $(".tab-content").css("min-height", $("html").height())
 }
 //vip
+var isvip = false;
+var vipstatus = 0;
+
 function vip() {
     $.ajax({
         type: "get",
-        url: mainurl + "api/User/CheckVip",
+        url: mainurl + "User/CheckVip",
         data: {
             token: token
         },
         success: function (data) {
             $(".page-loader").addClass("loaded");
             $("#vipname").html(data.Result.Username)
-            $(".photo").attr("src",url+data.Result.icon)
-            if (data.Status == 1) {
-                
-            } else if (data.Status == -1) {
-                layer.msg(data.Result, {
-                    icon: 5
-                });
+            $(".photo").attr("src", url + data.Result.icon)
+            vipstatus = data.Status;
+            if (data.Result.EndTime == "不是") {
+                isvip = false;
+                $(".novip").show();
             } else {
-                layer.msg(data.Result, {
-                    icon: 5
-                });
+                isvip = true;
+                $(".yesvip").show();
             }
         },
         error: function () {
@@ -1156,9 +1156,24 @@ function vip() {
     })
 }
 // 加入vip
-function joinvipbtn(){
-    $("#vip").hide();
-    $(".jointable").show()
+function joinvipbtn() {
+    if (vipstatus == 0) {
+        $("#vip").hide();
+        $(".jointable").show();
+        $("#joinfirst").show();
+        $("#joinsecond").hide();
+    } else if (vipstatus == 1 || vipstatus == 2) {
+        $("#vip").hide();
+        $(".jointable").show();
+        $("#joinfirst").hide();
+        $("#joinsecond").show();
+        $("#steptwo").removeClass("greycard")
+    } else {
+        layer.msg("您已是会员，无需申请", {
+            icon: 5
+        });
+        return;
+    }
 }
 $(".vipTop>h3").click(function () {
     $(".jointable").hide();
@@ -1167,81 +1182,245 @@ $(".vipTop>h3").click(function () {
     $("#buytable").hide()
 })
 // 会员资料
-function vipinfo(){
-    $("#vip").hide();
-    $("#vipinfo").show();
+function vipinfo() {
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'User/VipUserDetail',
+        data: {
+            token: getCookie("token")
+        },
+        success: function (data) {
+            if (data.Status == 1) {
+                $("#infoRealName").html(data.Result.RealName)
+                $("#infoBirthday").html(data.Result.Birthday)
+                $("#infoBranch").html(data.Result.Branch)
+                if (data.Result.Sex == 0) {
+                    $("#infoSex").attr("value", "男")
+                } else {
+                    $("#infoSex").attr("value", "女")
+                }
+                $("#infoLocalAdress").html(data.Result.LocalAdress)
+                $("#infoPhone").html(data.Result.Phone)
+                $("#infoAddress").html(data.Result.Address)
+                $("#infoZipCode").html(data.Result.ZipCode)
+                $("#infoMsn").html(data.Result.Msn)
+                $("#infoQQ").html(data.Result.QQ)
+                $("#infoEmail").html(data.Result.Email)
+                $("#infoHob").html(data.Result.Hob1)
+                $("#infoRemarks").html(data.Result.Remarks)
+                $("#infoSize").attr("value", data.Result.Size)
+
+                //编辑
+                $("#infoRealName1").attr("value", data.Result.RealName)
+                $("#infoBirthday1").attr("value", data.Result.Birthday)
+                $("#infoBranch1").attr("value", data.Result.Branch)
+                if (data.Result.Sex == 0) {
+                    $("#infosex1").attr("checked", "checked")
+                } else {
+                    $("#infosex2").attr("checked", "checked")
+                }
+                $("#infoLocalAdress1").attr("value", data.Result.LocalAdress)
+                $("#infoPhone1").attr("value", data.Result.Phone)
+                $("#infoAddress1").attr("value", data.Result.Address)
+                $("#infoZipCode1").attr("value", data.Result.ZipCode)
+                $("#infoMsn1").attr("value", data.Result.Msn)
+                $("#infoQQ1").attr("value", data.Result.QQ)
+                $("#infoEmail1").attr("value", data.Result.Email)
+                $("#infoHob1").attr("value", data.Result.Hob)
+                $("#infoRemarks1").attr("value", data.Result.Remarks)
+                $("#infoSize1").attr("value", data.Result.Size)
+                $("#vip").hide();
+                $("#vipinfo").show();
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg("登录失效,请重新登录", {
+                icon: 5
+            });
+        }
+    })
+
 }
 $("#editinfo").click(function () {
     $(".viptable").each(function () {
         $("#editinfo").hide();
         $("#saveinfo").show();
+        $("#resetinfo").show();
         $(".inforadio").show();
         $(this).children("span").hide();
         $(this).children("input").show();
         $(this).children("textarea").show();
+        $(this).children("select").show();
     })
 })
 
-$("#saveinfo").click(function () {
+function resetinfo() {
     $(".viptable").each(function () {
         $("#editinfo").show();
+        $("#resetinfo").hide();
         $("#saveinfo").hide();
         $(".inforadio").hide();
         $(this).children("span").show();
+        $(this).children("select").hide();
         $(this).children("input").hide();
         $(this).children("textarea").hide();
+    })
+}
+
+//修改会员资料
+$("#saveinfo").click(function () {
+    console.log($("#infoBirthday").val())
+    if ($("#infoRealName1").val() == '' || $("#infoBirthday1").val() == '' || $("#infoLocalAdress1").val() == '' || $("#infoPhone1").val() == '' || $("#infoAddress1").val() == '' || $("#infoZipCode1").val() == '' || $("#infoEmail1").val() == '') {
+        layer.msg("请完善信息哦", {
+            icon: 5
+        });
+        return;
+    }
+    $.ajax({
+        type: 'post',
+        url: mainurl + 'User/ApplyVip',
+        data: {
+            Sex: $("input[name='infoSex']:checked").val(),
+            Branch: $("#infoBranch1").val(),
+            Birthday: $("#infoBirthday1").val(),
+            LocalAdress: $("#infoLocalAdress1").val(),
+            RealName: $("#infoRealName1").val(),
+            Phone: $("#infoPhone1").val(),
+            Address: $("#infoAddress1").val(),
+            ZipCode: $("#infoZipCode1").val(),
+            Size: $("#infoSize").val(),
+            Occupation: $("#infoOccupation1").val(),
+            Hob: $("#infoHob").val(),
+            QQ: $("#infoQQ1").val(),
+            Email: $("#infoEmail1").val(),
+            Msn: $("#infoMsn1").val(),
+            Remarks: $("#infoRemarks1").val(),
+            token: getCookie("token")
+        },
+        success: function (data) {
+            if (data.Status == 1) {
+                layer.msg(data.Result, {
+                    icon: 1
+                });
+                vipinfo();
+                resetinfo();
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg("登录失效,请重新登录", {
+                icon: 5
+            });
+        }
     })
 })
 
 // 购买记录
-function buydetail(){
+function buydetail() {
     $("#vip").hide();
     $("#buytable").show()
 }
 
-$("#savetable").click(function(){
-    $("#joinfirst").hide();
-    $("#joinsecond").show();
+$("#savetable").click(function () {
+    if (!isvip) {
+        if ($("input[name='vipsex']:checked").val() == undefined) {
+            layer.msg("请完善信息哦", {
+                icon: 5
+            });
+            return;
+        }
+        if ($("#vipRealName").val() == '' || $("#vipBirthday").val() == '' || $("#vipLocalAdress").val() == '' || $("#vipPhone").val() == '' || $("#vipAddress").val() == '' || $("#vipZipCode").val() == '' || $("#vipEmail").val() == '') {
+            layer.msg("请完善信息哦", {
+                icon: 5
+            });
+            return;
+        }
+        $.ajax({
+            type: 'post',
+            url: mainurl + 'User/ApplyVip',
+            data: {
+                Sex: $("input[name='vipsex']:checked").val(),
+                Branch: $("#vipBranch").val(),
+                Birthday: $("#vipBirthday").val(),
+                LocalAdress: $("#vipLocalAdress").val(),
+                RealName: $("#vipRealName").val(),
+                Phone: $("#vipPhone").val(),
+                Address: $("#vipAddress").val(),
+                ZipCode: $("#vipZipCode").val(),
+                Size: $("#vipSize").val(),
+                Occupation: $("#vipOccupation").val(),
+                Hob: $("#vipHob").val(),
+                QQ: $("#vipQQ").val(),
+                Email: $("#vipEmail").val(),
+                Msn: $("#vipMsn").val(),
+                Remarks: $("#vipRemarks").val(),
+                token: getCookie("token")
+            },
+            success: function (data) {
+                if (data.Status == 1) {
+                    $("#joinfirst").hide();
+                    $("#joinsecond").show();
+                    $("#steptwo").removeClass("greycard")
+                } else {
+                    layer.msg(data.Result, {
+                        icon: 5
+                    });
+                }
+            },
+            error: function (data) {
+                layer.msg("登录失效,请重新登录", {
+                    icon: 5
+                });
+            }
+        })
+    }
 })
 var paytype = 0;
 // 确认支付
-function choosetype(enent){
+function choosetype(enent) {
     console.log($(enent).attr("id"))
     if ($(enent).attr("id") == "ailpay") {
         paytype = 0;
-    }else{
+    } else {
         paytype = 1;
     }
     $(".list-group-item").removeClass("active")
     $(enent).addClass("active")
 }
 
-function choosechange(e){
-    if(e.value == 1){
+function choosechange(e) {
+    if (e.value == 1) {
         $(vipmoney).html("￥168")
-    }else {
+    } else {
         $(vipmoney).html("￥380")
     }
 }
 // 去支付
-$("#gotopay").click(function(){
+$("#gotopay").click(function () {
     if ($("input[name='inlineRadioOptions']:checked").val() == 1) {
         var price = 168
-    }else{
+    } else {
         var price = 380
     }
     $.ajax({
         type: 'get',
-        url: mainurl + 'api/Order/AddZFBOrder',
-        data:{
-            month:$("input[name='inlineRadioOptions']:checked").val(),
-            price:'0.01',
-            type:paytype,
-            token:getCookie("token")
+        url: mainurl + 'Order/AddZFBOrder',
+        data: {
+            month: $("input[name='inlineRadioOptions']:checked").val(),
+            price: '0.02',
+            type: paytype,
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
-                window.open("pay.html?data="+data.Result+"")
+                window.location.href = "pay.html?data=" + data.Result + ""
             } else {
                 layer.msg(data.Result, {
                     icon: 5
