@@ -470,7 +470,7 @@ function first() {
 }
 var img_value = "";
 //上传图片  
-$(".showP").delegate("#add", "change", function () {
+$(".modal-body").delegate("#add", "change", function () {
     var formdata = new FormData();
     formdata.append("file", $("#add")[0].files[0]); //获取文件法二
     $.ajax({
@@ -1097,6 +1097,10 @@ function getPage(p, a) {
                 case 6:
                     getpost(p, 1)
                     break;
+                case 7:
+                    orderlist(p, 1)
+                    break;
+
             }
         }
     });
@@ -1159,12 +1163,10 @@ function vip() {
 function joinvipbtn() {
     if (vipstatus == 0) {
         $("#vip").hide();
-        $(".jointable").show();
         $("#joinfirst").show();
         $("#joinsecond").hide();
     } else if (vipstatus == 1 || vipstatus == 2) {
         $("#vip").hide();
-        $(".jointable").show();
         $("#joinfirst").hide();
         $("#joinsecond").show();
         $("#steptwo").removeClass("greycard")
@@ -1176,10 +1178,13 @@ function joinvipbtn() {
     }
 }
 $(".vipTop>h3").click(function () {
-    $(".jointable").hide();
+    $("#joinfirst").hide();
+    $("#joinsecond").hide();
     $("#vip").show();
     $("#vipinfo").hide();
     $("#buytable").hide()
+    $("#xufeivip").hide();
+    $(".pagination-custom").hide()
 })
 // 会员资料
 function vipinfo() {
@@ -1195,9 +1200,9 @@ function vipinfo() {
                 $("#infoBirthday").html(data.Result.Birthday)
                 $("#infoBranch").html(data.Result.Branch)
                 if (data.Result.Sex == 0) {
-                    $("#infoSex").attr("value", "男")
+                    $("#infoSex").html("男")
                 } else {
-                    $("#infoSex").attr("value", "女")
+                    $("#infoSex").html("女")
                 }
                 $("#infoLocalAdress").html(data.Result.LocalAdress)
                 $("#infoPhone").html(data.Result.Phone)
@@ -1231,6 +1236,7 @@ function vipinfo() {
                 $("#infoSize1").attr("value", data.Result.Size)
                 $("#vip").hide();
                 $("#vipinfo").show();
+                $("#xufeivip").hide();
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1282,9 +1288,9 @@ $("#saveinfo").click(function () {
     }
     $.ajax({
         type: 'post',
-        url: mainurl + 'User/ApplyVip',
+        url: mainurl + 'User/EditVipDetail',
         data: {
-            Sex: $("input[name='infoSex']:checked").val(),
+            Sex: $("input[name='inforsex']:checked").val(),
             Branch: $("#infoBranch1").val(),
             Birthday: $("#infoBirthday1").val(),
             LocalAdress: $("#infoLocalAdress1").val(),
@@ -1321,12 +1327,6 @@ $("#saveinfo").click(function () {
         }
     })
 })
-
-// 购买记录
-function buydetail() {
-    $("#vip").hide();
-    $("#buytable").show()
-}
 
 $("#savetable").click(function () {
     if (!isvip) {
@@ -1367,7 +1367,7 @@ $("#savetable").click(function () {
                 if (data.Status == 1) {
                     $("#joinfirst").hide();
                     $("#joinsecond").show();
-                    $("#steptwo").removeClass("greycard")
+                    
                 } else {
                     layer.msg(data.Result, {
                         icon: 5
@@ -1398,23 +1398,51 @@ function choosetype(enent) {
 function choosechange(e) {
     if (e.value == 1) {
         $(vipmoney).html("￥168")
+    } else if (e.value == 2) {
+        $(vipmoney).html("￥168")
     } else {
         $(vipmoney).html("￥380")
     }
 }
 // 去支付
 $("#gotopay").click(function () {
-    if ($("input[name='inlineRadioOptions']:checked").val() == 1) {
-        var price = 168
-    } else {
-        var price = 380
-    }
+    
     $.ajax({
         type: 'get',
         url: mainurl + 'Order/AddZFBOrder',
         data: {
-            month: $("input[name='inlineRadioOptions']:checked").val(),
-            price: '0.02',
+            Month: $("input[name='chooseradio']:checked").val(),
+            type: paytype,
+            token: getCookie("token")
+        },
+        success: function (data) {
+            if (data.Status == 1) {
+                // window.location.href = "pay.html?data=" + data.Result + ""
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg("服务器异常", {
+                icon: 5
+            });
+        }
+    })
+})
+
+function vipxufei() {
+    $("#vip").hide();
+    $("#xufeivip").show()
+}
+
+$("#gotoxufei").click(function () {
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'Order/AddZFBOrder',
+        data: {
+            Month: $("input[name='inlineRadioOptions']:checked").val(),
             type: paytype,
             token: getCookie("token")
         },
@@ -1429,6 +1457,157 @@ $("#gotopay").click(function () {
         },
         error: function (data) {
             layer.msg("登录失效,请重新登录", {
+                icon: 5
+            });
+        }
+    })
+})
+
+// 购买记录
+function buydetail(pageindex, index) {
+    orderlist(pageindex, index)
+    listType = 7
+    $(".pagination-custom").show()
+
+}
+
+function orderlist(pageindex, index) {
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'User/UserVipOrderList?token=' + token + '&pageIndex=' + pageindex + '&pageSize=8',
+        success: function (data) {
+            if (data.Status == 1) {
+                $("#vip").hide();
+                $("#buytable").show()
+                $("#xufeivip").hide()
+                let li = ''
+                list = data.Result.List;
+                let page = data.Result.Page;
+                if (page == 0) {
+                    $("#fenghui-pagination").hide();
+                } else {
+                    $("#fenghui-pagination").show();
+                }
+                if (list.length == 0) {
+                    li = "<div class='shell phone'><img src='images/kong.png'></div>";
+                    $("#nullinfo").html(li);
+                    return;
+                }
+                let typebtn = '';
+                for (var i = 0; i < list.length; i++) {
+                    switch (list[i].Type) {
+                        case 1:
+                            typebtn = ''
+                            break;
+                        case 2:
+                            typebtn = '<button type="button" class="btn btn-warning upload">上传凭证</button>'
+                            break;
+                        case 3:
+                            typebtn = '<button type="button" class="btn btn-warning lookload">查看凭证</button>'
+                            break;
+                        case 4:
+                            typebtn = ''
+                            break;
+                    }
+
+                    li +=
+                        '<tr id=' + list[i].ID + ' name=' + list[i].Image + '><td>' + list[i].Order + '</td><td>' + list[i].Status + '</td><td>' + list[i].CreateTime + '</td><td>' + typebtn + '</td></tr>'
+
+                }
+                if (index == 0) {
+                    getPage(pageindex, page)
+                }
+                $(".ordertr").html(li)
+                //上传凭证
+                $(".upload").each(function () {
+                    $(this).click(function () {
+                        let sta = $(this).parents("tr").attr("id");
+                        upimg(sta)
+                    })
+                })
+                //查看凭证
+                $(".lookload").each(function () {
+                    $(this).click(function () {
+                        var imgurl = $(this).parents("tr").attr("name");
+                        lookimg(imgurl)
+                    })
+                })
+
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg('服务器异常', {
+                icon: 5
+            });
+        }
+    })
+}
+var orderid = "";
+
+function upimg(id) {
+    orderid = id;
+    $(".imgorder").attr("src", "images/shangchuangtupian.png")
+    $('#uporderimg').modal('show');
+
+}
+
+function lookimg(img) {
+    $(".imgorder").attr("src", url + img)
+    $('#lookorderimg').modal('show');
+}
+
+// $("#editorderimg").onclick(function(){
+
+// })
+
+var orderimg_value = "";
+//上传图片  
+$(".modal-body").delegate("#orderimg", "change", function () {
+    var formdata = new FormData();
+    // console.log($("#orderimg")[0].files[0])
+    formdata.append("file", $("#orderimg")[0].files[0]); //获取文件法二
+    $.ajax({
+        type: 'post',
+        url: mainurl + 'Photo/UpdateForImage?Type=4',
+        data: formdata,
+        cache: false,
+        processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType: false, // 不设置Content-type请求头
+        success: function (data) {
+            orderimg_value = data.Result[0];
+            $(".imgorder").attr("src", url + orderimg_value)
+        },
+        error: function (data) {
+            layer.msg(data.Result, {
+                icon: 5
+            });
+        }
+    })
+})
+
+// 修改头像
+$("#editorderimg").click(function () {
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'User/UpOrderImage',
+        data: {
+            token: token,
+            Image: orderimg_value,
+            ID: orderid
+        },
+        success: function (data) {
+            layer.msg(data.Result, {
+                icon: 1
+            });
+            $('#uporderimg').modal('hide');
+            orderlist(pageindex, 0)
+        },
+        error: function (data) {
+            layer.msg('服务器异常', {
                 icon: 5
             });
         }

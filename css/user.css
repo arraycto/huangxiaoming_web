@@ -338,7 +338,7 @@
 
 /* 报名表 */
 
-#vipClub .jointable {
+#jointable ,#joinsecond{
     display: none;
 }
 
@@ -558,7 +558,7 @@
     font-size: 22px;
     top: 0;
 }
-#joinsecond .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
+.list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
     z-index: 2;
     color: #fff;
     background-color: #B88E42;
@@ -569,4 +569,28 @@
 }
 #joinfirst .viptable .red{
     color: #B88E42;
+}
+#xufeivip{
+    display: none;
+}
+.imgorder{
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+#orderimg{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    height: 250px;
+}
+#buytable .table-custom tr:first-child td {
+    font-weight: 100;
+}
+#xufeivip .form-wrap{
+    margin-top: 50px;
+}
+#xufeivip .list-group{
+    margin-top: 20px;
 }
