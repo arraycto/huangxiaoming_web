@@ -133,7 +133,6 @@ function hidesub(n) {
         });
         $(".sidebar").removeClass("active");
     }
-    console.log(pageindex)
     // 判断点击的是那一个标签去获取对应的数据
     switch (n) {
         case 0:
@@ -317,6 +316,13 @@ function receipt(index) {
                             icon: 1
                         });
                         order(1, 0)
+                    } else if (data.Status == 40001) {
+                        $(".page-loader").addClass("loaded");
+                        layer.msg(data.Result, {
+                            icon: 5
+                        });
+                        setTimeout(
+                            againlogin, 5000);
                     } else {
                         layer.msg(data.Result, {
                             icon: 5
@@ -366,6 +372,13 @@ function openmsg(event) {
                     openmsg(data.Result.NextID)
                 })
                 $(event).children(".xinImg").html('<img src="./images/xin_kai.png">')
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -441,11 +454,13 @@ function first() {
                 $("#Branch1").attr("value", data.Result.Branch)
                 $("#Signature1").attr("value", data.Result.Signature)
                 $(".page-loader").addClass("loaded");
-            } else if (data.Status == -1) {
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
                 layer.msg(data.Result, {
                     icon: 5
                 });
-                $(".page-loader").addClass("loaded");
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -534,6 +549,13 @@ $("#save").click(function () {
                     icon: 1
                 });
                 first();
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -572,6 +594,13 @@ $("#savepwd").click(function () {
                 });
                 setCookie("token", data.Result, "d5");
                 $('#editpwd').modal('hide');
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -591,10 +620,7 @@ function order(pageindex, index) {
     console.log(pageindex)
     $.ajax({
         type: 'get',
-        url: mainurl + 'Order/GetMyOrder?type=-1&pageIndex=' + pageindex + '&pageSize=3',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', getCookie('token'));
-        },
+        url: mainurl + 'Order/PCGetMyOrder?type=-1&pageIndex=' + pageindex + '&pageSize=3&token=' + token,
         success: function (data) {
             if (data.Status == 1) {
                 var li = ''
@@ -643,6 +669,13 @@ function order(pageindex, index) {
                 } else {
                     $("#fenghui-pagination").show();
                 }
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -651,7 +684,7 @@ function order(pageindex, index) {
         },
         error: function (data) {
             console.log(data)
-            layer.msg("登录失效,请重新登录", {
+            layer.msg("服务器异常", {
                 icon: 5
             });
         }
@@ -666,9 +699,12 @@ var editid;
 function address() {
     $.ajax({
         type: 'get',
-        url: mainurl + 'Address/GetListByPage?pageIndex=1',
+        url: mainurl + 'Address/GetListByPage',
+        data:{
+            pageIndex:1
+        },
         beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', getCookie('token'));
+            xhr.setRequestHeader('Authorization', token);
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -689,7 +725,14 @@ function address() {
                 }
                 console.log(li)
                 $("#address tbody").html(li)
-                
+
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -697,7 +740,7 @@ function address() {
             }
         },
         error: function (data) {
-            layer.msg("登录失效,请重新登录", {
+            layer.msg(data.Result, {
                 icon: 5
             });
         }
@@ -724,7 +767,6 @@ function editadd(index) {
 }
 
 function setdefault(event) {
-    alert(1)
     $.ajax({
         type: 'get',
         url: mainurl + 'Address/SetDefault',
@@ -740,6 +782,13 @@ function setdefault(event) {
                     icon: 1
                 });
                 address();
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -775,6 +824,13 @@ function deladd(event) {
                             icon: 1
                         });
                         address();
+                    } else if (data.Status == 40001) {
+                        $(".page-loader").addClass("loaded");
+                        layer.msg(data.Result, {
+                            icon: 5
+                        });
+                        setTimeout(
+                            againlogin, 5000);
                     } else {
                         layer.msg(data.Result, {
                             icon: 5
@@ -824,7 +880,17 @@ function addaddress() {
                 layer.msg(data.Result, {
                     icon: 1
                 });
+                $("#addname").val('')
+                $("#addphone").val('')
+                $("#addadd").val('')
                 address();
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -874,6 +940,13 @@ $("#saveadd").click(function () {
                 });
                 $('#editadd').modal('hide');
                 address(1);
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -927,6 +1000,12 @@ function myMsg(pageindex, index) {
                     $("#fenghui-pagination").show();
                 }
                 $("#zhenneixin").html(li)
+            } else if (data.Status == 40001) {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -978,6 +1057,13 @@ function myactivity(pageindex, index) {
                         window.location.href = "tip-post.html?id=" + blogid;
                     })
                 })
+            } else if (data.Status == 40001) {
+
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1035,6 +1121,12 @@ function getpost(pageindex, index) {
                         window.open("bbs-post.html?id=" + bbsid);
                     })
                 })
+            } else if (data.Status == 40001) {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1135,17 +1227,26 @@ function vip() {
             token: token
         },
         success: function (data) {
-            $(".page-loader").addClass("loaded");
-            $("#vipname").html(data.Result.Username)
-            $(".photo").attr("src", url + data.Result.icon)
-            vipstatus = data.Status;
-            if (data.Result.EndTime == "不是") {
-                isvip = false;
-                $(".novip").show();
+            if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
-                isvip = true;
-                $("#vipendtime").html(""+data.Result.EndTime+"到期")
-                $(".yesvip").show();
+                $("#vipname").html(data.Result.Username)
+                $(".photo").attr("src", url + data.Result.icon)
+                vipstatus = data.Status;
+                if (data.Result.EndTime == "不是") {
+                    isvip = false;
+                    $(".novip").show();
+                } else {
+                    isvip = true;
+                    $("#vipendtime").html("" + data.Result.EndTime + "到期")
+                    $(".yesvip").show();
+                }
+                $(".page-loader").addClass("loaded");
             }
         },
         error: function () {
@@ -1243,6 +1344,13 @@ function vipinfo() {
                 $("#joinsecond").hide();
                 $("#vipinfo").show();
                 $("#xufeivip").hide();
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1250,7 +1358,7 @@ function vipinfo() {
             }
         },
         error: function (data) {
-            layer.msg("登录失效,请重新登录", {
+            layer.msg("服务器异常", {
                 icon: 5
             });
         }
@@ -1320,6 +1428,13 @@ $("#saveinfo").click(function () {
                 });
                 vipinfo();
                 resetinfo();
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1327,7 +1442,7 @@ $("#saveinfo").click(function () {
             }
         },
         error: function (data) {
-            layer.msg("登录失效,请重新登录", {
+            layer.msg("服务器异常", {
                 icon: 5
             });
         }
@@ -1374,6 +1489,13 @@ $("#savetable").click(function () {
                     $("#joinfirst").hide();
                     $("#joinsecond").show();
                     vipstatus = 2;
+                } else if (data.Status == 40001) {
+                    $(".page-loader").addClass("loaded");
+                    layer.msg(data.Result, {
+                        icon: 5
+                    });
+                    setTimeout(
+                        againlogin, 5000);
                 } else {
                     layer.msg(data.Result, {
                         icon: 5
@@ -1381,7 +1503,7 @@ $("#savetable").click(function () {
                 }
             },
             error: function (data) {
-                layer.msg("登录失效,请重新登录", {
+                layer.msg("服务器异常", {
                     icon: 5
                 });
             }
@@ -1412,7 +1534,7 @@ function choosechange(e) {
 }
 // 去支付
 $("#gotopay").click(function () {
-    
+
     $.ajax({
         type: 'get',
         url: mainurl + 'Order/AddZFBOrder',
@@ -1424,6 +1546,13 @@ $("#gotopay").click(function () {
         success: function (data) {
             if (data.Status == 1) {
                 window.location.href = "pay.html?data=" + data.Result + ""
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1457,6 +1586,13 @@ $("#gotoxufei").click(function () {
         success: function (data) {
             if (data.Status == 1) {
                 window.location.href = "pay.html?data=" + data.Result + ""
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1464,7 +1600,7 @@ $("#gotoxufei").click(function () {
             }
         },
         error: function (data) {
-            layer.msg("登录失效,请重新登录", {
+            layer.msg("服务器异常", {
                 icon: 5
             });
         }
@@ -1543,6 +1679,13 @@ function orderlist(pageindex, index) {
                     })
                 })
 
+            } else if (data.Status == 40001) {
+                $(".page-loader").addClass("loaded");
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1610,11 +1753,23 @@ $("#editorderimg").click(function () {
             ID: orderid
         },
         success: function (data) {
-            layer.msg(data.Result, {
-                icon: 1
-            });
-            $('#uporderimg').modal('hide');
-            orderlist(pageindex, 0)
+            if (data.Status == 1) {
+                layer.msg(data.Result, {
+                    icon: 1
+                });
+                $('#uporderimg').modal('hide');
+                orderlist(pageindex, 0)
+            } else if (data.Status == 40001) {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 5000);
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
         },
         error: function (data) {
             layer.msg('服务器异常', {

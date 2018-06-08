@@ -18,6 +18,16 @@
     ispc = true;
   }
   
+  function againlogin(){
+      $(".activespan").css("color","black");
+      $(".activespan").css("font-size","22px");
+      $(".grey").css("font-size","17px");
+      $(".grey").css("color","#9a9a9a");
+      $(".registerbox").hide();
+      $(".loginbox").show();
+      $('#myModal').modal('show');
+  }
+
   var token = getCookie("token");
   if (token == undefined || token == null) {
     token = '-1';

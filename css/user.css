@@ -395,6 +395,9 @@
     padding-bottom: 20px;
     font-size: 16px;
 }
+#accordion1 p{
+    line-height: 30px;
+}
 
 .panel-custom-title a {
     font-weight: bolder;
@@ -472,6 +475,7 @@
         font-size: 22px;
         top: 0;
     }
+    
 }
 
 @media (max-width: 768px) {
@@ -536,8 +540,11 @@
 @media (min-width: 1200px){
     .littletx{
         position: absolute;
-        top: 22px;
+        top: 50px;
         left: 0;
+    }
+    .step p {
+        padding: 15px 0;
     }
 }
 #joinsecond{
@@ -577,7 +584,7 @@
 #joinfirst .viptable .red{
     color: #B88E42;
 }
-#xufeivip{
+#xufeivip ,#joinfirst{
     display: none;
 }
 .imgorder{
