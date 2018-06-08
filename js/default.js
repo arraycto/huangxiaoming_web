@@ -157,16 +157,16 @@ function hidesub(n) {
         case 2:
             //收货地址
             index = 0
-            address(pageindex)
+            address(1)
             listType = 2
-            pageindex = 1
+            // pageindex = 1
             $(".pagination-custom").hide()
             break;
         case 3:
             // vip
-            listType = 3
-            pageindex = 1
-            vip(pageindex)
+            // listType = 3
+            // pageindex = 1
+            vip()
             $(".pagination-custom").hide()
             break;
         case 4:
@@ -663,10 +663,10 @@ function order(pageindex, index) {
 var list;
 var editid;
 
-function address(pageindex) {
+function address() {
     $.ajax({
         type: 'get',
-        url: mainurl + 'Address/GetListByPage?pageIndex=' + pageindex + '',
+        url: mainurl + 'Address/GetListByPage?pageIndex=1',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', getCookie('token'));
         },
@@ -676,7 +676,7 @@ function address(pageindex) {
                 list = data.Result.Data;
                 if (list.length == 0) {
                     li = "<div class='shell phone'><img src='images/kong.png'></div>";
-                    $("#address .table-custom-wrap").html(li);
+                    $("#address tbody").html(li);
                     return;
                 }
                 for (var i = 0; i < list.length; i++) {
@@ -687,7 +687,9 @@ function address(pageindex) {
                     }
                     li += '<tr id="' + data.Result.Data[i].ID + '"><td>' + data.Result.Data[i].Name + '</td><td>' + data.Result.Data[i].Phone + '</td><td>' + data.Result.Data[i].Province + data.Result.Data[i].City + data.Result.Data[i].Region + '</td><td>' + data.Result.Data[i].Address + '</td><td><p><label class="edit" onclick="editadd(' + i + ')">修改</label>|<label class="del" onclick="deladd(this)">删除</label></p>' + moren + '</td></tr>'
                 }
+                console.log(li)
                 $("#address tbody").html(li)
+                
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -722,6 +724,7 @@ function editadd(index) {
 }
 
 function setdefault(event) {
+    alert(1)
     $.ajax({
         type: 'get',
         url: mainurl + 'Address/SetDefault',
@@ -736,7 +739,7 @@ function setdefault(event) {
                 layer.msg(data.Result, {
                     icon: 1
                 });
-                address(1);
+                address();
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -771,7 +774,7 @@ function deladd(event) {
                         layer.msg(data.Result, {
                             icon: 1
                         });
-                        address(1);
+                        address();
                     } else {
                         layer.msg(data.Result, {
                             icon: 5
@@ -821,7 +824,7 @@ function addaddress() {
                 layer.msg(data.Result, {
                     icon: 1
                 });
-                address(1);
+                address();
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1141,6 +1144,7 @@ function vip() {
                 $(".novip").show();
             } else {
                 isvip = true;
+                $("#vipendtime").html(""+data.Result.EndTime+"到期")
                 $(".yesvip").show();
             }
         },
@@ -1235,6 +1239,8 @@ function vipinfo() {
                 $("#infoRemarks1").attr("value", data.Result.Remarks)
                 $("#infoSize1").attr("value", data.Result.Size)
                 $("#vip").hide();
+                $("#joinfirst").hide();
+                $("#joinsecond").hide();
                 $("#vipinfo").show();
                 $("#xufeivip").hide();
             } else {
@@ -1367,7 +1373,7 @@ $("#savetable").click(function () {
                 if (data.Status == 1) {
                     $("#joinfirst").hide();
                     $("#joinsecond").show();
-                    
+                    vipstatus = 2;
                 } else {
                     layer.msg(data.Result, {
                         icon: 5
@@ -1417,7 +1423,7 @@ $("#gotopay").click(function () {
         },
         success: function (data) {
             if (data.Status == 1) {
-                // window.location.href = "pay.html?data=" + data.Result + ""
+                window.location.href = "pay.html?data=" + data.Result + ""
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1434,6 +1440,8 @@ $("#gotopay").click(function () {
 
 function vipxufei() {
     $("#vip").hide();
+    $("#joinfirst").hide();
+    $("#joinsecond").hide();
     $("#xufeivip").show()
 }
 
@@ -1478,6 +1486,8 @@ function orderlist(pageindex, index) {
         success: function (data) {
             if (data.Status == 1) {
                 $("#vip").hide();
+                $("#joinfirst").hide();
+                $("#joinsecond").hide();
                 $("#buytable").show()
                 $("#xufeivip").hide()
                 let li = ''

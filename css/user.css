@@ -465,6 +465,13 @@
         width: 80%;
         margin-left: 10%;
     }
+    #vipmoney{
+        position: absolute;
+        right: 20px;
+        color: #B88E42;
+        font-size: 22px;
+        top: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -479,6 +486,9 @@
         width: 2.5rem !important;
         height: 2.5rem;
         line-height: 2.5rem;
+    }
+    #xufeivip button{
+        margin-bottom: 5rem;
     }
     /* .col-xs-12 .viptable:first-child{
         margin-top: 0;
@@ -552,11 +562,8 @@
     margin-top: 30px;
 }
 #vipmoney{
-    position: absolute;
-    right: 20px;
     color: #B88E42;
     font-size: 22px;
-    top: 0;
 }
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
     z-index: 2;
