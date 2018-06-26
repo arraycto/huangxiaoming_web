@@ -58,7 +58,7 @@
         if(data.Status==1){
           $(".rd-navbar-socials-toggle").html("<img src='"+url+data.Result.Icon+"'>")
         }else{
-          delCookie("token")
+          // delCookie("token")
         }
       }
     })
@@ -294,7 +294,7 @@
                       layer.msg(data.Result, {
                         icon: 5
                       });
-                      delCookie("token");
+                      // delCookie("token");
                     }else{
                       layer.msg(data.Result, {
                         icon: 5
@@ -385,7 +385,7 @@
                       layer.msg(data.Result, {
                         icon: 5
                       });
-                      delCookie("token");
+                      // delCookie("token");
                     }else{
                       layer.msg(data.Result, {
                         icon: 5

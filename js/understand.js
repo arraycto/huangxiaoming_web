@@ -22,7 +22,7 @@ $.ajax({
 			act = "";
 			zy = "";
 			nav = "";
-			for (let i = 0; i < data.Result.data.length; i++) {
+			for (var i = 0; i < data.Result.data.length; i++) {
 				if (data.Result.data[i]['Type'] == 0) {
 					smlist += "<li class='出演作品'><a href='#tabs-0-"+i+"' data-toggle='tab'>"+data.Result.data[i]['Title']+"</a></li>";
 					hreflist += "<div class='tab-pane fade animated fadeInLeft' id='tabs-0-"+i+"'><div class='understandiframe'>"+decodeURIComponent(data.Result.data[i]['Detail'])+"</div></div>"
@@ -35,7 +35,7 @@ $.ajax({
 					hreflist += "<div class='tab-pane fade animated fadeInLeft' id='tabs-2-"+i+"'><div class='understandiframe'>"+decodeURIComponent(data.Result.data[i]['Detail'])+"</div></div>"
 				}
 			}
-			for (let i = 0; i < data.Result.relist.length; i++) {
+			for (var i = 0; i < data.Result.relist.length; i++) {
 				if (data.Result.relist[i]['Action'] == null) {
 					data.Result.relist[i]['Action'] = ""
 				}

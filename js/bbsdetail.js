@@ -298,11 +298,11 @@ $.ajax({
 		urllist = "";
 		lasturllist = "";
 		if(data.Status==1){
-			for (let i = 0; i < data.Result.list.length; i++) {
+			for (var i = 0; i < data.Result.list.length; i++) {
 				if (data.Result.list[i].Name !== thisurl) {
 					urllist += "<div><a href='gallery-grid-1.html?id="+data.Result.list[i].ID+"'>"+data.Result.list[i].Name+"</a></div>"
 				}else{
-					for (let a = 0; a < data.Result.list[i].PostClass.length; a++) {
+					for (var a = 0; a < data.Result.list[i].PostClass.length; a++) {
 						if (data.Result.list[i].PostClass[a].Name !== thisadd) {
 							lasturllist += '<div><a href="forum.html?id='+data.Result.list[i].PostClass[a].ID+'">'+data.Result.list[i].PostClass[a].Name+'</a></div>'
 						}

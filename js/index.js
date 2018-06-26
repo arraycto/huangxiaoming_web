@@ -63,19 +63,19 @@ $.ajax({
 			time = "<li><a href='#0' data-date='01/12/2013' class='selected'>"+time1+"月</a></li>"
 			firstmessage = "";
 			firstboxlist = [];
-			for (let i = 0; i < data.Result.Trip.length; i++) {
+			for (var i = 0; i < data.Result.Trip.length; i++) {
 				if(data.Result.Trip[i]['Time'].substring(0,data.Result.Trip[i]['Time'].length-3) == data.Result.TimeList[0]['Time']){
 					firstboxlist.push(i);
 				}
 			}
-			for (let i = 0; i < firstboxlist.length; i++) {
+			for (var i = 0; i < firstboxlist.length; i++) {
 				if (data.Result.Trip[firstboxlist[i]].IsOnline) {
 					firstmessage += '<li class="selected" data-date="01/12/2013"><div class="selectedbox thumbnail-type-2"><a class="thumbnail-img"><div class="tabletag"><div class="smalltag">(可报名)</div></div><div class="tripimage" id='+data.Result.Trip[firstboxlist[i]].ID+'><img src='+data.Result.Trip[firstboxlist[i]].Display_Image+'></div></a><div class="caption-2"><dl class="list-terms-2"><dt>'+data.Result.Trip[firstboxlist[i]].Title+'</dt></dl><dl class="list-terms-2"><dt>时间</dt><dd>'+data.Result.Trip[firstboxlist[i]].Time+'</dd></dl><dl class="list-terms-2"><dt>地点</dt><dd>'+data.Result.Trip[firstboxlist[i]].Address+'</dd></dl></div></div></li>'
 				}else{
 					firstmessage += '<li class="selected" data-date="01/12/2013"><div class="selectedbox thumbnail-type-2"><a class="thumbnail-img"><div class="tripimage" id='+data.Result.Trip[firstboxlist[i]].ID+'><img src='+data.Result.Trip[firstboxlist[i]].Display_Image+'></div></a><div class="caption-2"><dl class="list-terms-2"><dt>'+data.Result.Trip[firstboxlist[i]].Title+'</dt></dl><dl class="list-terms-2"><dt>时间</dt><dd>'+data.Result.Trip[firstboxlist[i]].Time+'</dd></dl><dl class="list-terms-2"><dt>地点</dt><dd>'+data.Result.Trip[firstboxlist[i]].Address+'</dd></dl></div></div></li>'
 				}
 			}
-			for (let i = 1; i < data.Result.TimeList.length; i++) {
+			for (var i = 1; i < data.Result.TimeList.length; i++) {
 				a = Number(i)*2;
 				if (data.Result.TimeList[i].Time[5] == 0) {
 					time1 = data.Result.TimeList[i].Time.substring(6,data.Result.TimeList[i].Time.length)
@@ -85,17 +85,17 @@ $.ajax({
 				time += "<li><a href='#0' data-date='01/0"+a+"/2014'>"+time1+"月</a></li>"
 			}
 			//行程
-			for (let x = 1; x < data.Result.TimeList.length; x++) {
+			for (var x = 1; x < data.Result.TimeList.length; x++) {
 				message = "";
 				a = Number(x)*2;
 				boxlist = [];
 				var timemouth = data.Result.TimeList[x]['Time']
-				for (let i = 0; i < data.Result.Trip.length; i++) {
+				for (var i = 0; i < data.Result.Trip.length; i++) {
 					if(data.Result.Trip[i]['Time'].substring(0,data.Result.Trip[i]['Time'].length-3) == timemouth){
 						boxlist.push(i);
 					}
 				}
-				for (let i = 0; i < boxlist.length; i++) {
+				for (var i = 0; i < boxlist.length; i++) {
 					if (data.Result.Trip[boxlist[i]].IsOnline) {
 						message += "<div class='selectedbox thumbnail-type-2'><a class='thumbnail-img'><div class='tabletag'><div class='smalltag'>(可报名)</div></div><div class='tripimage' id="+data.Result.Trip[boxlist[i]].ID+"><img src="+data.Result.Trip[boxlist[i]].Display_Image+"></div></a><div class='caption-2'><dl class='list-terms-2'><dt>"+data.Result.Trip[boxlist[i]].Title+"</dt></dl><dl class='list-terms-2'><dt>时间</dt><dd>"+data.Result.Trip[boxlist[i]].Time+"</dd></dl><dl class='list-terms-2'><dt>地点</dt><dd>"+data.Result.Trip[boxlist[i]].Address+"</dd></dl></div></div>"
 					}else{

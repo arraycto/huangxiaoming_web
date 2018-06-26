@@ -32730,3 +32730,8 @@ body.view{
 .form-wrap{
 	text-align: center;
 }
+.layui-layer-btn .layui-layer-btn0 {
+    border-color: #B88E42;
+    background-color: #B88E42;
+    color: #fff;
+}

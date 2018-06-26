@@ -30,7 +30,7 @@ function first(){
 					$(".comment-box").css("border-top","none")
 				}else{
 					$("#conmentnum").eq(0).html(data.Result.EvaCount+"条评论");
-					for (let i = 0; i < data.Result.Eva.length; i++) {
+					for (var i = 0; i < data.Result.Eva.length; i++) {
 						data.Result.Eva[i]['Icon'] = data.Result.Eva[i]['Icon'].replace("localhost","192.168.1.112")
 						if (data.Result.Eva[i]['IsPraise']) {
 							commit += "<div class='comment' id='comments' name="+data.Result.Eva[i]['EvaID']+"><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src="+data.Result.Eva[i]['Icon']+" width='65' height='66'/></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'>"+data.Result.Eva[i]['Name']+"</h5><div class='comment__date'>"+data.Result.Eva[i]['CreateTime']+"</div></div><p>"+data.Result.Eva[i]['Content']+"</p><div class='comment__footer'><a class='fa fa-thumbs-up' id='dianzan'>"+data.Result.Eva[i]['PraiseCount']+"</a></div></div></div></div>"
@@ -46,8 +46,8 @@ function first(){
 				}else{
 					num = data.Result.NewList.length+1/2;
 				}
-				for (let x = 0; x <= num; x = x+2) {
-					let a = x+1;
+				for (var x = 0; x <= num; x = x+2) {
+					var a = x+1;
 					other += "<li><div class='range range-xs-center range-30'><div class='cell-sm-6 cell-xs-10'><div class='post-blog' id="+data.Result.NewList[x]['ID']+"><div class='post-blog__media'></div><div class='post-blog__body bg-wans'> <div class='post-blog__title'>"+data.Result.NewList[x]['Title']+"</div><div class='post-blog__meta'><div class='post-blog__meta-date'>"+data.Result.NewList[x]['Time']+"</div><div class='post-blog__meta-views'>"+data.Result.NewList[x]['Browse']+"</div></div></div></div></div><div class='cell-sm-6 cell-xs-10'><div class='post-blog' id="+data.Result.NewList[a]['ID']+"><div class='post-blog__media'></div><div class='post-blog__body bg-wans'><div class='post-blog__title'>"+data.Result.NewList[a]['Title']+"</div><div class='post-blog__meta'><div class='post-blog__meta-date'>"+data.Result.NewList[a]['Time']+"</div><div class='post-blog__meta-views'>"+data.Result.NewList[a]['Browse']+"</div></div></div></div>"
 				}
 				$(".slides").html(other)
@@ -57,7 +57,7 @@ function first(){
 						window.location.href = "active-post.html?id="+blogid;
 					})
 				})
-				for (let i = 0; i < data.Result.TripList.length; i++) {
+				for (var i = 0; i < data.Result.TripList.length; i++) {
 					if (data.Result.TripList[i]['Title'].length >= 12) {
 						data.Result.TripList[i]['Title'] = data.Result.TripList[i]['Title'].substring(0,12);
 						data.Result.TripList[i]['Title'] += "...";
@@ -66,7 +66,7 @@ function first(){
 				}
 				$("#tipslist").html(tips)  
 				//资讯
-				for (let i = 0; i < data.Result.ActivityList.length; i++) {
+				for (var i = 0; i < data.Result.ActivityList.length; i++) {
 					news += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' href='tip-post.html?id="+data.Result.ActivityList[i]['ID']+"'><div class='unit__left'><img src="+data.Result.ActivityList[i]['Image']+" class='activeimg'></div><div class='unit__body'><p>"+data.Result.ActivityList[i]['Title']+"</p><p class='text-snow' style='display:block'>"+data.Result.ActivityList[i]['Time']+"</p></div></a>"
 				}
 				$("#newlist").html(news)

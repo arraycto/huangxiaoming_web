@@ -304,11 +304,12 @@ function receipt(index) {
             $.ajax({
                 type: "get",
                 url: mainurl + "Order/Receipt",
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('Authorization', getCookie('token'));
-                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader('Authorization', getCookie('token'));
+                // },
                 data: {
                     id: list[index].ID,
+                    token:getCookie("token")
                 },
                 success: function (data) {
                     if (data.Status == 1) {
@@ -322,7 +323,7 @@ function receipt(index) {
                             icon: 5
                         });
                         setTimeout(
-                            againlogin, 5000);
+                            againlogin, 2000);
                     } else {
                         layer.msg(data.Result, {
                             icon: 5
@@ -356,7 +357,7 @@ function openmsg(event) {
         url: mainurl + "User/MsgDetail",
         data: {
             msgid: $(event).attr("id"),
-            token: token
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -378,7 +379,7 @@ function openmsg(event) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -422,7 +423,7 @@ function first() {
         type: "get",
         url: mainurl + "User/PCGetInfo",
         data: {
-            token: token
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -460,7 +461,7 @@ function first() {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -513,7 +514,7 @@ function editicon() {
         type: 'get',
         url: mainurl + 'User/EdidImage',
         data: {
-            token: token,
+            token: getCookie("token"),
             image: img_value
         },
         success: function (data) {
@@ -541,7 +542,7 @@ $("#save").click(function () {
             Specialty: $("#Specialty1").val(),
             Signature: $("#Signature1").val(),
             Gender: $("input[name='optionsRadios']:checked").val(),
-            token: token
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -555,7 +556,7 @@ $("#save").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -580,12 +581,13 @@ $("#savepwd").click(function () {
     $.ajax({
         type: 'get',
         url: mainurl + 'User/ChangePwd',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', token)
-        },
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader('Authorization', getCookie("token"))
+        // },
         data: {
             oldPwd: $.md5($(".oldPsw").val()),
             newPwd: $.md5($(".repetPsw").val()),
+            token:getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -600,7 +602,7 @@ $("#savepwd").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -620,7 +622,7 @@ function order(pageindex, index) {
     console.log(pageindex)
     $.ajax({
         type: 'get',
-        url: mainurl + 'Order/PCGetMyOrder?type=-1&pageIndex=' + pageindex + '&pageSize=3&token=' + token,
+        url: mainurl + 'Order/PCGetMyOrder?type=-1&pageIndex=' + pageindex + '&pageSize=3&token=' + getCookie("token"),
         success: function (data) {
             if (data.Status == 1) {
                 var li = ''
@@ -675,7 +677,7 @@ function order(pageindex, index) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -699,13 +701,14 @@ var editid;
 function address() {
     $.ajax({
         type: 'get',
-        url: mainurl + 'Address/GetListByPage',
+        url: mainurl + 'Address/PCGetListByPage',
         data:{
-            pageIndex:1
+            pageIndex:1,
+            token:getCookie("token")
         },
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', token);
-        },
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader('Authorization', token);
+        // },
         success: function (data) {
             if (data.Status == 1) {
                 var li = '<tr><th>收货人</th><th>手机号码</th><th>所在地区</th><th>详细地址</th><th>操作</th></tr>';
@@ -723,7 +726,6 @@ function address() {
                     }
                     li += '<tr id="' + data.Result.Data[i].ID + '"><td>' + data.Result.Data[i].Name + '</td><td>' + data.Result.Data[i].Phone + '</td><td>' + data.Result.Data[i].Province + data.Result.Data[i].City + data.Result.Data[i].Region + '</td><td>' + data.Result.Data[i].Address + '</td><td><p><label class="edit" onclick="editadd(' + i + ')">修改</label>|<label class="del" onclick="deladd(this)">删除</label></p>' + moren + '</td></tr>'
                 }
-                console.log(li)
                 $("#address tbody").html(li)
 
             } else if (data.Status == 40001) {
@@ -732,7 +734,7 @@ function address() {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -769,12 +771,13 @@ function editadd(index) {
 function setdefault(event) {
     $.ajax({
         type: 'get',
-        url: mainurl + 'Address/SetDefault',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', getCookie('token'));
-        },
+        url: mainurl + 'Address/PCSetDefault',
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader('Authorization', getCookie('token'));
+        // },
         data: {
-            id: $(event).parents("tr").attr("id")
+            id: $(event).parents("tr").attr("id"),
+            token:getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -788,7 +791,7 @@ function setdefault(event) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -811,12 +814,13 @@ function deladd(event) {
             var delid = $(event).parents("tr").attr("id");
             $.ajax({
                 type: 'get',
-                url: mainurl + 'Address/Del',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('Authorization', getCookie('token'));
-                },
+                url: mainurl + 'Address/PCDel',
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader('Authorization', getCookie('token'));
+                // },
                 data: {
-                    id: delid
+                    id: delid,
+                    token:getCookie("token")
                 },
                 success: function (data) {
                     if (data.Status == 1) {
@@ -830,7 +834,7 @@ function deladd(event) {
                             icon: 5
                         });
                         setTimeout(
-                            againlogin, 5000);
+                            againlogin, 2000);
                     } else {
                         layer.msg(data.Result, {
                             icon: 5
@@ -862,10 +866,10 @@ function addaddress() {
     }
     $.ajax({
         type: 'post',
-        url: mainurl + 'Address/Add',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', getCookie('token'));
-        },
+        url: mainurl + 'Address/PCAdd',
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader('Authorization', getCookie('token'));
+        // },
         data: {
             name: $("#addname").val(),
             phone: $("#addphone").val(),
@@ -873,7 +877,8 @@ function addaddress() {
             city: $("#cmbCity1").val(),
             region: $("#cmbArea1").val(),
             address: $("#addadd").val(),
-            isDefault: isDefault
+            isDefault: isDefault,
+            token:getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -890,7 +895,7 @@ function addaddress() {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -919,10 +924,10 @@ $("#saveadd").click(function () {
     }
     $.ajax({
         type: 'post',
-        url: mainurl + 'Address/Edit',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', token)
-        },
+        url: mainurl + 'Address/PCEdit',
+        // beforeSend: function (xhr) {
+        //     xhr.setRequestHeader('Authorization', token)
+        // },
         data: {
             AddressID: editid,
             name: $(".editname").val(),
@@ -931,7 +936,8 @@ $("#saveadd").click(function () {
             city: $("#cmbCity").val(),
             region: $("#cmbArea").val(),
             address: $(".editaddress").val(),
-            isDefault: isDefault
+            isDefault: isDefault,
+            token:getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -946,7 +952,7 @@ $("#saveadd").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -964,7 +970,7 @@ $("#saveadd").click(function () {
 function myMsg(pageindex, index) {
     $.ajax({
         type: 'get',
-        url: mainurl + 'User/GetMyMail?token=' + token + '&pageIndex=' + pageindex + '&pageSize=4',
+        url: mainurl + 'User/GetMyMail?token=' + getCookie("token") + '&pageIndex=' + pageindex + '&pageSize=4',
         success: function (data) {
             if (data.Status == 1) {
                 var li = ''
@@ -1005,7 +1011,7 @@ function myMsg(pageindex, index) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1025,7 +1031,7 @@ function myMsg(pageindex, index) {
 function myactivity(pageindex, index) {
     $.ajax({
         type: 'get',
-        url: mainurl + 'User/MySignActivity?token=' + token + '&pageIndex=' + pageindex + '&pageSize=2&keyword=-1',
+        url: mainurl + 'User/MySignActivity?token=' + getCookie("token") + '&pageIndex=' + pageindex + '&pageSize=2&keyword=-1',
         success: function (data) {
             if (data.Status == 1) {
                 var li = ''
@@ -1063,7 +1069,7 @@ function myactivity(pageindex, index) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1082,7 +1088,7 @@ function myactivity(pageindex, index) {
 function getpost(pageindex, index) {
     $.ajax({
         type: 'get',
-        url: mainurl + 'User/PCGetPosts?token=' + token + '&pageIndex=' + pageindex + '&pageSize=8',
+        url: mainurl + 'User/PCGetPosts?token=' + getCookie("token") + '&pageIndex=' + pageindex + '&pageSize=8',
         success: function (data) {
             if (data.Status == 1) {
                 var li = ''
@@ -1126,7 +1132,7 @@ function getpost(pageindex, index) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1224,7 +1230,7 @@ function vip() {
         type: "get",
         url: mainurl + "User/CheckVip",
         data: {
-            token: token
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 40001) {
@@ -1233,7 +1239,7 @@ function vip() {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 $("#vipname").html(data.Result.Username)
                 $(".photo").attr("src", url + data.Result.icon)
@@ -1318,7 +1324,7 @@ function vipinfo() {
                 $("#infoEmail").html(data.Result.Email)
                 $("#infoHob").html(data.Result.Hob1)
                 $("#infoRemarks").html(data.Result.Remarks)
-                $("#infoSize").attr("value", data.Result.Size)
+                $("#infoSize").html(data.Result.Size)
 
                 //编辑
                 $("#infoRealName1").attr("value", data.Result.RealName)
@@ -1350,7 +1356,7 @@ function vipinfo() {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1434,7 +1440,7 @@ $("#saveinfo").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1495,7 +1501,7 @@ $("#savetable").click(function () {
                         icon: 5
                     });
                     setTimeout(
-                        againlogin, 5000);
+                        againlogin, 2000);
                 } else {
                     layer.msg(data.Result, {
                         icon: 5
@@ -1552,7 +1558,7 @@ $("#gotopay").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1592,7 +1598,7 @@ $("#gotoxufei").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1618,7 +1624,7 @@ function buydetail(pageindex, index) {
 function orderlist(pageindex, index) {
     $.ajax({
         type: 'get',
-        url: mainurl + 'User/UserVipOrderList?token=' + token + '&pageIndex=' + pageindex + '&pageSize=8',
+        url: mainurl + 'User/UserVipOrderList?token=' + getCookie("token") + '&pageIndex=' + pageindex + '&pageSize=8',
         success: function (data) {
             if (data.Status == 1) {
                 $("#vip").hide();
@@ -1626,9 +1632,9 @@ function orderlist(pageindex, index) {
                 $("#joinsecond").hide();
                 $("#buytable").show()
                 $("#xufeivip").hide()
-                let li = ''
+                var li = ''
                 list = data.Result.List;
-                let page = data.Result.Page;
+                var page = data.Result.Page;
                 if (page == 0) {
                     $("#fenghui-pagination").hide();
                 } else {
@@ -1639,7 +1645,7 @@ function orderlist(pageindex, index) {
                     $("#nullinfo").html(li);
                     return;
                 }
-                let typebtn = '';
+                var typebtn = '';
                 for (var i = 0; i < list.length; i++) {
                     switch (list[i].Type) {
                         case 1:
@@ -1667,7 +1673,7 @@ function orderlist(pageindex, index) {
                 //上传凭证
                 $(".upload").each(function () {
                     $(this).click(function () {
-                        let sta = $(this).parents("tr").attr("id");
+                        var sta = $(this).parents("tr").attr("id");
                         upimg(sta)
                     })
                 })
@@ -1685,7 +1691,7 @@ function orderlist(pageindex, index) {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1748,7 +1754,7 @@ $("#editorderimg").click(function () {
         type: 'get',
         url: mainurl + 'User/UpOrderImage',
         data: {
-            token: token,
+            token: getCookie("token"),
             Image: orderimg_value,
             ID: orderid
         },
@@ -1764,7 +1770,7 @@ $("#editorderimg").click(function () {
                     icon: 5
                 });
                 setTimeout(
-                    againlogin, 5000);
+                    againlogin, 2000);
             } else {
                 layer.msg(data.Result, {
                     icon: 5

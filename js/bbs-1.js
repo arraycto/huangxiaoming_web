@@ -12,7 +12,7 @@ $.ajax({
 		success:function(data){
 			if(data.Status==1){
 				tip = "";
-				for (let i = 0; i < data.Result.list.length; i++) {
+				for (var i = 0; i < data.Result.list.length; i++) {
 					if (data.Result.list[i]['ID'] == blogID) {
 						index = i
 					}
@@ -21,7 +21,7 @@ $.ajax({
 				document.title = thisurl;
 				$(".text-sm-left>h3").html(thisurl)
 				// $("#lasturl").append(data.Result.list[index]['Name'])
-				for (let i = 0; i < data.Result.list[index].PostClass.length; i++) {
+				for (var i = 0; i < data.Result.list[index].PostClass.length; i++) {
 					tip += "<div class='cell-md-4 cell-sm-6 cell-xs-10' id="+data.Result.list[index].PostClass[i]['ID']+"><div class='post-blog' style='display:block'><div class='post-blog__media'><a><img src="+url+data.Result.list[index].PostClass[i]['logo']+" class='imghei' style='width:100%;'></a></div><div class='post-blog__body'><div class='post-blog__title'><a>"+data.Result.list[index].PostClass[i]['Name']+"</a></div><div class='post-blog__meta'>"+data.Result.list[index].PostClass[i]['Descrip']+"</div></div></div></div>"
 				}
 				$("#bbsbox").html(tip);
@@ -36,7 +36,7 @@ $.ajax({
 				})
 				//获取地址栏下拉菜单
 				urllist = "";
-				for (let i = 0; i < data.Result.list.length; i++) {
+				for (var i = 0; i < data.Result.list.length; i++) {
 					if (data.Result.list[i].Name !== thisurl) {
 						urllist += "<div><a href='gallery-grid-1.html?id="+data.Result.list[i].ID+"'>"+data.Result.list[i].Name+"</a></div>"
 					}

@@ -12,10 +12,10 @@ $.ajax({
 	success:function(data){
 		if(data.Status==1){
 			message = "";
-			let firstnum = 0;
+			var firstnum = 0;
 			bigmessage = "";
 			time = "";
-			for (let i = 0; i < data.Result.List.length; i++) {
+			for (var i = 0; i < data.Result.List.length; i++) {
 				if(data.Result.List[i]['Time'].substring(0,data.Result.List[i]['Time'].length-3) == data.Result.TimeList[0]['Time']){
 					firstnum++;
 					firstlist.push(i);
@@ -29,7 +29,7 @@ $.ajax({
 				}
 			}else{
 				if (firstnum % 2 == 0) {
-					for (let i = 0; i < firstlist.length; i = i+2) {
+					for (var i = 0; i < firstlist.length; i = i+2) {
 						if (data.Result.List[firstlist[i]]['IsOnline']) {
 							message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[firstlist[i]]['ID']+"><p>"+data.Result.List[firstlist[i]]['Time'].substring(5,data.Result.List[firstlist[i]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[firstlist[i]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[firstlist[i]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><div style='position:relative'><div class='tabletag'><div class='smalltag'>(可报名)</div></div><img class='img-right' src="+data.Result.List[firstlist[i]]['Display_Image']+"></div></div></div></div><div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-left' src="+data.Result.List[firstlist[i+1]]['Display_Image']+"></div><div class='cell-sm-6 cell-lg-6'><span class='text-box text-right' id="+data.Result.List[firstlist[i+1]]['ID']+"><p>"+data.Result.List[firstlist[i+1]]['Time'].substring(5,data.Result.List[firstlist[i+1]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[firstlist[i+1]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[firstlist[i+1]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div></div></div>"
 						}else{
@@ -37,7 +37,7 @@ $.ajax({
 						}
 					}
 				}else{
-					for (let i = 0; i < firstlist.length-1; i = i+2) {
+					for (var i = 0; i < firstlist.length-1; i = i+2) {
 						if (data.Result.List[firstlist[i]]['IsOnline']) {
 							message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[firstlist[i]]['ID']+"><p>"+data.Result.List[firstlist[i]]['Time'].substring(5,data.Result.List[firstlist[i]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[firstlist[i]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[firstlist[i]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><div style='position:relative'><div class='tabletag'><div class='smalltag'>(可报名)</div></div><img class='img-right' src="+data.Result.List[firstlist[i]]['Display_Image']+"></div></div></div></div><div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-left' src="+data.Result.List[firstlist[i+1]]['Display_Image']+"></div><div class='cell-sm-6 cell-lg-6'><span class='text-box text-right' id="+data.Result.List[firstlist[i+1]]['ID']+"><p>"+data.Result.List[firstlist[i+1]]['Time'].substring(5,data.Result.List[firstlist[i+1]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[firstlist[i+1]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[firstlist[i+1]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div></div></div>"
 						}else{
@@ -55,16 +55,16 @@ $.ajax({
 			bigmessage = "<div class='slideBox'>"+message+"</div>"
 			data.Result.List[0]['Time'] = data.Result.List[0]['Time'].replace('-','.').replace('-','.')
 			time = "<li class='act'><span></span>"+data.Result.List[0]['Time'].substring(0,data.Result.List[0]['Time'].length-3)+"</li>";
-			for (let i = 1; i < data.Result.TimeList.length; i++) {
+			for (var i = 1; i < data.Result.TimeList.length; i++) {
 				time += "<li><span></span>"+data.Result.TimeList[i]['Time'].replace('-','.')+"</li>"
 			}
 
-			for (let x = 1; x < data.Result.TimeList.length; x++) {
+			for (var x = 1; x < data.Result.TimeList.length; x++) {
 				message = "";
-				let num = 0;
+				var num = 0;
 				boxlist = [];
 				var timemouth = data.Result.TimeList[x]['Time'];
-				for (let i = 1; i < data.Result.List.length; i++) {
+				for (var i = 1; i < data.Result.List.length; i++) {
 					if(data.Result.List[i]['Time'].substring(0,data.Result.List[i]['Time'].length-3) == timemouth){
 						num ++;
 						boxlist.push(i);
@@ -74,11 +74,11 @@ $.ajax({
 					message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[0]['ID']+"><p>"+data.Result.List[boxlist[0]]['Time'].substring(5,data.Result.List[boxlist[0]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[0]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[0]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-right' src="+data.Result.List[boxlist[0]]['Display_Image']+"></div></div></div>";
 				}else{
 					if (num % 2 == 0) {
-						for (let i = 0; i < boxlist.length; i = i+2) {
+						for (var i = 0; i < boxlist.length; i = i+2) {
 							message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[boxlist[i]]['ID']+"><p>"+data.Result.List[boxlist[i]]['Time'].substring(5,data.Result.List[boxlist[i]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[i]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[i]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-right' src="+data.Result.List[boxlist[i]]['Display_Image']+"></div></div></div><div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-left' src="+data.Result.List[boxlist[i+1]]['Display_Image']+"></div><div class='cell-sm-6 cell-lg-6'><span class='text-box text-right' id="+data.Result.List[boxlist[i+1]]['ID']+"><p>"+data.Result.List[boxlist[i+1]]['Time'].substring(5,data.Result.List[boxlist[i+1]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[i+1]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[i+1]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div></div></div>"
 						}
 					}else{
-						for (let i = 0; i < boxlist.length-1; i = i+2) {
+						for (var i = 0; i < boxlist.length-1; i = i+2) {
 							message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[boxlist[i]]['ID']+"><p>"+data.Result.List[boxlist[i]]['Time'].substring(5,data.Result.List[boxlist[i]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[i]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[i]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-right' src="+data.Result.List[boxlist[i]]['Display_Image']+"></div></div></div><div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-left' src="+data.Result.List[boxlist[i+1]]['Display_Image']+"></div><div class='cell-sm-6 cell-lg-6'><span class='text-box text-right' id="+data.Result.List[boxlist[i+1]]['ID']+"><p>"+data.Result.List[boxlist[i+1]]['Time'].substring(5,data.Result.List[boxlist[i+1]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[i+1]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[i+1]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div></div></div>"
 						}
 						message += "<div class='shell'><div class='range range-xs-center range-md-left'><div class='cell-sm-6 cell-lg-6 col-right'><span class='text-box' id="+data.Result.List[boxlist[boxlist.length-1]]['ID']+"><p>"+data.Result.List[boxlist[boxlist.length-1]]['Time'].substring(5,data.Result.List[boxlist[boxlist.length-1]]['Time'].length).replace('-','/')+"&nbsp;&nbsp;&nbsp;"+data.Result.List[boxlist[boxlist.length-1]]['Address']+"</p><div class='title-h-in'><p class='color_main color_h'>"+data.Result.List[boxlist[boxlist.length-1]]['Title']+"</p><div class='simpline bg_simpline'></div></div></span></div><div class='cell-sm-6 cell-md-6 cell-lg-6'><img class='img-right' src="+data.Result.List[boxlist[boxlist.length-1]]['Display_Image']+"></div></div></div>";
