@@ -21,7 +21,7 @@ function hqhf(pageNumber){
 				}
 				tip = "";
 				for (var i = 0; i < data.Result.List.length; i++) {
-					data.Result.List[i]['Display_Image'] = data.Result.List[i]['Display_Image'].replace("localhost","192.168.1.112")
+					// data.Result.List[i]['Display_Image'] = data.Result.List[i]['Display_Image'].replace("localhost","192.168.1.112")
 					if (data.Result.List[i]['IsOnline']) {
 						tip += "<div class='cell-md-4 cell-sm-6 cell-xs-10' id="+data.Result.List[i]['ID']+"><div class='post-blog'><div class='tabletag'><div class='smalltag'>(可报名)</div></div><div class='post-blog__media'><a><img src="+data.Result.List[i]['Display_Image']+" width='369' height='263' class='imghei'></a></div><div class='post-blog__body'><div class='post-blog__title'><a>"+data.Result.List[i]['Title']+"</a></div><div class='post-blog__meta'><div class='post-blog__meta-views'>"+data.Result.List[i]['Address']+"</div><div class='post-blog__meta-date'>"+data.Result.List[i]['Time']+"</div></div></div></div></div>"
 					}
