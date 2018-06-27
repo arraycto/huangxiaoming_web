@@ -73,10 +73,10 @@
 	var phone2 = false
 	var foremail = false
 	var forpwd = false
-  var forpwd2 = false
-  var cmzok = false;
-  var pwdok2 = false;
-  var emailok1 = false;
+	var forpwd2 = false
+	var cmzok = false;
+	var pwdok2 = false;
+	var emailok1 = false;
 
 	// 验证用户名
 	$('input[name="username"]').blur(function () {
@@ -210,9 +210,9 @@
 	    $(this).next('.form-validation').text('两次密码不同');
 	  }
 
-  });
-  
-  //重置码
+	});
+
+	//重置码
 	$('#forms-czm').blur(function () {
 	  if ($(this).val() != '') {
 	    $(this).next('.form-validation').text('');
@@ -246,8 +246,8 @@
 	  if (!userok || !pwdok || !emailok) {
 	    layer.msg("请填写正确的信息", {
 	      icon: 5
-      });
-    } else if (!res) {
+	    });
+	  } else if (!res) {
 	    layer.msg("验证码错误", {
 	      icon: 5
 	    });
@@ -272,54 +272,7 @@
 	          token = data.Result;
 	          $('#myModal').modal('hide');
 	          geticon()
-	          $("#commentbox").html("<div class='form-wrap'><textarea class='form-input' id='comment-message' name='comment-message' placeholder='写下你的评论' oninput='btnchange()' onpropertychange='btnchange()'></textarea></div><button class='button button-square btn-dis' type='button' id='comment' disabled='disabled'>评论</button>")
-	          // $("#bbscommentbox").append("<button class='button button-square button-default' type='button' id='bbscomment' style='margin-top:20px;'>评论</button>")
-	          if (ispc) {
-	            $("#container").show();
-	            $("#ReleasePost2").show();
-	            $("#ReleasePost3").hide();
-	          } else {
-	            $("#container").hide();
-	            $("#ReleasePost2").hide();
-	            $("#ReleasePost3").show();
-	          }
-	          $("#bbsform").hide();
-	          $(".rd-navbar-socials-toggle").click(function () {
-	            window.location.href = "user.html"
-	          })
-	          $("#comment").click(function () {
-	            $.ajax({
-	              type: "post",
-	              url: mainurl + "Eva/NewsCreate",
-	              data: {
-	                Content: $("#comment-message").val(),
-	                NewsID: blogID,
-	                token: token
-	              },
-	              success: function (data) {
-	                if (data.Status == 1) {
-	                  layer.msg(data.Result, {
-	                    icon: 1
-	                  });
-	                  $("#comment-message").val('');
-	                  token = data.Result
-	                  commit = "";
-	                  pageIndex = 1;
-	                  first();
-	                  $(".page-loader").addClass("loaded");
-	                } else if (data.Status == 40001) {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                  // delCookie("token");
-	                } else {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                }
-	              }
-	            })
-	          })
+	          loginok()
 	        } else if (data.Status == 40043) {
 	          layer.msg("账号名已存在", {
 	            icon: 5
@@ -337,8 +290,8 @@
 	      }
 	    })
 	  }
-	})
-
+  })
+  
 	$("#login").click(function () {
 	  if (!userok1 || !pwdok1) {
 	    layer.msg("请输入信息", {
@@ -361,55 +314,7 @@
 	          token = data.Result
 	          geticon()
 	          $('#myModal').modal('hide');
-	          $("#commentbox").html("<div class='form-wrap'><textarea class='form-input' id='comment-message' name='comment-message' placeholder='写下你的评论' oninput='btnchange()' onpropertychange='btnchange()'></textarea></div><button class='button button-square btn-dis' type='button' id='comment' disabled='disabled'>评论</button>")
-	          // $("#bbscommentbox").append("<button class='button button-square button-default' type='button' id='bbscomment' style='margin-top:20px;'>评论</button>")
-	          if (ispc) {
-	            $("#container").show();
-	            $("#ReleasePost1").hide();
-	            $("#ReleasePost2").show();
-	            $("#ReleasePost3").hide();
-	          } else {
-	            $("#container").hide();
-	            $("#ReleasePost1").hide();
-	            $("#ReleasePost2").hide();
-	            $("#ReleasePost3").show();
-	          }
-	          $("#bbsform").hide();
-	          $(".rd-navbar-socials-toggle").click(function () {
-	            window.location.href = "user.html"
-	          })
-	          $("#comment").click(function () {
-	            $.ajax({
-	              type: "post",
-	              url: mainurl + "Eva/NewsCreate",
-	              data: {
-	                Content: $("#comment-message").val(),
-	                NewsID: blogID,
-	                token: token
-	              },
-	              success: function (data) {
-	                if (data.Status == 1) {
-	                  layer.msg(data.Result, {
-	                    icon: 1
-	                  });
-	                  $("#comment-message").val('');
-	                  commit = "";
-	                  pageIndex = 1;
-	                  first();
-	                  $(".page-loader").addClass("loaded");
-	                } else if (data.Status == 40001) {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                  // delCookie("token");
-	                } else {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                }
-	              }
-	            })
-	          })
+	          loginok()
 	        } else {
 	          layer.msg(data.Result, {
 	            icon: 5
@@ -423,9 +328,9 @@
 	      }
 	    })
 	  }
-  })
-  
-  $("#editpwdbyemail").click(function () {
+	})
+
+	$("#editpwdbyemail").click(function () {
 	  var res = verifyCode.validate($("#forms-yzm").val());
 	  if (!cmzok || !emailok1 || !pwdok2) {
 	    layer.msg("请填写正确的信息", {
@@ -447,55 +352,7 @@
 	          });
 	          $('#forgetmodal').modal('hide');
 	          $('#myModal').modal('show');
-
-	          $("#commentbox").html("<div class='form-wrap'><textarea class='form-input' id='comment-message' name='comment-message' placeholder='写下你的评论' oninput='btnchange()' onpropertychange='btnchange()'></textarea></div><button class='button button-square btn-dis' type='button' id='comment' disabled='disabled'>评论</button>")
-	          // $("#bbscommentbox").append("<button class='button button-square button-default' type='button' id='bbscomment' style='margin-top:20px;'>评论</button>")
-	          if (ispc) {
-	            $("#container").show();
-	            $("#ReleasePost2").show();
-	            $("#ReleasePost3").hide();
-	          } else {
-	            $("#container").hide();
-	            $("#ReleasePost2").hide();
-	            $("#ReleasePost3").show();
-	          }
-	          $("#bbsform").hide();
-	          $(".rd-navbar-socials-toggle").click(function () {
-	            window.location.href = "user.html"
-	          })
-	          $("#comment").click(function () {
-	            $.ajax({
-	              type: "post",
-	              url: mainurl + "Eva/NewsCreate",
-	              data: {
-	                Content: $("#comment-message").val(),
-	                NewsID: blogID,
-	                token: token
-	              },
-	              success: function (data) {
-	                if (data.Status == 1) {
-	                  layer.msg(data.Result, {
-	                    icon: 1
-	                  });
-	                  $("#comment-message").val('');
-	                  token = data.Result
-	                  commit = "";
-	                  pageIndex = 1;
-	                  first();
-	                  $(".page-loader").addClass("loaded");
-	                } else if (data.Status == 40001) {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                  // delCookie("token");
-	                } else {
-	                  layer.msg(data.Result, {
-	                    icon: 5
-	                  });
-	                }
-	              }
-	            })
-	          })
+	          loginok()
 	        } else if (data.Status == 40043) {
 	          layer.msg("账号名已存在", {
 	            icon: 5
@@ -519,12 +376,13 @@
 	$(".getymz").click(function (obj) {
 	  var phone = $("#forgetemail").val();
 	  if (!emailok1) {
-      layer.msg("请输入注册邮箱", {
-        icon: 1
-      });
+	    layer.msg("请输入注册邮箱", {
+	      icon: 1
+	    });
 	    return;
 	  } else {
 	    cod();
+
 	    function cod(obj) {
 	      if (countdown == 0) {
 	        $(".getymz").text("获取重置码");
@@ -562,8 +420,8 @@
 	      },
 	      error: function () {
 	        layer.msg("服务器异常", {
-            icon: 5
-          });
+	          icon: 5
+	        });
 	      },
 
 	    });
@@ -591,4 +449,61 @@
 	function forget() {
 	  $('#myModal').modal('hide');
 	  $('#forgetmodal').modal('show');
+	}
+
+	function loginok() {
+    if(window.location.href.indexOf("forum") >= 0 ) {
+      if (ispc) {
+        $("#container").show();
+        $("#ReleasePost1").hide();
+        $("#ReleasePost2").show();
+        $("#ReleasePost3").hide();
+      } else {
+        $("#container").hide();
+        $("#ReleasePost1").hide();
+        $("#ReleasePost2").hide();
+        $("#ReleasePost3").show();
+      }
+      // $("#bbsform").hide();
+    }
+    if(window.location.href.indexOf("-post") >= 0 ) {
+      $("#commentbox").html("<div class='form-wrap'><textarea class='form-input' id='comment-message' name='comment-message' placeholder='写下你的评论' oninput='btnchange()' onpropertychange='btnchange()'></textarea></div><button class='button button-square btn-dis' type='button' id='comment' disabled='disabled'>评论</button>")
+      $("#comment").click(function () {
+        $.ajax({
+          type: "post",
+          url: mainurl + "Eva/NewsCreate",
+          data: {
+            Content: $("#comment-message").val(),
+            NewsID: blogID,
+            token: token
+          },
+          success: function (data) {
+            if (data.Status == 1) {
+              layer.msg(data.Result, {
+                icon: 1
+              });
+              $("#comment-message").val('');
+              commit = "";
+              pageIndex = 1;
+              first();
+              $(".page-loader").addClass("loaded");
+            } else if (data.Status == 40001) {
+              layer.msg(data.Result, {
+                icon: 5
+              });
+              // delCookie("token");
+            } else {
+              layer.msg(data.Result, {
+                icon: 5
+              });
+            }
+          }
+        })
+      })
+	  // $("#bbscommentbox").append("<button class='button button-square button-default' type='button' id='bbscomment' style='margin-top:20px;'>评论</button>")
+    }
+	  $(".rd-navbar-socials-toggle").click(function () {
+	    window.location.href = "user.html"
+	  })
+	  
 	}
