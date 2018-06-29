@@ -27,12 +27,17 @@
 		$(".loginbox").show();
 		$('#myModal').modal('show');
 	}
-
+	var isvip = false;
 	var token = getCookie("token");
+	if (token == undefined || token == null) {
+		token = '-1';
+		isvip = false;
+	} else {
+		geticon()
+	}
 
 	$(".rd-navbar-socials-toggle").click(function () {
-		if (token == undefined || token == null) {
-			token = '-1';
+		if (token == '-1') {
 			$(".activespan").css("color", "black");
 			$(".activespan").css("font-size", "22px");
 			$(".grey").css("font-size", "17px");
@@ -41,14 +46,11 @@
 			$(".loginbox").show();
 			$('#myModal').modal('show');
 		} else {
-			geticon()
-			$(".rd-navbar-socials-toggle").click(function () {
-				window.location.href = "user.html"
-			})
+			window.location.href = "user.html"
 		}
 	})
 
-	var isvip = false;
+
 
 	function geticon() {
 		$.ajax({
@@ -59,17 +61,34 @@
 			},
 			success: function (data) {
 				if (data.Status == 40001) {
-					delCookie("token")
+					layer.msg(data.Result, {
+						icon: 5
+					});
+					setTimeout(
+						againlogin, 2000);
 				} else {
+					$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
 					if (data.Result.EndTime == "不是") {
 						isvip = false;
 					} else {
 						isvip = true;
-						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
 					}
 				}
+			},
+			error: function () {
+				$(".page-loader").addClass("loaded");
+				$('#animate').addClass('fadeInLeftBig' + ' animated');
+				setTimeout(removeClass, 1200);
+				function removeClass() {
+					$('#animate').removeClass('fadeInLeftBig' + ' animated');
+				}
+				$("section").html("");
+				layer.msg('服务器异常', {
+					icon: 5
+				});
 			}
 		})
+
 	}
 
 	var userok = false;
@@ -499,6 +518,8 @@
 							layer.msg(data.Result, {
 								icon: 5
 							});
+							setTimeout(
+								againlogin, 2000);
 							// delCookie("token");
 						} else {
 							layer.msg(data.Result, {

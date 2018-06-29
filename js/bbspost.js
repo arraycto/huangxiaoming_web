@@ -6,27 +6,156 @@
 		ue.ready(function () {
 			ue.setContent(decodeURIComponent(""));
 		})
-
 		var blogID = location.href.split("id=")[1].split("#")[0];
 		var pageNumber = location.href.split("page-")[1];
 		//上级目录
 		var thisurl = "";
 		//本级目录
 		var thisadd = "";
-		//上级目录id
-		var thisid = "";
 		if (pageNumber == undefined) {
 			pageNumber = 1
 		}
-		// setCookie("formurl",blogID,'d10');
 		var FenghuiPage = 1;
 		$(function () {
-			hqhf(pageNumber, true);
+			if(location.href.split("id=")[1].split("#")[0] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || blogID == "1af54fe2-dddf-e711-ad57-c74e1272e605"){
+				if (token == '-1') {
+					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
+					layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
+							btn: ['是vip，去登录', '取消']
+						},
+						function () {
+							layer.msg();
+							$(".activespan").css("color", "black");
+							$(".activespan").css("font-size", "22px");
+							$(".grey").css("font-size", "17px");
+							$(".grey").css("color", "#9a9a9a");
+							$(".registerbox").hide();
+							$(".loginbox").show();
+							$('#myModal').modal('show');
+						}
+					)
+				}else{
+					$.ajax({
+						type: "get",
+						url: mainurl + "User/CheckMaster",
+						data: {
+							token: token
+						},
+						success: function (data) {
+							if (data.Status == 40001) {
+								layer.msg(data.Result, {
+									icon: 5
+								});
+								setTimeout(
+									againlogin, 2000);
+							} else if (data.Status == -1) {
+								$(".page-loader").addClass("loaded");
+								$('#animate').addClass('fadeInLeftBig' + ' animated');
+								setTimeout(removeClass, 1200);
+								function removeClass() {
+									$('#animate').removeClass('fadeInLeftBig' + ' animated');
+								}
+								$(".page-loader").addClass("loaded");
+								$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
+								layer.msg("您还不是管理员或版主哦，不能进入站务专区", {
+									icon: 5
+								});
+							} else {
+								hqhf(pageNumber, true);
+							}
+						},
+						error: function () {
+							$(".page-loader").addClass("loaded");
+							$('#animate').addClass('fadeInLeftBig' + ' animated');
+							setTimeout(removeClass, 1200);
+							function removeClass() {
+								$('#animate').removeClass('fadeInLeftBig' + ' animated');
+							}
+							$("section").html("");
+							layer.msg('服务器异常', {
+								icon: 5
+							});
+						}
+					})
+				}
+				
+			}else if (location.href.split("id=")[1].split("#")[0] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
+				if (token == '-1') {
+					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
+					layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
+							btn: ['是vip，去登录', '取消']
+						},
+						function () {
+							layer.msg();
+							$(".activespan").css("color", "black");
+							$(".activespan").css("font-size", "22px");
+							$(".grey").css("font-size", "17px");
+							$(".grey").css("color", "#9a9a9a");
+							$(".registerbox").hide();
+							$(".loginbox").show();
+							$('#myModal').modal('show');
+						}
+					)
+				} else {
+					$.ajax({
+						type: "get",
+						url: mainurl + "User/CheckVip",
+						data: {
+							token: token
+						},
+						success: function (data) {
+							if (data.Status == 40001) {
+								layer.msg(data.Result, {
+									icon: 5
+								});
+								setTimeout(
+									againlogin, 2000);
+							} 
+							else{
+								if (data.Result.EndTime == "不是") {
+									$(".page-loader").addClass("loaded");
+							$('#animate').addClass('fadeInLeftBig' + ' animated');
+							setTimeout(removeClass, 1200);
+							function removeClass() {
+								$('#animate').removeClass('fadeInLeftBig' + ' animated');
+							}
+									$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
+									layer.confirm('您还不是会员哦，无法进入vip专区', {
+											btn: ['去开通', '取消']
+										},
+										function () {
+											window.location.href = "user.html?vip=true";
+										}
+									)
+								} else {
+									hqhf(pageNumber, true);
+								}
+							}
+						},
+						error: function () {
+							$(".page-loader").addClass("loaded");
+							$('#animate').addClass('fadeInLeftBig' + ' animated');
+							setTimeout(removeClass, 1200);
+							function removeClass() {
+								$('#animate').removeClass('fadeInLeftBig' + ' animated');
+							}
+							$("section").html("");
+							layer.msg('服务器异常', {
+								icon: 5
+							});
+						}
+					})
+					
+				}
+			}
+			else{
+				hqhf(pageNumber, true);
+			}
 			modular();
 		});
 		var isnew = false
+
 		function hqhf(pageNumber, isnew) {
-			console.log(thisid)
 			if ($("#rd-search-form-input").val() == "") {
 				Keyword = '-1'
 				datalist = {
@@ -54,14 +183,12 @@
 						jingcommit = "";
 						topcommit = "";
 						FenghuiPage = data.Result.page;
-
 						if (data.Result.list.length == 0) {
 							$(".pagination-custom").hide()
 							commit = "<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>"
 						} else {
 							thisadd = data.Result.list[0]['ClassName']
 							thisurl = data.Result.list[0]['ModularName']
-
 							$(".pagination-custom").show()
 							$(".text-sm-left>h3").html(thisadd)
 							document.title = thisadd;
@@ -281,7 +408,6 @@
 							if (data.Result.list[i].Name !== thisurl) {
 								urllist += "<div><a href='gallery-grid-1.html?id=" + data.Result.list[i].ID + "'>" + data.Result.list[i].Name + "</a></div>"
 							} else {
-								thisid = data.Result.list[i]['ID']
 								for (var a = 0; a < data.Result.list[i].PostClass.length; a++) {
 									if (data.Result.list[i].PostClass[a].Name !== thisadd) {
 										lasturllist += '<div><a href="forum.html?id=' + data.Result.list[i].PostClass[a].ID + '">' + data.Result.list[i].PostClass[a].Name + '</a></div>'
@@ -301,18 +427,6 @@
 								});
 							}
 							$("#firstbox").html(urllist)
-						}
-						if (thisid == "c31fe71b-9be0-e711-ad57-c74e1272e605") {
-							if (!isvip) {
-								layer.confirm('您还不是会员哦，无法进入vip专区', {
-										btn: ['去开通', '取消']
-									},
-									function () {
-										window.location.href = "user.html?vip=true";
-									}
-								)
-							}
-							$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 						}
 					} else {
 						layer.msg(data.Result, {

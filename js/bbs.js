@@ -33,19 +33,49 @@ $.ajax({
 					//教主专区
 					if (blogid == "474f9b1c-9b2d-e811-8460-fc024f74c319") {
 						window.location.href = "forum.html?id=14f54fe2-dddf-e711-ad57-c74e1272e605"
-					} else if (blogid == "c31fe71b-9be0-e711-ad57-c74e1272e605") { //会员专区
-						if (isvip) {
-							window.location.href = "gallery-grid-1.html?id=" + blogid;
-						} else {
-							layer.confirm('您还不是会员哦，无法进入vip专区', {
-									btn: ['去开通', '取消']
+					}else if(blogid == "65d41637-9be0-e711-ad57-c74e1272e605"){
+						if (token == "-1") {
+							layer.confirm('只有管理员和版主才能进去站务专区哦', {
+									btn: ['是管理员/版主，去登录', '取消']
 								},
 								function () {
-									window.location.href = "user.html?vip=true";
+									layer.msg();
+									$(".activespan").css("color", "black");
+									$(".activespan").css("font-size", "22px");
+									$(".grey").css("font-size", "17px");
+									$(".grey").css("color", "#9a9a9a");
+									$(".registerbox").hide();
+									$(".loginbox").show();
+									$('#myModal').modal('show');
 								}
 							)
+						}else{
+							$.ajax({
+								type: "get",
+								url: mainurl + "User/CheckMaster",
+								data: {
+									token: token
+								},
+								success: function (data) {
+									if (data.Status == 40001) {
+										layer.msg(data.Result, {
+											icon: 5
+										});
+										setTimeout(
+											againlogin, 2000);
+									} else if (data.Status == -1) {
+										layer.msg("您还不是管理员或版主哦，不能进入站务专区", {
+											icon: 5
+										});
+									}else{
+										window.location.href = "gallery-grid-1.html?id=" + blogid;
+									}
+								}
+							})
 						}
-					} else {
+						
+					}
+					else {
 						window.location.href = "gallery-grid-1.html?id=" + blogid;
 					}
 				})

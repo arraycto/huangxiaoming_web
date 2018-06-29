@@ -4,25 +4,58 @@ blogID = location.href.split("id=")[1];
 var index = '';
 //本级目录
 var thisurl = "";
-if (blogID == "c31fe71b-9be0-e711-ad57-c74e1272e605") {
-	if (!isvip) {
-		layer.confirm('您还不是会员哦，无法进入vip专区', {
-				btn: ['去开通', '取消']
-			},
-			function () {
-				window.location.href = "user.html?vip=true";
-			}
-		)
-	}
-	$(".page-loader").addClass("loaded");
-	$('#animate').addClass('fadeInLeftBig' + ' animated');
-	setTimeout(removeClass, 1200);
+geticon()
 
-	function removeClass() {
-		$('#animate').removeClass('fadeInLeftBig' + ' animated');
+function geticon() {
+	if (blogID == "65d41637-9be0-e711-ad57-c74e1272e605") {
+		$.ajax({
+			type: "get",
+			url: mainurl + "User/CheckMaster",
+			data: {
+				token: token
+			},
+			success: function (data) {
+				if (data.Status == 40001) {
+					layer.msg(data.Result, {
+						icon: 5
+					});
+					setTimeout(
+						againlogin, 2000);
+				} else if (data.Status == -1) {
+					$(".page-loader").addClass("loaded");
+					$('#animate').addClass('fadeInLeftBig' + ' animated');
+					setTimeout(removeClass, 1200);
+					function removeClass() {
+						$('#animate').removeClass('fadeInLeftBig' + ' animated');
+					}
+					$(".page-loader").addClass("loaded");
+					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
+					layer.msg("您还不是管理员或版主哦，不能进入站务专区", {
+						icon: 5
+					});
+				} else {
+					first()
+				}
+			},
+			error: function () {
+				$(".page-loader").addClass("loaded");
+				$('#animate').addClass('fadeInLeftBig' + ' animated');
+				setTimeout(removeClass, 1200);
+				function removeClass() {
+					$('#animate').removeClass('fadeInLeftBig' + ' animated');
+				}
+				$("section").html("");
+				layer.msg('服务器异常', {
+					icon: 5
+				});
+			}
+		})
+	} else {
+		first()
 	}
-	$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
-} else {
+}
+
+function first() {
 	$.ajax({
 		type: "get",
 		url: mainurl + "BBS/ModularList",
@@ -73,7 +106,40 @@ if (blogID == "c31fe71b-9be0-e711-ad57-c74e1272e605") {
 				$(".post-blog__media>a").each(function () {
 					$(this).click(function () {
 						var bbsid = $(this).parents(".cell-xs-10").attr("id");
-						window.location.href = "forum.html?id=" + bbsid;
+						if (bbsid == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
+							if (token == '-1') {
+								layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区', {
+										btn: ['是vip，去登录', '取消']
+									},
+									function () {
+										layer.msg();
+										$(".activespan").css("color", "black");
+										$(".activespan").css("font-size", "22px");
+										$(".grey").css("font-size", "17px");
+										$(".grey").css("color", "#9a9a9a");
+										$(".registerbox").hide();
+										$(".loginbox").show();
+										$('#myModal').modal('show');
+									}
+								)
+							} else {
+								if (!isvip) {
+									layer.confirm('您还不是会员哦，无法进入vip专区', {
+											btn: ['去开通', '取消']
+										},
+										function () {
+											window.location.href = "user.html?vip=true";
+										}
+									)
+								} else {
+									window.location.href = "forum.html?id=" + bbsid;
+								}
+							}
+						} else {
+							window.location.href = "forum.html?id=" + bbsid;
+						}
+
+
 					})
 				})
 				$(".page-loader").addClass("loaded");
@@ -109,6 +175,8 @@ if (blogID == "c31fe71b-9be0-e711-ad57-c74e1272e605") {
 
 	})
 }
+
+// }
 
 
 window.onresize = function () {
