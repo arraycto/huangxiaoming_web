@@ -1222,7 +1222,6 @@ if (!ispc) {
     $(".tab-content").css("min-height", $("html").height())
 }
 //vip
-var isvip = false;
 var vipstatus = 0;
 
 function vip() {

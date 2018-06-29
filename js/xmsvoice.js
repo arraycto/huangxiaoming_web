@@ -19,7 +19,7 @@ function first(){
 			if(data.Status == 1){
 				message = "";
 				time = "";
-				time = "<li class='act'><span></span>"+data.Result[0]['Time']+"</li>";
+				time = "<li><span></span>"+data.Result[0]['Time']+"</li>";
 				if (data.Result[0].Type == 1) {
 					message += "<div class='slideBox'><h3>"+decodeURIComponent(data.Result[0]['Content'])+"<div class='title-h-in'><span class='color_vice color_span'></span><div class='simpline bg_simpline' style='width:80%'></div></div></h3></div>"
 				}else if(data.Result[0].Type == 2){
@@ -33,8 +33,10 @@ function first(){
 					}
 					time += "<li><span></span>"+data.Result[i]['Time']+"</li>"
 				}
+				console.log(time)
 				$("#timelist>ul").html(time);
 				$(".parBd").html(message)
+				$("#timelist>ul>li:first").addClass("act")
 				$.getScript('js/jquery.SuperSlide2.1.2.js',function(){
 				})
 				jQuery(".event_box").slide({ titCell: ".parHd li", mainCell: ".parBd", defaultPlay: false, titOnClassName: "act", prevCell: ".sPrev", nextCell: ".sNext" });
