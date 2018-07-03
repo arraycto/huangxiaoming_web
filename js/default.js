@@ -486,7 +486,7 @@ function first() {
 }
 var img_value = "";
 //上传图片  
-$(".modal-body").delegate("#add", "change", function () {
+$("#editicon").delegate("#add", "change", function () {
     var formdata = new FormData();
     formdata.append("file", $("#add")[0].files[0]); //获取文件法二
     $.ajax({
@@ -497,8 +497,14 @@ $(".modal-body").delegate("#add", "change", function () {
         processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
         contentType: false, // 不设置Content-type请求头
         success: function (data) {
-            img_value = data.Result[0];
-            editicon()
+            if (data.Status == 1) {
+                img_value = data.Result[0];
+                editicon()
+            }else{
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
         },
         error: function (data) {
             layer.msg(data.Result, {
@@ -580,7 +586,7 @@ $("#savepwd").click(function () {
     }
     $.ajax({
         type: 'get',
-        url: mainurl + 'User/ChangePwd',
+        url: mainurl + 'User/PCChangePwd',
         // beforeSend: function (xhr) {
         //     xhr.setRequestHeader('Authorization', getCookie("token"))
         // },

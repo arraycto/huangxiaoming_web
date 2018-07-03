@@ -17,7 +17,7 @@
 		}
 		var FenghuiPage = 1;
 		$(function () {
-			if(location.href.split("id=")[1].split("#")[0] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || blogID == "1af54fe2-dddf-e711-ad57-c74e1272e605"){
+			if(location.href.split("id=")[1].split("#")[0] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || location.href.split("id=")[1].split("#")[0] == "1af54fe2-dddf-e711-ad57-c74e1272e605"){
 				if (token == '-1') {
 					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 					layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
@@ -339,7 +339,7 @@
 				});
 				return;
 			}
-			if (thisid == "c31fe71b-9be0-e711-ad57-c74e1272e605") {
+			if (blogID == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
 				if (!isvip) {
 					layer.confirm('您还不是会员哦，无法进入vip专区', {
 							btn: ['去开通', '取消']

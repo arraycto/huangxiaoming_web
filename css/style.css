@@ -31807,7 +31807,7 @@ img#voice {
 	.tabs-custom.tabs-vertical .nav-custom-tabs {
 		min-width: 100px;
 	}
-	.tab-content #tabs-2-1{
+	.tab-content #tabs--1-1{
 		margin: 0 0 0 -210px;
 	}
 }
@@ -31816,12 +31816,12 @@ img#voice {
 	.tabs-custom.tabs-vertical .nav-custom-tabs {
 		min-width: 80px;
 	}
-	.tab-content #tabs-2-1{
+	.tab-content #tabs--1-1{
 		margin: 0 0 0 -140px;
 	}
 }
-.nav-custom-tabs.tab2{
-	/*height: 300px;*/
+#tabs-2 .nav-custom-tabs.tab2{
+	height: 300px;
 	overflow: auto;
 }
 
@@ -32737,7 +32737,10 @@ body.view{
 	text-align: center;
 }
 .layui-layer-btn .layui-layer-btn0 {
-    border-color: #B88E42;
-    background-color: #B88E42;
+    border-color: #B88E42!important;;
+    background-color: #B88E42!important;;
     color: #fff;
+}
+.layui-layer-btn a {
+    margin: 5px 5px 0!important;
 }

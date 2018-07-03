@@ -33,6 +33,7 @@ $.ajax({
 							$(".tab2 li").css("display","none");
 						}
 						var conen = $(this).text();
+						console.log(conen)
 						$("[id='"+conen+"']").css("display","block");
 						$("[id='"+conen+"']").eq(0).css("border-top","none");
 						$("[id='"+conen+"'] a").eq(0).trigger("click");
