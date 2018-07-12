@@ -17,7 +17,7 @@
 		}
 		var FenghuiPage = 1;
 		$(function () {
-			if(location.href.split("id=")[1].split("#")[0] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || location.href.split("id=")[1].split("#")[0] == "1af54fe2-dddf-e711-ad57-c74e1272e605"){
+			if (location.href.split("id=")[1].split("#")[0] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || location.href.split("id=")[1].split("#")[0] == "1af54fe2-dddf-e711-ad57-c74e1272e605") {
 				if (token == '-1') {
 					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 					layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
@@ -34,7 +34,7 @@
 							$('#myModal').modal('show');
 						}
 					)
-				}else{
+				} else {
 					$.ajax({
 						type: "get",
 						url: mainurl + "User/CheckMaster",
@@ -52,6 +52,7 @@
 								$(".page-loader").addClass("loaded");
 								$('#animate').addClass('fadeInLeftBig' + ' animated');
 								setTimeout(removeClass, 1200);
+
 								function removeClass() {
 									$('#animate').removeClass('fadeInLeftBig' + ' animated');
 								}
@@ -68,6 +69,7 @@
 							$(".page-loader").addClass("loaded");
 							$('#animate').addClass('fadeInLeftBig' + ' animated');
 							setTimeout(removeClass, 1200);
+
 							function removeClass() {
 								$('#animate').removeClass('fadeInLeftBig' + ' animated');
 							}
@@ -78,8 +80,8 @@
 						}
 					})
 				}
-				
-			}else if (location.href.split("id=")[1].split("#")[0] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
+
+			} else if (location.href.split("id=")[1].split("#")[0] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
 				if (token == '-1') {
 					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 					layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
@@ -110,15 +112,15 @@
 								});
 								setTimeout(
 									againlogin, 2000);
-							} 
-							else{
+							} else {
 								if (data.Result.EndTime == "不是") {
 									$(".page-loader").addClass("loaded");
-							$('#animate').addClass('fadeInLeftBig' + ' animated');
-							setTimeout(removeClass, 1200);
-							function removeClass() {
-								$('#animate').removeClass('fadeInLeftBig' + ' animated');
-							}
+									$('#animate').addClass('fadeInLeftBig' + ' animated');
+									setTimeout(removeClass, 1200);
+
+									function removeClass() {
+										$('#animate').removeClass('fadeInLeftBig' + ' animated');
+									}
 									$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 									layer.confirm('您还不是会员哦，无法进入vip专区', {
 											btn: ['去开通', '取消']
@@ -136,6 +138,7 @@
 							$(".page-loader").addClass("loaded");
 							$('#animate').addClass('fadeInLeftBig' + ' animated');
 							setTimeout(removeClass, 1200);
+
 							function removeClass() {
 								$('#animate').removeClass('fadeInLeftBig' + ' animated');
 							}
@@ -145,16 +148,15 @@
 							});
 						}
 					})
-					
+
 				}
-			}
-			else{
+			} else {
 				hqhf(pageNumber, true);
 			}
 			modular();
 		});
 		var isnew = false
-
+		//isnew判断是否是关键字搜索
 		function hqhf(pageNumber, isnew) {
 			if ($("#rd-search-form-input").val() == "") {
 				Keyword = '-1'
@@ -182,6 +184,7 @@
 						commit = "";
 						jingcommit = "";
 						topcommit = "";
+						ggcommit = "";
 						FenghuiPage = data.Result.page;
 						if (data.Result.list.length == 0) {
 							$(".pagination-custom").hide()
@@ -192,30 +195,24 @@
 							$(".pagination-custom").show()
 							$(".text-sm-left>h3").html(thisadd)
 							document.title = thisadd;
-							//判断是否是关键字搜索
-							if ($("#firsturl").html().indexOf(thisurl) == -1) {
-								//给教主留言隐藏最后一个路径
-								if (blogID !== "14f54fe2-dddf-e711-ad57-c74e1272e605") {
-									$(".breadcrumb-custom").append("<li id='lasturl'></li> ")
-								}
-								$("#firsturl").append("" + thisurl + "<span class='caret'></span>")
-							}
+
 							for (var i = 0; i < data.Result.list.length; i++) {
 								data.Result.list[i]['lasttime'] = data.Result.list[i]['lasttime'].substring(0, 10);
-
 								data.Result.list[i]['postdate'] = data.Result.list[i]['postdate'].substring(0, 10);
-								if (data.Result.list[i].digest == 0) {
+								if (data.Result.list[i].digest == 4) {
+									ggcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'><i class='gonggao'></i>" + data.Result.list[i]['sub'] + "</p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
+								} else if (data.Result.list[i].digest == 0) {
 									commit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'>" + data.Result.list[i]['sub'] + "</p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
 								} else if (data.Result.list[i].digest == 1) {
-									jingcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'>" + data.Result.list[i]['sub'] + "<i class='jiajing'></i></p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
+									jingcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'><i class='jiajing'></i>" + data.Result.list[i]['sub'] + "</p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
 								} else if (data.Result.list[i].digest == 2) {
-									topcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'>" + data.Result.list[i]['sub'] + "<i class='zhiding'></i></p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
+									topcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'><i class='zhiding'></i>" + data.Result.list[i]['sub'] + "</p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
 								} else if (data.Result.list[i].digest == 3) {
-									topcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'>" + data.Result.list[i]['sub'] + "<i class='zhiding'></i><i class='jiajing'></i></p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
+									topcommit += "<a class='offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm' id=" + data.Result.list[i]['ID'] + "><div class='unit__left'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__body'><p title='标题'><i class='zhiding'></i><i class='jiajing'></i>" + data.Result.list[i]['sub'] + "</p><p class='text-snow' title='发帖时间'>" + data.Result.list[i]['postdate'] + "</p></div><div class='unit__right'><span class='post-blog__meta-look' title='浏览数'>" + data.Result.list[i]['hits'] + "</span><span class='post-blog__footer-author' title='作者'>" + data.Result.list[i]['Username'] + "</span><span class='post-blog__meta-comments' title='回复数'>" + data.Result.list[i]['replies'] + "</span></div><div class='unit__foot'><p title='最后回复人'>" + data.Result.list[i]['lastpeople'] + "</p><p title='最后回复时间' class='text-snow'>" + data.Result.list[i]['lasttime'] + "</p></div></a>"
 								}
 							}
 						}
-						$(".tiezibox").html(topcommit + jingcommit + commit)
+						$(".tiezibox").html(ggcommit + topcommit + jingcommit + commit)
 						if (isnew) {
 							fenye();
 							$('#animate').addClass('fadeInLeftBig' + ' animated');
@@ -401,32 +398,29 @@
 				data: {},
 				async: false,
 				success: function (data) {
-					urllist = "";
+					urllist = '';
 					lasturllist = "";
 					if (data.Status == 1) {
 						for (var i = 0; i < data.Result.list.length; i++) {
 							if (data.Result.list[i].Name !== thisurl) {
-								urllist += "<div><a href='gallery-grid-1.html?id=" + data.Result.list[i].ID + "'>" + data.Result.list[i].Name + "</a></div>"
+								urllist += '<li><a href="gallery-grid-1.html?id=' + data.Result.list[i].ID + '">' + data.Result.list[i].Name + '</a></li>'
 							} else {
 								for (var a = 0; a < data.Result.list[i].PostClass.length; a++) {
 									if (data.Result.list[i].PostClass[a].Name !== thisadd) {
-										lasturllist += '<div><a href="forum.html?id=' + data.Result.list[i].PostClass[a].ID + '">' + data.Result.list[i].PostClass[a].Name + '</a></div>'
+										lasturllist += '<li><a href="forum.html?id=' + data.Result.list[i].PostClass[a].ID + '">' + data.Result.list[i].PostClass[a].Name + '</li>'
 									}
 								}
-								$("#lasturl").html('<div class="tooltip bottom" role="tooltip" id="lasttip"><div class="tooltip-arrow"></div><div class="tooltip-inner" id="lastbox">' + lasturllist + '</div></div>' + thisadd + '<span class="caret"></span>')
-								$("#lasturl").on("click", function (e) {
-									$("#lasttip").show();
-									//苹果移动端不支持，所以加了touchstart
-									$(document).on("click touchstart", function () {
-										$("#lasttip").hide();
-									});
-									e.stopPropagation();
-								});
-								$("#lasttip").on("click", function (e) {
-									e.stopPropagation();
-								});
 							}
-							$("#firstbox").html(urllist)
+							$("#firstbox").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + thisurl + ' <span class="caret"></span></a><ul class="dropdown-menu">' + urllist + '</ul>')
+							if (lasturllist !== '') {
+								$("#sencondbox").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + thisadd + ' <span class="caret"></span></a><ul class="dropdown-menu">' + lasturllist + '</ul>')
+							} else {
+								$("#sencondbox").html(thisadd)
+							}
+							//给教主留言隐藏第三个路径
+							// if (blogID == "14f54fe2-dddf-e711-ad57-c74e1272e605") {
+							// 	 $("#sencondbox").hide()
+							// }
 						}
 					} else {
 						layer.msg(data.Result, {
@@ -439,15 +433,15 @@
 
 
 
-		$("#firsturl").on("click", function (e) {
-			$("#firsttip").show();
+		// $("#firsturl").on("click", function (e) {
+		// 	$("#firsttip").show();
 
-			$(document).on("click touchstart", function () {
-				$("#firsttip").hide();
-			});
+		// 	$(document).on("click touchstart", function () {
+		// 		$("#firsttip").hide();
+		// 	});
 
-			e.stopPropagation();
-		});
-		$("#firsttip").on("click", function (e) {
-			e.stopPropagation();
-		});
+		// 	e.stopPropagation();
+		// });
+		// $("#firsttip").on("click", function (e) {
+		// 	e.stopPropagation();
+		// });

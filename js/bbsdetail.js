@@ -40,7 +40,7 @@ function hqhf(pageNumber, isnew) {
 				$("#contentbox>p").html(data.Result.post['Content']);
 				thisadd = data.Result.post['Class']
 				thisurl = data.Result.post['Modular']
-				$(".post-blog--single>h3").html(data.Result.post['Title'])
+				$(".post-blog--single>h3").html(''+data.Result.post['Title']+'<button class="button button-sm button-default floatright" id="pinglun">评论</button>')
 				document.title = data.Result.post['Title'];
 				$("#firsturl>a").html(data.Result.post['Modular'])
 				$("#secordurl>a").html(data.Result.post['Class'])
@@ -183,6 +183,9 @@ function hqhf(pageNumber, isnew) {
 					}
 					
 				}
+				$("#pinglun").click(function(){
+					$("html, body").scrollTop($("body").outerHeight(true) - $(window).outerHeight(true));
+				})
 				//时间截转换
 				var timeTrans = data.Result.post.Posttime.substring(0, 19);
 				timeTrans = timeTrans.replace('T', ' ')

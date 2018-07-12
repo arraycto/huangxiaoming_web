@@ -90,12 +90,12 @@ function first() {
 				urllist = "";
 				for (var i = 0; i < data.Result.list.length; i++) {
 					if (data.Result.list[i].Name !== thisurl) {
-						urllist += "<div><a href='gallery-grid-1.html?id=" + data.Result.list[i].ID + "'>" + data.Result.list[i].Name + "</a></div>"
+						urllist += "<li><a href='gallery-grid-1.html?id=" + data.Result.list[i].ID + "'>" + data.Result.list[i].Name + "</a></li>"
 					}
-					$("#firstbox").html(urllist)
-
+					// $("#firstbox").html(urllist)
 				}
-				$("#lasturl").append("" + thisurl + "<span class='caret'></span>")
+				// $("#lasturl").append("" + thisurl + "<span class='caret'></span>")
+				$("#lasturl").html('<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'+thisurl+' <span class="caret"></span></a><ul class="dropdown-menu">'+urllist+'</ul>')
 				//获取地址栏下拉菜单结束
 				$('#animate').addClass('fadeInLeftBig' + ' animated');
 				setTimeout(removeClass, 1200);
@@ -188,15 +188,15 @@ function changeDivHeight() {
 	height1 = height / 3 * 2;
 	$(".imghei").css('height', height1)
 }
-$("#lasturl").on("click", function (e) {
-	$("#firsttip").show();
+// $("#lasturl").on("click", function (e) {
+// 	$("#firsttip").show();
 
-	$(document).on("click touchstart", function () {
-		$("#firsttip").hide();
-	});
+// 	$(document).on("click touchstart", function () {
+// 		$("#firsttip").hide();
+// 	});
 
-	e.stopPropagation();
-});
-$("#firsttip").on("click", function (e) {
-	e.stopPropagation();
-});
+// 	e.stopPropagation();
+// });
+// $("#firsttip").on("click", function (e) {
+// 	e.stopPropagation();
+// });

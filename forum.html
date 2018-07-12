@@ -25,7 +25,7 @@
   <!-- Page-->
   <div class="text-center page">
     <!-- Page preloader-->
-    <div class="page-loader ">
+    <div class="page-loader loaded">
       <div>
         <div class="circle">
           <img src="images/logo-yellow1.png">
@@ -107,15 +107,31 @@
             <ol class="breadcrumb-custom">
               <li><a href="index-video.html">主页</a></li>
               <li><a href="albums-1.html">BBS</a></li>
-              <li id="firsturl">
+              <li class="dropdown" id="firstbox">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <!-- <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+              <li class="dropdown" id="sencondbox">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <!-- <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+              <!-- <li id="firsturl">
                 <div class="tooltip bottom" role="tooltip" id="firsttip">
                 <div class="tooltip-arrow"></div>
                 <div class="tooltip-inner" id="firstbox">
-                  <!-- 动态获取菜单 -->
+
                 </div>
               </div>
-              </li>
-              <!-- <li id="lasturl">BBS</li> -->
+              </li> -->
+
             </ol>
           </div>
         </div>
