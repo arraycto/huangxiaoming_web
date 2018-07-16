@@ -10,6 +10,7 @@
   <title></title>
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/smohan.face.css">
   <link rel="stylesheet" href="css/simplePagination.css" />
   <link rel="stylesheet" href="css/animate.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -105,18 +106,22 @@
             <ol class="breadcrumb-custom">
               <li><a href="index-video.html">主页</a></li>
               <li><a href="albums-1.html">BBS</a></li>
-              <li id="firsturl" onblur="hidebox()">
-                <div class="tooltip bottom" role="tooltip" id="firsttip">
-                <div class="tooltip-arrow"></div>
-                <div class="tooltip-inner" id="firstbox">
-                  <!-- 动态获取菜单 -->
-                </div>
-              </div>
+              <li class="dropdown" id="firstbox">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <!-- <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li> -->
+                </ul>
               </li>
-              <!-- <li id="lasturl">BBS</li> -->
-              <!-- <li id="firsturl"><a>BBS</a></li>
-              <li id="secordurl"><a>BBS</a></li>
-              <li id="lasturl">BBS</li> -->
+              <li class="dropdown" id="sencondbox">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <!-- <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li> -->
+                </ul>
+              </li>
             </ol>
           </div>
         </div>
@@ -429,11 +434,13 @@
     <div class="snackbars" id="form-output-global"></div>
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/smohan.face.js"></script>
     <script src="layer/layer.js"></script>
     <script src="js/domain.js"></script>
     <script src="js/gVerify.js"></script>
     <script src="js/addAddress.js"></script>
     <script src="js/login.js"></script>
+    
     <script src="js/bbsdetail.js"></script>
     <script src="js/core.min.js"></script>
     <script src="js/script.js"></script>

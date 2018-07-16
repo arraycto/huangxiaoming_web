@@ -14,6 +14,7 @@ if (pageNumber == undefined) {
 var FenghuiPage = 1;
 $(function () {
 	hqhf(pageNumber, true);
+	modular()
 });
 
 function hqhf(pageNumber, isnew) {
@@ -40,17 +41,8 @@ function hqhf(pageNumber, isnew) {
 				$("#contentbox>p").html(data.Result.post['Content']);
 				thisadd = data.Result.post['Class']
 				thisurl = data.Result.post['Modular']
-				$(".post-blog--single>h3").html(''+data.Result.post['Title']+'<button class="button button-sm button-default floatright" id="pinglun">评论</button>')
+				$(".post-blog--single>h3").html('' + data.Result.post['Title'] + '<button class="button button-default floatright" id="pinglun">评论</button>')
 				document.title = data.Result.post['Title'];
-				$("#firsturl>a").html(data.Result.post['Modular'])
-				$("#secordurl>a").html(data.Result.post['Class'])
-				//给教主留言隐藏最后一个路径
-				if ($("#firsturl").html().indexOf(thisurl) == -1) {
-					if (data.Result.post.Modular !== "圣火令（教主留言）") {
-						$(".breadcrumb-custom").append("<li id='lasturl'></li> ")
-					}
-					$("#firsturl").append("<span>" + thisurl + "<span class='caret'>")
-				}
 				if (data.Result.post['ClassID'] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
 					if (token == '-1') {
 						$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
@@ -120,8 +112,7 @@ function hqhf(pageNumber, isnew) {
 						})
 
 					}
-				}
-				else if(data.Result.post['ClassID'] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || data.Result.post['ClassID'] == "1af54fe2-dddf-e711-ad57-c74e1272e605"){
+				} else if (data.Result.post['ClassID'] == "19f54fe2-dddf-e711-ad57-c74e1272e605" || data.Result.post['ClassID'] == "1af54fe2-dddf-e711-ad57-c74e1272e605") {
 					if (token == '-1') {
 						$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 						layer.confirm('您还不是vip会员哦，只有vip会员才能进去vip专区哦', {
@@ -138,7 +129,7 @@ function hqhf(pageNumber, isnew) {
 								$('#myModal').modal('show');
 							}
 						)
-					}else{
+					} else {
 						$.ajax({
 							type: "get",
 							url: mainurl + "User/CheckMaster",
@@ -156,6 +147,7 @@ function hqhf(pageNumber, isnew) {
 									$(".page-loader").addClass("loaded");
 									$('#animate').addClass('fadeInLeftBig' + ' animated');
 									setTimeout(removeClass, 1200);
+
 									function removeClass() {
 										$('#animate').removeClass('fadeInLeftBig' + ' animated');
 									}
@@ -171,6 +163,7 @@ function hqhf(pageNumber, isnew) {
 								$(".page-loader").addClass("loaded");
 								$('#animate').addClass('fadeInLeftBig' + ' animated');
 								setTimeout(removeClass, 1200);
+
 								function removeClass() {
 									$('#animate').removeClass('fadeInLeftBig' + ' animated');
 								}
@@ -181,9 +174,9 @@ function hqhf(pageNumber, isnew) {
 							}
 						})
 					}
-					
+
 				}
-				$("#pinglun").click(function(){
+				$("#pinglun").click(function () {
 					$("html, body").scrollTop($("body").outerHeight(true) - $(window).outerHeight(true));
 				})
 				//时间截转换
@@ -208,15 +201,18 @@ function hqhf(pageNumber, isnew) {
 						replycom = "";
 						content = decodeURIComponent(data.Result.post.comment[i]['content']);
 						content = transform(content);
+						content = replaceface(content);
 						for (var x = 0; x < data.Result.post.comment[i].commentReply.length; x++) {
 							reply = data.Result.post.comment[i].commentReply[x];
-							reply.Content = decodeURIComponent(reply.Content);
-							reply.Content = transform(reply.Content);
+							// reply.Content = decodeURIComponent(reply.Content);
+							// reply.Content = transform(reply.Content);
 							// replycom += "<div class='comment comment-reply'><div class='comment-top-panel'><h5 class='comment__author'><img src="+url+reply.Icon+" style='width:50px;height:50px;border-radius:50%;display:block'><span>"+reply.Username+"</span></h5><div class='comment__date'>"+reply.CreaTime+"</div></div></div>"
-
+							reply.Content = replaceface(reply.Content)
+							console.log(reply.Content)
 							replycom += "<div class='comment comment-reply'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left' id='pchide'><img src=" + url + reply.Icon + " style='width:50px;height:50px;border-radius:50%'></div><div class='unit__body'><div class='comment-top-panel'><img src=" + url + reply.Icon + " style='width:50px;height:50px;border-radius:50%'><h5 class='comment__author'>" + reply.Username + "</h5><div class='comment__date'>" + reply.CreaTime + "</div></div><p>" + reply.Content + "</p></div></div></div>"
 						}
-						commit += "<div class='comment'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div class='col-md-10'><textarea class='form-control' id='erea' rows='1' cols='10' onkeyup='changerow()'></textarea></div><div class='col-md-2'><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></div></div></div></div></div></div>"
+						// commit += "<div class='comment'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div class='col-md-10'><textarea class='form-control' id='erea' rows='1' cols='10' onkeyup='changerow()'></textarea></div><div class='col-md-2'><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></div></div></div></div></div></div>"
+						commit += "<div class='comment'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div id='Smohan_FaceBox'><textarea name='text' id='Smohan_text' class='form-control'></textarea><p><a href='javascript:void(0)' class='face' title='表情'></a><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></p></div><div id='Zones'></div></div></div></div></div></div></div>"
 					}
 					$("#commentlist").html(commit)
 				}
@@ -232,8 +228,21 @@ function hqhf(pageNumber, isnew) {
 				$(".comment__reply").each(function () {
 					$(this).click(function () {
 						$(this).parents(".comment__footer").children(".replybox").show();
+
 					})
 				})
+				$("a.face").each(function () {
+					$(this).smohanfacebox({
+						Event: "click", //触发事件	
+						divid: "Smohan_FaceBox", //外层DIV ID
+						textid: "Smohan_text" //文本框 ID
+					});
+				})
+				// $('#Smohan_Showface').click(function(){
+				// 	$('#Zones').fadeIn(360);
+				// 	$('#Zones').html($('#Smohan_text').val());
+				// 	$('#Zones').replaceface($('#Zones').html());
+				// });
 				$(".replybtn").each(function () {
 					$(this).click(function () {
 						if (token == -1) {
@@ -246,7 +255,7 @@ function hqhf(pageNumber, isnew) {
 							$('#myModal').modal('show');
 							return;
 						}
-						if ($(this).parents('.col-md-2').parents('.replybox').children(".col-md-10").children("#erea").val() == "") {
+						if ($(this).parents('#Smohan_FaceBox').children("#Smohan_text").val() == "") {
 							layer.msg("请输入评论内容", {
 								icon: 5
 							});
@@ -258,7 +267,7 @@ function hqhf(pageNumber, isnew) {
 							data: {
 								PostID: blogID,
 								CommentID: $(this).attr('name'),
-								Content: $(this).parents('.col-md-2').parents('.replybox').children(".col-md-10").children("#erea").val(),
+								Content: $(this).parents('#Smohan_FaceBox').children("#Smohan_text").val(),
 								token: token,
 								CommentImages: '-1'
 							},
@@ -284,6 +293,7 @@ function hqhf(pageNumber, isnew) {
 						})
 					})
 				})
+
 			} else {
 				$(".page-loader").addClass("loaded");
 				$('#animate').addClass('fadeInLeftBig' + ' animated');
@@ -363,6 +373,13 @@ function transform(str) {
 	return str;
 }
 
+function replaceface(faces) {
+	for (i = 0; i < 60; i++) {
+		faces = faces.replace('<emt>' + (i + 1) + '</emt>', '<img src="images/face/' + (i + 1) + '.gif">');
+	}
+	return faces;
+}
+
 if (token == '-1') {
 	$("#ReleasePost1").html("<div class='comment_form'><div class='form-wrap'><span>目前您尚未登录，请<a data-toggle='modal' data-target='#myModal' onclick='activespan()'>登录</a>或<a data-toggle='modal' data-target='#myModal' onclick='grey()'>注册</a>后进行评论</span></div></div>")
 }
@@ -416,68 +433,38 @@ $("#bbscomment").click(function () {
 	})
 })
 
-// var rows=1;//根据文本框初始值设置。
-// var cols=10;//根据文本框初始值设置。
-// var num=0;
-// function changerow(){
-// 	num++;
-// 	if(num==rows*cols-1){
-// 		rows=rows+2;
-// 		document.getElementById("erea").rows=rows;
-// 	}
-// }
-
-$.ajax({
-	type: "get",
-	url: mainurl + "BBS/ModularList",
-	data: {},
-	success: function (data) {
-		urllist = "";
-		lasturllist = "";
-		if (data.Status == 1) {
-			for (var i = 0; i < data.Result.list.length; i++) {
-				if (data.Result.list[i].Name !== thisurl) {
-					urllist += "<div><a href='gallery-grid-1.html?id=" + data.Result.list[i].ID + "'>" + data.Result.list[i].Name + "</a></div>"
-				} else {
-					for (var a = 0; a < data.Result.list[i].PostClass.length; a++) {
-						if (data.Result.list[i].PostClass[a].Name !== thisadd) {
-							lasturllist += '<div><a href="forum.html?id=' + data.Result.list[i].PostClass[a].ID + '">' + data.Result.list[i].PostClass[a].Name + '</a></div>'
+function modular() {
+	$.ajax({
+		type: "get",
+		url: mainurl + "BBS/ModularList",
+		data: {},
+		async: false,
+		success: function (data) {
+			urllist = '';
+			lasturllist = "";
+			if (data.Status == 1) {
+				for (var i = 0; i < data.Result.list.length; i++) {
+					if (data.Result.list[i].Name !== thisurl) {
+						urllist += '<li><a href="gallery-grid-1.html?id=' + data.Result.list[i].ID + '">' + data.Result.list[i].Name + '</a></li>'
+					} else {
+						for (var a = 0; a < data.Result.list[i].PostClass.length; a++) {
+							if (data.Result.list[i].PostClass[a].Name !== thisadd) {
+								lasturllist += '<li><a href="forum.html?id=' + data.Result.list[i].PostClass[a].ID + '">' + data.Result.list[i].PostClass[a].Name + '</li>'
+							}
 						}
 					}
-					$("#lasturl").html('<div class="tooltip bottom" role="tooltip" id="lasttip"><div class="tooltip-arrow"></div><div class="tooltip-inner" id="lastbox">' + lasturllist + '</div></div>' + thisadd + '</span><span class="caret">')
-					$("#lasturl").on("click", function (e) {
-						$("#lasttip").show();
-						$(document).on("click touchstart", function () {
-							$("#lasttip").hide();
-						});
-						e.stopPropagation();
-					});
-					$("#lasttip").on("click", function (e) {
-						e.stopPropagation();
-					});
-					$("#lasttip").on("click", function (e) {
-						e.stopPropagation();
-					});
+					$("#firstbox").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + thisurl + ' <span class="caret"></span></a><ul class="dropdown-menu">' + urllist + '</ul>')
+					if (lasturllist !== '') {
+						$("#sencondbox").html('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + thisadd + ' <span class="caret"></span></a><ul class="dropdown-menu">' + lasturllist + '</ul>')
+					} else {
+						$("#sencondbox").html(thisadd)
+					}
 				}
-				$("#firstbox").html(urllist)
+			} else {
+				layer.msg(data.Result, {
+					icon: 5
+				});
 			}
-		} else {
-			layer.msg(data.Result, {
-				icon: 5
-			});
-		}
-	},
-})
-
-$("#firsturl").on("click", function (e) {
-	$("#firsttip").show();
-
-	$(document).on("click touchstart", function () {
-		$("#firsttip").hide();
-	});
-
-	e.stopPropagation();
-});
-$("#firsttip").on("click", function (e) {
-	e.stopPropagation();
-});
+		},
+	})
+}

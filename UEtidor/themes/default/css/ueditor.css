@@ -31,7 +31,7 @@
 }
 
 div.edui-box {
-    position: relative;
+    /* position: relative; */
     display: -moz-inline-box !important;
     display: inline-block !important;
     vertical-align: top;
@@ -57,7 +57,7 @@ div.edui-box {
 
 /* control layout */
 .edui-default .edui-button-body, .edui-splitbutton-body, .edui-menubutton-body, .edui-combox-body {
-    position: relative;
+    /* position: relative; */
 }
 
 .edui-default .edui-popup {
@@ -93,7 +93,7 @@ div.edui-box {
 }
 
 .edui-default .edui-toolbar {
-    position: relative;
+    /* position: relative; */
 }
 
 /*
@@ -135,7 +135,7 @@ div.edui-box {
 .edui-default .edui-editor {
     border: 1px solid #d4d4d4;
     background-color: white;
-    position: relative;
+    /* position: relative; */
     overflow: visible;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -146,7 +146,7 @@ div.edui-box {
     height:auto;
 }
 .edui-default .edui-editor-toolbarbox {
-    position: relative;
+    /* position: relative; */
     zoom: 1;
     -webkit-box-shadow:0 1px 4px rgba(204, 204, 204, 0.6);
     -moz-box-shadow:0 1px 4px rgba(204, 204, 204, 0.6);
@@ -492,7 +492,7 @@ div.edui-box {
 
 .edui-default .edui-toolbar .edui-button .edui-button-wrap {
     padding: 1px;
-    position: relative;
+    /* position: relative; */
 }
 
 .edui-default .edui-toolbar .edui-button .edui-state-hover .edui-button-wrap {
