@@ -13,7 +13,7 @@ $(function () {
         };
         var $iconbtn = $(this).parents("#Smohan_FaceBox")
         // $("#" + options.divid).prepend("<div id='SmohanFaceBox'><span class='Corner'></span><div class='Content'><h3><span>常用表情</span><a class='close' title='关闭'></a></h3><ul>" + faceimg + "</ul></div></div>");
-        $iconbtn.prepend("<div id='SmohanFaceBox'><span class='Corner'></span><div class='Content'><h3><span>常用表情</span><a class='close' title='关闭'></a></h3><ul>" + faceimg + "</ul></div></div>");
+        $iconbtn.prepend("<div id='SmohanFaceBox'><div class='Content'><h3><span>常用表情</span><a class='close' title='关闭'></a></h3><ul>" + faceimg + "</ul></div></div>");
         var $SmohanFaceBox = $iconbtn.children("#SmohanFaceBox")
         $SmohanFaceBox.css("display", 'none');
         // var $facepic = $("#SmohanFaceBox li img");

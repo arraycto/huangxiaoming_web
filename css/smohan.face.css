@@ -8,7 +8,6 @@
 #Smohan_FaceBox p {
     display: block;
     width: 100%;
-    padding: 10px 0
 }
 
 .face {
@@ -29,7 +28,7 @@
     width: 352px;
     height: 187px;
     position: absolute;
-    top: 100px;
+    top: -140px;
     z-index: 9999
 }
 

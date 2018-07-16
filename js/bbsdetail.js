@@ -25,12 +25,13 @@ function hqhf(pageNumber, isnew) {
 		data: {
 			PostID: blogID,
 			pageIndex: pageNumber,
-			pageSize: 10,
+			pageSize: 1,
 		},
 		success: function (data) {
 			if (data.Status == 1) {
 				commit = "";
 				FenghuiPage = data.Result.page;
+				
 				//地址栏
 				if (data.Result.post.isNew == 3) {
 					data.Result.post['Content'] = decodeURIComponent(data.Result.post['Content']);
@@ -43,6 +44,7 @@ function hqhf(pageNumber, isnew) {
 				thisurl = data.Result.post['Modular']
 				$(".post-blog--single>h3").html('' + data.Result.post['Title'] + '<button class="button button-default floatright" id="pinglun">评论</button>')
 				document.title = data.Result.post['Title'];
+				// 站务专区、vip专区代码
 				if (data.Result.post['ClassID'] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
 					if (token == '-1') {
 						$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
@@ -176,6 +178,7 @@ function hqhf(pageNumber, isnew) {
 					}
 
 				}
+				// 站务专区、vip专区代码结束
 				$("#pinglun").click(function () {
 					$("html, body").scrollTop($("body").outerHeight(true) - $(window).outerHeight(true));
 				})
@@ -223,7 +226,9 @@ function hqhf(pageNumber, isnew) {
 					function removeClass() {
 						$('#animate').removeClass('fadeInLeftBig' + ' animated');
 					}
+					fenye()
 				}
+				
 				$(".page-loader").addClass("loaded");
 				$(".comment__reply").each(function () {
 					$(this).click(function () {
@@ -238,11 +243,6 @@ function hqhf(pageNumber, isnew) {
 						textid: "Smohan_text" //文本框 ID
 					});
 				})
-				// $('#Smohan_Showface').click(function(){
-				// 	$('#Zones').fadeIn(360);
-				// 	$('#Zones').html($('#Smohan_text').val());
-				// 	$('#Zones').replaceface($('#Zones').html());
-				// });
 				$(".replybtn").each(function () {
 					$(this).click(function () {
 						if (token == -1) {
@@ -276,9 +276,9 @@ function hqhf(pageNumber, isnew) {
 									layer.msg("评论成功", {
 										icon: 1
 									});
-									pageNumber = 1;
 									$(".replybox").val('')
-									hqhf(1, false)
+									hqhf(pageNumber, false)
+									fenye()
 								} else {
 									layer.msg(data.Result, {
 										icon: 5
@@ -325,7 +325,7 @@ function hqhf(pageNumber, isnew) {
 	})
 }
 
-window.onload = function () {
+function fenye() {
 	$('#fenghui-pagination').pagination({
 		pages: FenghuiPage,
 		pageNumber: pageNumber,
@@ -416,9 +416,10 @@ $("#bbscomment").click(function () {
 				layer.msg(data.Result, {
 					icon: 1
 				});
-				pageNumber = 1;
+				// pageNumber = 1;
 				ue.setContent(decodeURIComponent(""));
-				hqhf(1, false);
+				hqhf(pageNumber, false);
+				fenye()
 			} else {
 				layer.msg(data.Result, {
 					icon: 5

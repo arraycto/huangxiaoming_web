@@ -4769,7 +4769,6 @@ h3+.panel-custom-group-wrap {
 
 .comment-box {
 	padding-top: 40px;
-	margin-top: 10px;
 	border-top: 1px solid #e1e1e1;
 }
 
@@ -30821,10 +30820,6 @@ input:-webkit-autofill {
 	#aboutathor{
 		display: none;
 	}
-	img.loginbox,
-	img.registerbox {
-		display: none;
-	}
 	#yzmcol{
 		float: left;
 		width: 66.7%;
@@ -32617,7 +32612,7 @@ html body .ui-to-top {
 	cursor: pointer;
 }
 @media (max-width: 768px) {
-  #myModal .col-md-5 , #forgetmodal .col-md-5{
+  #myModal .col-md-5 , #forgetmodal .col-md-5 , #myModal2  .col-md-5{
   	display: none;
   	margin-top: 20%;
   }
