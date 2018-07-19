@@ -68,7 +68,7 @@ UE.I18N['zh-cn'] = {
         'hi':'明显强调'
     },
     'autoupload': {
-        'exceedSizeError': '文件大小超出限制',
+        'exceedSizeError': '文件大小超出限制，请上传不超过2M的图片',
         'exceedTypeError': '文件格式不允许',
         'jsonEncodeError': '服务器返回格式错误',
         'loading':"正在上传...",
@@ -76,7 +76,7 @@ UE.I18N['zh-cn'] = {
         'errorLoadConfig': '后端配置项没有正常加载，上传插件不能正常使用！'
     },
     'simpleupload':{
-        'exceedSizeError': '文件大小超出限制',
+        'exceedSizeError': '文件大小超出限制，请上传不超过2M的图片',
         'exceedTypeError': '文件格式不允许',
         'jsonEncodeError': '服务器返回格式错误',
         'loading':"正在上传...",

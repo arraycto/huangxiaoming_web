@@ -21,7 +21,7 @@ function first(){
 		async:false,
 		success:function(data){
 			if(data.Status==1){
-				if (data.Result.IsOnline) {
+				if (data.Result.IsOnline&&!data.Result.IsOnline) {
 					$(".post-blog--single>h3").eq(0).html(""+data.Result.Title+"<button class='button button-sm button-default floatright' id='baoming'>立即报名</button>");
 				}else{
 					$(".post-blog--single>h3").eq(0).html(data.Result.Title);
