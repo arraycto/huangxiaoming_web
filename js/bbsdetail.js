@@ -25,7 +25,7 @@ function hqhf(pageNumber, isnew) {
 		data: {
 			PostID: blogID,
 			pageIndex: pageNumber,
-			pageSize: 1,
+			pageSize: 15,
 		},
 		success: function (data) {
 			if (data.Status == 1) {

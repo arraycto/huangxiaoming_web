@@ -36,6 +36,21 @@
 		geticon()
 	}
 
+	function gotomsg(){
+		if (token == -1) {
+			layer.confirm('登录后才能进入该板块哦', {
+				btn: ['去登录', '取消']
+			},
+			function () {
+				layer.closeAll('dialog');
+				againlogin()
+			}
+		)
+		}else{
+			window.location.href = "xmsvoice.html"
+		}
+	}
+
 	$(".rd-navbar-socials-toggle").click(function () {
 		if (token == '-1') {
 			$(".activespan").css("color", "black");

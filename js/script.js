@@ -877,13 +877,13 @@ $document.ready(function() {
 			isogroup.push(iso);
 		}
 		$(window).on('load', function() {
-			setTimeout(function() {
+			// setTimeout(function() {
 				var i;
 				for(i = 0; i < isogroup.length; i++) {
 					isogroup[i].element.className += " isotope--loaded";
 					isogroup[i].layout();
 				}
-			}, 600);
+			// }, 600);
 		});
 		var resizeTimout;
 		$("[data-isotope-filter]").on("click", function(e) {

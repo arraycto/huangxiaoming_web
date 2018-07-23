@@ -24,14 +24,8 @@
 							btn: ['是vip，去登录', '取消']
 						},
 						function () {
-							layer.msg();
-							$(".activespan").css("color", "black");
-							$(".activespan").css("font-size", "22px");
-							$(".grey").css("font-size", "17px");
-							$(".grey").css("color", "#9a9a9a");
-							$(".registerbox").hide();
-							$(".loginbox").show();
-							$('#myModal').modal('show');
+							layer.closeAll('dialog');
+							againlogin()
 						}
 					)
 				} else {
@@ -81,6 +75,11 @@
 					})
 				}
 
+			}else if(location.href.split("id=")[1].split("#")[0] == "21f54fe2-dddf-e711-ad57-c74e1272e605"){
+				layer.msg("该板块暂未开放哦", {
+					icon: 5
+				});
+				return;
 			} else if (location.href.split("id=")[1].split("#")[0] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
 				if (token == '-1') {
 					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
@@ -88,14 +87,8 @@
 							btn: ['是vip，去登录', '取消']
 						},
 						function () {
-							layer.msg();
-							$(".activespan").css("color", "black");
-							$(".activespan").css("font-size", "22px");
-							$(".grey").css("font-size", "17px");
-							$(".grey").css("color", "#9a9a9a");
-							$(".registerbox").hide();
-							$(".loginbox").show();
-							$('#myModal').modal('show');
+							layer.closeAll('dialog');
+							againlogin()
 						}
 					)
 				} else {

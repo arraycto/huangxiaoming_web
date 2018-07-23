@@ -25,6 +25,7 @@ function geticon() {
 					$(".page-loader").addClass("loaded");
 					$('#animate').addClass('fadeInLeftBig' + ' animated');
 					setTimeout(removeClass, 1200);
+
 					function removeClass() {
 						$('#animate').removeClass('fadeInLeftBig' + ' animated');
 					}
@@ -41,6 +42,7 @@ function geticon() {
 				$(".page-loader").addClass("loaded");
 				$('#animate').addClass('fadeInLeftBig' + ' animated');
 				setTimeout(removeClass, 1200);
+
 				function removeClass() {
 					$('#animate').removeClass('fadeInLeftBig' + ' animated');
 				}
@@ -95,7 +97,7 @@ function first() {
 					// $("#firstbox").html(urllist)
 				}
 				// $("#lasturl").append("" + thisurl + "<span class='caret'></span>")
-				$("#lasturl").html('<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'+thisurl+' <span class="caret"></span></a><ul class="dropdown-menu">'+urllist+'</ul>')
+				$("#lasturl").html('<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">' + thisurl + ' <span class="caret"></span></a><ul class="dropdown-menu">' + urllist + '</ul>')
 				//获取地址栏下拉菜单结束
 				$('#animate').addClass('fadeInLeftBig' + ' animated');
 				setTimeout(removeClass, 1200);
@@ -112,17 +114,11 @@ function first() {
 										btn: ['是vip，去登录', '取消']
 									},
 									function () {
-										layer.msg();
-										$(".activespan").css("color", "black");
-										$(".activespan").css("font-size", "22px");
-										$(".grey").css("font-size", "17px");
-										$(".grey").css("color", "#9a9a9a");
-										$(".registerbox").hide();
-										$(".loginbox").show();
-										$('#myModal').modal('show');
+										layer.closeAll('dialog');
+										againlogin()
 									}
 								)
-							} else {
+							}  else {
 								if (!isvip) {
 									layer.confirm('您还不是会员哦，无法进入vip专区', {
 											btn: ['去开通', '取消']
@@ -135,6 +131,11 @@ function first() {
 									window.location.href = "forum.html?id=" + bbsid;
 								}
 							}
+						}else if (bbsid == "21f54fe2-dddf-e711-ad57-c74e1272e605") {
+							layer.msg("该板块暂未开放哦", {
+								icon: 5
+							});
+							return;
 						} else {
 							window.location.href = "forum.html?id=" + bbsid;
 						}
