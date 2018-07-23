@@ -75,8 +75,18 @@ function first(){
 		}
 	})
 }
-
-first();
+if (token == -1) {
+	layer.confirm('登录后才能进入该板块哦', {
+		btn: ['去登录', '取消']
+	},
+	function () {
+		layer.closeAll('dialog');
+		againlogin()
+	}
+)
+}else{
+	first();
+}
 
 setInterval(
 	listen
