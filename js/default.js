@@ -1641,6 +1641,8 @@ function vipxufei() {
     $("#joinfirst").hide();
     $("#joinsecond").hide();
     $("#xufeivip").show()
+    $("#xuefeifirst").show()
+    $("#xufeialreadypay").hide()
 }
 
 $("#gotoxufei").click(function () {
@@ -1654,7 +1656,15 @@ $("#gotoxufei").click(function () {
         },
         success: function (data) {
             if (data.Status == 1) {
-                window.location.href = "pay.html?data=" + data.Result + ""
+                if(paytype == 0){
+                    window.location.href = "pay.html?data=" + data.Result + ""
+                }else{
+                    layer.msg(data.Result, {
+                        icon: 1
+                    });
+                    $("#xuefeifirst").hide();
+                    $("#xufeialreadypay").show();
+                }
             } else if (data.Status == 40001) {
                 $(".page-loader").addClass("loaded");
                 layer.msg(data.Result, {
