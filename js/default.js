@@ -309,7 +309,7 @@ function receipt(index) {
                 // },
                 data: {
                     id: list[index].ID,
-                    token:getCookie("token")
+                    token: getCookie("token")
                 },
                 success: function (data) {
                     if (data.Status == 1) {
@@ -500,7 +500,7 @@ $("#editicon").delegate("#add", "change", function () {
             if (data.Status == 1) {
                 img_value = data.Result[0];
                 editicon()
-            }else{
+            } else {
                 layer.msg(data.Result, {
                     icon: 5
                 });
@@ -593,7 +593,7 @@ $("#savepwd").click(function () {
         data: {
             oldPwd: $.md5($(".oldPsw").val()),
             newPwd: $.md5($(".repetPsw").val()),
-            token:getCookie("token")
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -708,9 +708,9 @@ function address() {
     $.ajax({
         type: 'get',
         url: mainurl + 'Address/PCGetListByPage',
-        data:{
-            pageIndex:1,
-            token:getCookie("token")
+        data: {
+            pageIndex: 1,
+            token: getCookie("token")
         },
         // beforeSend: function (xhr) {
         //     xhr.setRequestHeader('Authorization', token);
@@ -783,7 +783,7 @@ function setdefault(event) {
         // },
         data: {
             id: $(event).parents("tr").attr("id"),
-            token:getCookie("token")
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -826,7 +826,7 @@ function deladd(event) {
                 // },
                 data: {
                     id: delid,
-                    token:getCookie("token")
+                    token: getCookie("token")
                 },
                 success: function (data) {
                     if (data.Status == 1) {
@@ -884,7 +884,7 @@ function addaddress() {
             region: $("#cmbArea1").val(),
             address: $("#addadd").val(),
             isDefault: isDefault,
-            token:getCookie("token")
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -943,7 +943,7 @@ $("#saveadd").click(function () {
             region: $("#cmbArea").val(),
             address: $(".editaddress").val(),
             isDefault: isDefault,
-            token:getCookie("token")
+            token: getCookie("token")
         },
         success: function (data) {
             if (data.Status == 1) {
@@ -1114,7 +1114,7 @@ function getpost(pageindex, index) {
                     list[i].postdate = list[i].postdate.substring(0, 10)
 
                     li +=
-                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id="' + list[i].ID + '"><div class="unit__left"><span title="一级分类">' + list[i].ModularName + '</span><p class="text-snow" title="二级分类">' + list[i].ClassName + '</p></div><div class="unit__body"><p title="标题">' + list[i].sub + '</p></div><div class="unit__Modular"><p title="一级分类">' + list[i].ModularName + '</p></div><div class="unit__Modular"><p title="二级分类">' + list[i].ClassName + '</p></div><div class="unit__foot"><span class="post-blog__meta-comments" title="回复数">回复(' + list[i].replies + ')</span><p title="发帖时间" class="text-snow">' + list[i].postdate + '</p></div><div class="unit__left"><span title="发帖时间">' + list[i].postdate + '</span><p class="text-snow" title="回复数">回复(' + list[i].replies + ')</p></div></div>'
+                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id="' + list[i].ID + '"><div class="unit__left"><span title="一级分类">' + list[i].ModularName + '</span><p class="text-snow" title="二级分类">' + list[i].ClassName + '</p></div><div class="unit__body"><p title="标题">' + list[i].sub + '</p></div><div class="unit__Modular"><p title="一级分类">' + list[i].ModularName + '</p></div><div class="unit__Modular"><p title="二级分类">' + list[i].ClassName + '</p></div><div class="unit__foot"><span class="post-blog__meta-comments" title="回复数">回复(' + list[i].replies + ')</span><span class="fa-trash-o">删除</span><p title="发帖时间" class="text-snow">' + list[i].postdate + '</p></div><div class="unit__left"><span title="发帖时间">' + list[i].postdate + '</span><p class="text-snow" title="回复数">回复(' + list[i].replies + ')<span class="fa-trash-o">删除</span></p></div></div>'
 
                 }
                 if (index == 0) {
@@ -1131,6 +1131,51 @@ function getpost(pageindex, index) {
                     $(this).click(function () {
                         var bbsid = $(this).parents(".offset-top-30").attr("id");
                         window.open("bbs-post.html?id=" + bbsid);
+                    })
+                })
+                $(".fa-trash-o").each(function () {
+                    $(this).click(function () {
+                        var bbsid = $(this).parents(".offset-top-30").attr("id");
+                        layer.confirm('确定要删除此帖吗？', {
+                                btn: ['确定', '取消']
+                            },
+                            function () {
+                                layer.closeAll('dialog');
+                                
+                                $.ajax({
+                                    type: "get",
+                                    url: mainurl + "User/DelPost",
+                                    data: {
+                                        PostID: bbsid,
+                                        token: getCookie("token")
+                                    },
+                                    success: function (data) {
+                                        if (data.Status == 40001) {
+                                            layer.msg(data.Result, {
+                                                icon: 5
+                                            });
+                                            setTimeout(
+                                                againlogin, 2000);
+                                        } else if (data.Status == 1) {
+                                            getpost(1, 0)
+                                            layer.msg(data.Result, {
+                                                icon: 1
+                                            });
+                                        } else {
+                                            layer.msg('服务器异常', {
+                                                icon: 5
+                                            });
+                                        }
+                                    },
+                                    error: function () {
+                                        layer.msg('服务器异常', {
+                                            icon: 5
+                                        });
+                                    }
+                                })
+                            }
+                        )
+
                     })
                 })
             } else if (data.Status == 40001) {
@@ -1285,6 +1330,8 @@ function joinvipbtn() {
         $("#vip").hide();
         $("#joinfirst").hide();
         $("#joinsecond").show();
+        $("#paysecond").show();
+        $("#alreadypay").hide();
         $("#steptwo").removeClass("greycard")
     } else {
         layer.msg("您已是会员，无需申请", {
@@ -1327,9 +1374,9 @@ function vipinfo() {
                 $("#infoMsn").html(data.Result.Msn)
                 $("#infoQQ").html(data.Result.QQ)
                 $("#infoEmail").html(data.Result.Email)
-                $("#infoHob").html(data.Result.Hob1)
-                $("#infoRemarks").html(data.Result.Remarks)
+                $("#infoHob").html(data.Result.Hob)
                 $("#infoSize").html(data.Result.Size)
+                $("#infoOccupation").html(data.Result.Occupation)
 
                 //编辑
                 $("#infoRealName1").attr("value", data.Result.RealName)
@@ -1348,8 +1395,8 @@ function vipinfo() {
                 $("#infoQQ1").attr("value", data.Result.QQ)
                 $("#infoEmail1").attr("value", data.Result.Email)
                 $("#infoHob1").attr("value", data.Result.Hob)
-                $("#infoRemarks1").attr("value", data.Result.Remarks)
                 $("#infoSize1").attr("value", data.Result.Size)
+                $("#infoOccupation1").attr("value",data.Result.Occupation)
                 $("#vip").hide();
                 $("#joinfirst").hide();
                 $("#joinsecond").hide();
@@ -1417,19 +1464,19 @@ $("#saveinfo").click(function () {
         data: {
             Sex: $("input[name='inforsex']:checked").val(),
             Branch: $("#infoBranch1").val(),
-            Birthday: $("#infoBirthday1").val(),
+            Birthday: $("#infoBirthday1").val()==""?"-1":$("#infoBirthday1").val(),
             LocalAdress: $("#infoLocalAdress1").val(),
             RealName: $("#infoRealName1").val(),
             Phone: $("#infoPhone1").val(),
             Address: $("#infoAddress1").val(),
             ZipCode: $("#infoZipCode1").val(),
-            Size: $("#infoSize").val(),
-            Occupation: $("#infoOccupation1").val(),
-            Hob: $("#infoHob").val(),
-            QQ: $("#infoQQ1").val(),
+            Size: $("#infoSize1").val(),
+            Occupation: $("#infoOccupation1").val()==""?"-1":$("#infoOccupation1").val(),
+            Hob: $("#infoHob").val()==""?"-1":$("#infoHob").val(),
+            QQ: $("#infoQQ1").val()==""?"-1":$("#infoQQ1").val(),
             Email: $("#infoEmail1").val(),
-            Msn: $("#infoMsn1").val(),
-            Remarks: $("#infoRemarks1").val(),
+            Msn: $("#infoMsn1").val()==""?"-1":$("#infoMsn1").val(),
+            Remarks: $("#infoRemarks1").val()==""?"-1":$("#infoRemarks1").val(),
             token: getCookie("token")
         },
         success: function (data) {
@@ -1479,7 +1526,7 @@ $("#savetable").click(function () {
             url: mainurl + 'User/ApplyVip',
             data: {
                 Sex: $("input[name='vipsex']:checked").val(),
-                Branch: $("#vipBranch").val(),
+                Branch: $("#vipBranch").val() == "" ? "-1" : $("#vipBranch").val(),
                 Birthday: $("#vipBirthday").val(),
                 LocalAdress: $("#vipLocalAdress").val(),
                 RealName: $("#vipRealName").val(),
@@ -1487,18 +1534,20 @@ $("#savetable").click(function () {
                 Address: $("#vipAddress").val(),
                 ZipCode: $("#vipZipCode").val(),
                 Size: $("#vipSize").val(),
-                Occupation: $("#vipOccupation").val(),
-                Hob: $("#vipHob").val(),
-                QQ: $("#vipQQ").val(),
+                Occupation: $("#vipOccupation").val() == "" ? "-1" : $("#vipOccupation").val(),
+                Hob: $("#vipHob").val() == "" ? "-1" : $("#vipHob").val(),
+                QQ: $("#vipQQ").val() == "" ? "-1" : $("#vipQQ").val(),
                 Email: $("#vipEmail").val(),
-                Msn: $("#vipMsn").val(),
-                Remarks: $("#vipRemarks").val(),
+                Msn: $("#vipMsn").val() == "" ? "-1" : $("#vipMsn").val(),
+                Remarks: $("#vipRemarks").val() == "" ? "-1" : $("#vipRemarks").val(),
                 token: getCookie("token")
             },
             success: function (data) {
                 if (data.Status == 1) {
                     $("#joinfirst").hide();
                     $("#joinsecond").show();
+                    $("#paysecond").show();
+                    $("#alreadypay").hide();
                     vipstatus = 2;
                 } else if (data.Status == 40001) {
                     $(".page-loader").addClass("loaded");
@@ -1556,7 +1605,16 @@ $("#gotopay").click(function () {
         },
         success: function (data) {
             if (data.Status == 1) {
-                window.location.href = "pay.html?data=" + data.Result + ""
+                if(paytype == 0){
+                    window.location.href = "pay.html?data=" + data.Result + ""
+                }else{
+                    layer.msg(data.Result, {
+                        icon: 1
+                    });
+                    $(".threebz").removeClass("greycard")
+                    $("#paysecond").hide();
+                    $("#alreadypay").show();
+                }
             } else if (data.Status == 40001) {
                 $(".page-loader").addClass("loaded");
                 layer.msg(data.Result, {

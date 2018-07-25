@@ -444,8 +444,8 @@ Your browser does not support the audio element.
                       <p class='novip'>您还不是会员，点击加入立刻享受会员权益！</p>
                       <button type="button" class="btn btn-warning yesvip" onclick="vipxufei()">会员续费</button>
                       <button class="button button-default button-shadow btn-yellow joinbtn yesvip" onclick="vipinfo()">会员资料</button>
-                      <button class="button button-default button-shadow btn-yellow joinbtn yesvip" onclick="buydetail(1,0)">购买记录</button>
                       <button type="button" class="btn btn-warning novip" onclick="joinvipbtn()">加入会员</button>
+                      <button class="button button-default button-shadow btn-yellow joinbtn" onclick="buydetail(1,0)">购买记录</button>
                     </div>
                     <h3 class="dealh3">会员充值流程</h3>
                     <div class="vipdeal">
@@ -876,7 +876,7 @@ Your browser does not support the audio element.
                           <div>完成</div>
                         </li>
                       </ul>
-                      <div class="datainfoXin">
+                      <div class="datainfoXin" id='paysecond'>
                         <div class="form-wrap">
                           <span>选择类型:</span>
                           <label class="radio-inline">
@@ -896,12 +896,17 @@ Your browser does not support the audio element.
                           </a>
                           <a class="list-group-item" onclick="choosetype(this)" id='bank'>
                             <h4 class="list-group-item-heading">银行汇款</h4>
-                            <p class="list-group-item-text">汇款到银行账户，上传后需上传凭证</p>
+                            <p class="list-group-item-text">汇款到银行账户，汇款后请到vip中心上传凭证</p>
                           </a>
                         </div>
                         <center>
                           <button type="button" class="btn btn-warning" id="gotopay">去支付</button>
                         </center>
+                      </div>
+                      <div id="alreadypay">
+                        <image src="images/wait.png">
+                          <p class="waitsave">等待提交</p>
+                          <p>汇款成功后，请到个人中心-vip中心上传凭证</p>
                       </div>
 
                       <!-- </div> -->
@@ -1000,7 +1005,7 @@ Your browser does not support the audio element.
                             <label>
                               <span class="red">*</span>会服尺码：</label>
                             <span id="infoSize"></span>
-                            <select class="form-control">
+                            <select class="form-control"id="infoSize1">
                               <option value="S">S（160~165）</option>
                               <option value="M">M</option>
                               <option value="L">L</option>
@@ -1013,11 +1018,6 @@ Your browser does not support the audio element.
                             <label>兴趣特长：</label>
                             <span id="infoHob"></span>
                             <input type="text" class="form-control" id="infoHob1">
-                          </div>
-                          <div class="viptable">
-                            <label class="toptext">申请理由：</label>
-                            <span id="infoRemarks"></span>
-                            <textarea class="form-control" rows="3" id="infoRemarks1"></textarea>
                           </div>
                         </div>
                       </div>
@@ -1107,7 +1107,7 @@ Your browser does not support the audio element.
                         </a>
                         <a class="list-group-item" onclick="choosetype(this)" id='bank'>
                           <h4 class="list-group-item-heading">银行汇款</h4>
-                          <p class="list-group-item-text">汇款到银行账户，上传后需上传凭证</p>
+                          <p class="list-group-item-text">汇款到银行账户，汇款成功后需上传凭证</p>
                         </a>
                       </div>
                       <center>

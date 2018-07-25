@@ -247,10 +247,10 @@
         color: #9f9f9f;
     }
     #mypost .unit__body {
-        width: 50%;
+        width: 40%;
     }
     #mypost .unit__Modular {
-        width: 17.5%;
+        width: 20%;
     }
     #mypost .unit__left,
     #mypost .unit__right {
@@ -276,7 +276,8 @@
 }
 
 #mypost .unit__body:hover,
-#mypost .post-blog__meta-comments:hover {
+#mypost .post-blog__meta-comments:hover ,
+#mypost .fa-trash-o:hover {
     color: #B88E42;
 }
 
@@ -285,9 +286,23 @@
 #mypost .post-blog__meta-comments:before {
     color: #0d0d0d;
 }
-
+#mypost .unit__foot .fa-trash-o{
+    color: #0d0d0d;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#mypost .unit__foot .fa-trash-o:before{
+display: inline-block;
+color: #0d0d0d;
+    margin-right: 4px;
+    font-size: 16px;
+}
 #mypost .text-snow {
-    font-family: FZZQJW
+    font-family: "FZZQJW"
+}
+#mypost .text-snow .fa-trash-o{
+    vertical-align: unset;
+    margin-left: 10px;
 }
 
 /* vip俱乐部 */
@@ -420,7 +435,7 @@
         position: relative;
     }
     #vip .joinbtn {
-        padding: 6px 12px;
+        padding: 5px 11px;
     }
     #vipClub #vip h3.dealh3 {
         margin-left: 5%;
@@ -607,4 +622,18 @@
 }
 #xufeivip .list-group{
     margin-top: 20px;
+}
+/* 完成支付 */
+@media (min-width: 768px){
+    #alreadypay{
+        margin-top: 150px;
+    }
+}
+#alreadypay{
+    text-align: center;
+    padding-bottom: 50px;
+}
+#alreadypay .waitsave{
+    font-size: 20px;
+    font-weight: bolder;
 }
