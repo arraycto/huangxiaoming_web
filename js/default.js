@@ -30,7 +30,7 @@ if (blogID) {
 function setWidth() {
     if ($(window).width() < 768) {
         $(".sidebar").css({
-            top: -408
+            top: -456
         });
         $(".all").css({
             marginLeft: 0
@@ -56,7 +56,7 @@ function setSidebar() {
         var asidetop = $(".sidebar").offset().top;
         if (asidetop > 0) {
             $(".sidebar").animate({
-                top: -408
+                top: -456
             });
             $(".all").animate({
                 marginTop: 0
@@ -68,7 +68,7 @@ function setSidebar() {
                 top: -5
             });
             $(".all").animate({
-                marginTop: 408
+                marginTop: 456
             });
         }
     });
@@ -77,7 +77,7 @@ var pageInitModule = (function (mod) {
     mod.setWidth = function () {
         if ($(window).width() < 768) {
             $(".sidebar").css({
-                top: -408
+                top: -456
             });
             $(".all").css({
                 marginLeft: 0
@@ -102,7 +102,7 @@ var pageInitModule = (function (mod) {
             var asidetop = $(".sidebar").offset().top;
             if (asidetop > 0) {
                 $(".sidebar").animate({
-                    top: -408
+                    top: -456
                 });
                 $(".all").animate({
                     marginTop: 0
@@ -114,7 +114,7 @@ var pageInitModule = (function (mod) {
                     top: -5
                 });
                 $(".all").animate({
-                    marginTop: 408
+                    marginTop: 456
                 });
             }
         });
@@ -126,7 +126,7 @@ var pageInitModule = (function (mod) {
 function hidesub(n) {
     if ($(window).width() < 768) {
         $(".sidebar").animate({
-            top: -408
+            top: -456
         });
         $(".all").animate({
             marginTop: 0
@@ -191,6 +191,14 @@ function hidesub(n) {
             index = 0
             getpost(pageindex, 0)
             listType = 6
+            pageindex = 1
+            $(".pagination-custom").show()
+            break;
+         case 7:
+            // 收到的回复
+            index = 0
+            getmsg(pageindex, 0)
+            listType = 7
             pageindex = 1
             $(".pagination-custom").show()
             break;
@@ -1250,7 +1258,7 @@ function getPage(p, a) {
                     getpost(p, 1)
                     break;
                 case 7:
-                    orderlist(p, 1)
+                    getmsg(p, 1)
                     break;
 
             }
@@ -1857,3 +1865,102 @@ $("#editorderimg").click(function () {
         }
     })
 })
+
+// 收到的回复
+function getmsg(pageindex, index) {
+    $.ajax({
+        type: 'get',
+        url: mainurl + 'User/PostMessageList?token=' + getCookie("token") + '&pageIndex=' + pageindex + '&pageSize=8',
+        success: function (data) {
+            if (data.Status == 1) {
+                var li = ''
+                list = data.Result.list;
+                var page = data.Result.page;
+                if (page == 0) {
+                    $("#fenghui-pagination").hide();
+                } else {
+                    $("#fenghui-pagination").show();
+                }
+                if (list.length == 0) {
+                    
+                    li = "<div class='shell phone'><img src='images/kong.png'></div>";
+                    $(".tiezibox").html(li);
+                    return;
+                }
+                for (var i = 0; i < list.length; i++) {
+                    content = decodeURIComponent(list[i]['Content']);
+					content = transform(content);
+					content = replaceface(content);
+                    li +=
+                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id='+list[i].PostID+'><div class="unit__left"><image src='+url+list[i].Icon+'></image></div><div class="unit__body"><p class="text-snow"><image src='+url+list[i].Icon+' class="msgicon"></image>用户'+list[i].Username+'在你的主贴：<span class="subject">'+list[i].subject+'</span>评论了你</p><p class="text-snow">'+content+'</p></div></div>'
+
+                }
+                $("#mymsgconnect").html(li)
+                $(".text-snow>.subject").each(function () {
+                    $(this).click(function () {
+                        var bbsid = $(this).parents(".offset-top-30").attr("id");
+                        window.open("bbs-post.html?id=" + bbsid);
+                    })
+                })
+                if (index == 0) {
+                    getPage(pageindex, page)
+                }
+                
+            } else if (data.Status == 40001) {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+                setTimeout(
+                    againlogin, 2000);
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function (data) {
+            layer.msg('服务器异常', {
+                icon: 5
+            });
+        }
+    })
+}
+function transform(str) {
+	// str = str.replace(/</ig,'&lt;');
+	// str = str.replace(/>/ig,'&gt;');
+	str = str.replace(/\n/ig, '<br />');
+	str = str.replace(/\[code\](.+?)\[\/code\]/ig, function ($1, $2) {
+		return phpcode($2);
+	});
+
+	str = str.replace(/\[hr\]/ig, '<hr />');
+	str = str.replace(/\[\/(size|color|font|backcolor)\]/ig, '</font>');
+	str = str.replace(/\[(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '<$1>');
+	str = str.replace(/\[\/(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '</$1>');
+	str = str.replace(/\[\/align\]/ig, '</p>');
+	str = str.replace(/\[(\/)?h([1-6])\]/ig, '<$1h$2>');
+
+	str = str.replace(/\[align=(left|center|right|justify)\]/ig, '<p align="$1">');
+	str = str.replace(/\[size=(\d+?)\]/ig, '<font size="$1">');
+	str = str.replace(/\[color=([^\[\<]+?)\]/ig, '<font color="$1">');
+	str = str.replace(/\[backcolor=([^\[\<]+?)\]/ig, '<font style="background-color:$1">');
+	str = str.replace(/\[font=([^\[\<]+?)\]/ig, '<font face="$1">');
+	str = str.replace(/\[list=(a|A|1)\](.+?)\[\/list\]/ig, '<ol type="$1">$2</ol>');
+	str = str.replace(/\[(\/)?list\]/ig, '<$1ul>');
+
+	// str = str.replace(/\[s:(\d+)\]/ig,function($1,$2){ return smilepath($2);});
+	str = str.replace(/\[img\]([^\[]*)\[\/img\]/ig, '<img src="$1" border="0" />');
+	str = str.replace(/\[url=([^\]]+)\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$2' + '</a>');
+	str = str.replace(/\[url\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$1' + '</a>');
+	str = str.replace(/\\n/g, "</br>");
+	str = str.replace(/\\r/g, "</br>");
+	str = str.replace(/\%/g, "%25");
+	return str;
+}
+
+function replaceface(faces) {
+	for (i = 0; i < 60; i++) {
+		faces = faces.replace('<emt>' + (i + 1) + '</emt>', '<img src="images/face/' + (i + 1) + '.gif">');
+	}
+	return faces;
+}

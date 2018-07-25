@@ -637,3 +637,51 @@ color: #0d0d0d;
     font-size: 20px;
     font-weight: bolder;
 }
+/* 收到的回复 */
+#mymsgconnect .unit__left img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+#mymsgconnect .unit__body {
+    width: auto;
+    margin-left: 20px;
+}
+#mymsgconnect .subject{
+    color: #0d0d0d;
+}
+#mymsgconnect .subject:hover{
+    color: #B88E42;
+    cursor: pointer;
+}
+#mymsgconnect .post-blog-sm .unit__body p{
+    cursor: default;
+}
+#mymsgconnect .msgicon{
+    display: none;
+}
+@media (max-width: 768px){
+    #mymsgconnect .post-blog-sm .unit__body .text-snow {
+        display: block;
+    }
+    #mymsgconnect .post-blog-sm .unit__left{
+        display: none;
+    }
+    #mymsgconnect .msgicon{
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    #mymsgconnect .text-snow img {
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+#mymsgconnect .unit__body img{
+    max-width: 100px;
+    max-height: 100px;
+}
+#mymsgconnect .post-blog-sm:hover {
+    color: #0d0d0d;
+}
