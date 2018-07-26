@@ -357,14 +357,15 @@ function receipt(index) {
 }
 // 站内信点击跳转详情。
 
-var xinId = ""
+var LastID = ""
+var NextID = ""
 
-function openmsg(event) {
+function openmsg(event,id) {
     $.ajax({
         type: "get",
         url: mainurl + "User/MsgDetail",
         data: {
-            msgid: $(event).attr("id"),
+            msgid: event == '-1'?id:$(event).attr("id"),
             token: getCookie("token")
         },
         success: function (data) {
@@ -374,13 +375,11 @@ function openmsg(event) {
                 $("#xinCreateTime").html(data.Result.CreateTime)
                 $("#ComeFrom").html(data.Result.ComeFrom)
                 $("#xinContent").html(data.Result.Content)
-                $(".lastpage").click(function () {
-                    openmsg(data.Result.LastID)
-                })
-                $(".nextpage").click(function () {
-                    openmsg(data.Result.NextID)
-                })
-                $(event).children(".xinImg").html('<img src="./images/xin_kai.png">')
+                LastID = data.Result.LastID;
+                NextID = data.Result.NextID;
+                if (event !== '-1') {
+                    $(event).children(".xinImg").html('<img src="./images/xin_kai.png">')                    
+                }
             } else if (data.Status == 40001) {
                 $(".page-loader").addClass("loaded");
                 layer.msg(data.Result, {
@@ -404,6 +403,13 @@ function openmsg(event) {
     $("#infoXindetail").show();
     $(".pagination-custom").hide()
 }
+
+$(".lastpage").click(function () {
+    openmsg('-1',LastID)
+})
+$(".nextpage").click(function () {
+    openmsg('-1',NextID)
+})
 
 // 返回订单列表页
 $(".orderbox>h3").click(function () {
@@ -997,8 +1003,6 @@ function myMsg(pageindex, index) {
                     return;
                 }
                 for (var i = 0; i < list.length; i++) {
-                    var status = ""
-                    var status1 = ""
                     switch (list[i].IsSee) {
                         case true:
                             statusbtn = '<img src="./images/xin_kai.png">'
@@ -1249,7 +1253,7 @@ function getPage(p, a) {
 
                     break;
                 case 4:
-
+                    myMsg(p, 1)
                     break;
                 case 5:
                     myactivity(p, 1)
