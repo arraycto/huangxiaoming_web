@@ -82,7 +82,22 @@
 					setTimeout(
 						againlogin, 2000);
 				} else {
-					$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
+					if ( data.Result.MsgCount > 99) {
+						MsgCount = "99+"
+					}else{
+						MsgCount = data.Result.MsgCount
+					}
+					if(MsgCount>0){
+						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+"</div>")
+					}else{
+						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
+					}
+					if (window.location.href.indexOf("user") >= 0) {
+						if(MsgCount>0){
+							$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+"</div>")
+							$("#user-msg").html('<span class="user-sgCount">'+MsgCount+'</span>')
+						}	
+					}
 					if (data.Result.EndTime == "不是") {
 						isvip = false;
 					} else {

@@ -196,7 +196,9 @@ Your browser does not support the audio element.
                   <a href="#mypost" aria-controls="#mypost" role="tab" data-toggle="tab" onclick="hidesub(6)">我的发帖</a>
                 </li>
                 <li role="presentation">
-                  <a href="#mymsg" aria-controls="#mymsg" role="tab" data-toggle="tab" onclick="hidesub(7)">收到的回复</a>
+                  <a href="#mymsg" aria-controls="#mymsg" role="tab" data-toggle="tab" onclick="hidesub(7)" style="position: relative;">
+                    收到的回复<span id="user-msg"></span>
+                  </a>
                 </li>
                 <li role="presentation" style="cursor: pointer;">
                   <a onclick="editlogion()">退出登录</a>
@@ -620,16 +622,16 @@ Your browser does not support the audio element.
                               <br/> 2.黄晓明全球影友会会服一件（明教活动统一着装会服）；
                               <br/> 3.手机短信服务（每月至少1条短信服务，内容包括晓明近期行程动态、各地重大活动通知、明教重大动态等。海外区域由于通信限制，此项服务改为EMAIL提示服务）；
                               <br/> 4.VIP邮件服务（独家视频、高清图包等独家内容邮件放送）；
-                              <br/> 5.优先优惠参加11月“黄晓明生日会”资格（非VIP收取双倍活动费）；
-                              <br/> 6.获参加“黄晓明见面会”活动资格（一年两次，时间为上半年一次，下半年和生日会合并一次，非VIP无见面会报名资格）；
-                              <br/> 7.VIP会员获“黄晓明年度抽奖”福利（每半年抽取1次，被抽中者可参与与黄晓明微信语音聊天+礼物1份）；
-                              <br/> 8.VIP会员每年可获专属签名贺卡+生日礼物一份；
-                              <br/> 9.VIP会员优先活动资格。官方统一组织的活动，在有人数限制的活动中具有优先权；
-                              <br/> 10.获VIP俱乐部专属活动年度抽奖资格（VIP俱乐部每年举行1次以上VIP会员专属网络活动，仅VIP会员具有参与资格，凡中奖者免费获纪念品一份）；
-                              <br/> 11.享受黄晓明官方网店推出明教专属商品8折优惠价；
-                              <br/> 12.合作商户专属VIP折扣（具体名单以公布为准）；
-                              <br/> 13.VIP俱乐部专项“每天一分钱”慈善项目，将每年代每位VIP会员捐出3.65元（人民币）用于慈善事业，慈善款项的使用和捐赠将及时发起公示。
-                              <br/> 14.VIP会员入会达到5年以上，即有资格申请“资深会员”，通过审核的“资深会员”都将获得定制“资深会员”奖章/奖杯+“资深大礼”1份。
+                              
+                              <br/> 5.获参加“黄晓明见面会”活动资格（一年两次，时间为上半年一次，下半年和生日会合并一次，非VIP无见面会报名资格）；
+                              <br/> 6.VIP会员获“黄晓明年度抽奖”福利（每半年抽取1次，被抽中者可参与与黄晓明微信语音聊天+礼物1份）；
+                              <br/> 7.VIP会员每年可获专属签名贺卡+生日礼物一份；
+                              <br/> 8.VIP会员优先活动资格。官方统一组织的活动，在有人数限制的活动中具有优先权；
+                              <br/> 9.获VIP俱乐部专属活动年度抽奖资格（VIP俱乐部每年举行1次以上VIP会员专属网络活动，仅VIP会员具有参与资格，凡中奖者免费获纪念品一份）；
+                              <br/> 10.享受黄晓明官方网店推出明教专属商品8折优惠价；
+                              <br/> 11.合作商户专属VIP折扣（具体名单以公布为准）；
+                              <br/> 12.VIP俱乐部专项“每天一分钱”慈善项目，将每年代每位VIP会员捐出3.65元（人民币）用于慈善事业，慈善款项的使用和捐赠将及时发起公示。
+                              <br/> 13.VIP会员入会达到5年以上，即有资格申请“资深会员”，通过审核的“资深会员”都将获得定制“资深会员”奖章/奖杯+“资深大礼”1份。
                             </p>
                           </div>
                         </div>
@@ -1156,7 +1158,7 @@ Your browser does not support the audio element.
                     <div class="xinTop">
                       <h3>返回上一页</h3>
                       <span style="float:right;margin-right:20px">
-                        <span class="lastpage">上一页</span>|
+                        <span class="lastpage">上一页</span>
                         <span class="nextpage">下一页</span>
                       </span>
                     </div>

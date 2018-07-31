@@ -32736,3 +32736,24 @@ body.view{
 .btn-warning.replybtn{
 	float: right;
 }
+.MsgCount{
+	position: absolute;
+    width: 28px;
+    height: 28px;
+    top: -10px;
+    right: -10px;
+    text-align: center;
+    line-height: 28px;
+    background-color: #FF2736;
+    border-radius: 50%;
+}
+.user-sgCount{
+	display:inline-block;
+	width: 28px;
+    height: 28px;
+    text-align: center;
+    line-height: 28px;
+    background-color: #FF2736;
+	border-radius: 50%;
+	color: #fff;
+}

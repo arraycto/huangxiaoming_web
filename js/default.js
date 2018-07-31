@@ -194,7 +194,7 @@ function hidesub(n) {
             pageindex = 1
             $(".pagination-custom").show()
             break;
-         case 7:
+        case 7:
             // 收到的回复
             index = 0
             getmsg(pageindex, 0)
@@ -360,12 +360,12 @@ function receipt(index) {
 var LastID = ""
 var NextID = ""
 
-function openmsg(event,id) {
+function openmsg(event, id) {
     $.ajax({
         type: "get",
         url: mainurl + "User/MsgDetail",
         data: {
-            msgid: event == '-1'?id:$(event).attr("id"),
+            msgid: event == '-1' ? id : $(event).attr("id"),
             token: getCookie("token")
         },
         success: function (data) {
@@ -375,10 +375,21 @@ function openmsg(event,id) {
                 $("#xinCreateTime").html(data.Result.CreateTime)
                 $("#ComeFrom").html(data.Result.ComeFrom)
                 $("#xinContent").html(data.Result.Content)
-                LastID = data.Result.LastID;
-                NextID = data.Result.NextID;
+                if (data.Result.LastID == "") {
+                    $(".lastpage").hide()
+                } else {
+                    $(".lastpage").show()
+                    LastID = data.Result.LastID;
+                }
+                if (data.Result.NextID == "") {
+                    $(".nextpage").hide()
+                } else {
+                    $(".nextpage").show()
+                    NextID = data.Result.NextID;
+                }
+
                 if (event !== '-1') {
-                    $(event).children(".xinImg").html('<img src="./images/xin_kai.png">')                    
+                    $(event).children(".xinImg").html('<img src="./images/xin_kai.png">')
                 }
             } else if (data.Status == 40001) {
                 $(".page-loader").addClass("loaded");
@@ -405,10 +416,10 @@ function openmsg(event,id) {
 }
 
 $(".lastpage").click(function () {
-    openmsg('-1',LastID)
+    openmsg('-1', LastID)
 })
 $(".nextpage").click(function () {
-    openmsg('-1',NextID)
+    openmsg('-1', NextID)
 })
 
 // 返回订单列表页
@@ -458,7 +469,7 @@ function first() {
                 $("#Branch").html(data.Result.Branch)
                 $("#Signature").html(data.Result.Signature)
                 $("#icon").attr("src", url + data.Result.Icon)
-                $(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.Icon + "'>")
+                // $(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.Icon + "'>")
 
                 //编辑
                 $("#Username1").attr("value", data.Result.Username)
@@ -1153,7 +1164,7 @@ function getpost(pageindex, index) {
                             },
                             function () {
                                 layer.closeAll('dialog');
-                                
+
                                 $.ajax({
                                     type: "get",
                                     url: mainurl + "User/DelPost",
@@ -1408,7 +1419,7 @@ function vipinfo() {
                 $("#infoEmail1").attr("value", data.Result.Email)
                 $("#infoHob1").attr("value", data.Result.Hob)
                 $("#infoSize1").attr("value", data.Result.Size)
-                $("#infoOccupation1").attr("value",data.Result.Occupation)
+                $("#infoOccupation1").attr("value", data.Result.Occupation)
                 $("#vip").hide();
                 $("#joinfirst").hide();
                 $("#joinsecond").hide();
@@ -1476,19 +1487,19 @@ $("#saveinfo").click(function () {
         data: {
             Sex: $("input[name='inforsex']:checked").val(),
             Branch: $("#infoBranch1").val(),
-            Birthday: $("#infoBirthday1").val()==""?"-1":$("#infoBirthday1").val(),
+            Birthday: $("#infoBirthday1").val() == "" ? "-1" : $("#infoBirthday1").val(),
             LocalAdress: $("#infoLocalAdress1").val(),
             RealName: $("#infoRealName1").val(),
             Phone: $("#infoPhone1").val(),
             Address: $("#infoAddress1").val(),
             ZipCode: $("#infoZipCode1").val(),
             Size: $("#infoSize1").val(),
-            Occupation: $("#infoOccupation1").val()==""?"-1":$("#infoOccupation1").val(),
-            Hob: $("#infoHob").val()==""?"-1":$("#infoHob").val(),
-            QQ: $("#infoQQ1").val()==""?"-1":$("#infoQQ1").val(),
+            Occupation: $("#infoOccupation1").val() == "" ? "-1" : $("#infoOccupation1").val(),
+            Hob: $("#infoHob").val() == "" ? "-1" : $("#infoHob").val(),
+            QQ: $("#infoQQ1").val() == "" ? "-1" : $("#infoQQ1").val(),
             Email: $("#infoEmail1").val(),
-            Msn: $("#infoMsn1").val()==""?"-1":$("#infoMsn1").val(),
-            Remarks: $("#infoRemarks1").val()==""?"-1":$("#infoRemarks1").val(),
+            Msn: $("#infoMsn1").val() == "" ? "-1" : $("#infoMsn1").val(),
+            Remarks: $("#infoRemarks1").val() == "" ? "-1" : $("#infoRemarks1").val(),
             token: getCookie("token")
         },
         success: function (data) {
@@ -1617,9 +1628,9 @@ $("#gotopay").click(function () {
         },
         success: function (data) {
             if (data.Status == 1) {
-                if(paytype == 0){
+                if (paytype == 0) {
                     window.location.href = "pay.html?data=" + data.Result + ""
-                }else{
+                } else {
                     layer.msg(data.Result, {
                         icon: 1
                     });
@@ -1668,9 +1679,9 @@ $("#gotoxufei").click(function () {
         },
         success: function (data) {
             if (data.Status == 1) {
-                if(paytype == 0){
+                if (paytype == 0) {
                     window.location.href = "pay.html?data=" + data.Result + ""
-                }else{
+                } else {
                     layer.msg(data.Result, {
                         icon: 1
                     });
@@ -1886,17 +1897,17 @@ function getmsg(pageindex, index) {
                     $("#fenghui-pagination").show();
                 }
                 if (list.length == 0) {
-                    
+
                     li = "<div class='shell phone'><img src='images/kong.png'></div>";
                     $(".tiezibox").html(li);
                     return;
                 }
                 for (var i = 0; i < list.length; i++) {
                     content = decodeURIComponent(list[i]['Content']);
-					content = transform(content);
-					content = replaceface(content);
+                    content = transform(content);
+                    content = replaceface(content);
                     li +=
-                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id='+list[i].PostID+'><div class="unit__left"><image src='+url+list[i].Icon+'></image></div><div class="unit__body"><p class="text-snow"><image src='+url+list[i].Icon+' class="msgicon"></image>用户'+list[i].Username+'在你的主贴：<span class="subject">'+list[i].subject+'</span>评论了你</p><p class="text-snow">'+content+'</p></div></div>'
+                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id=' + list[i].PostID + '><div class="unit__left"><image src=' + url + list[i].Icon + '></image></div><div class="unit__body"><p class="text-snow"><image src=' + url + list[i].Icon + ' class="msgicon"></image>用户' + list[i].Username + '在你的主贴：<span class="subject">' + list[i].subject + '</span>评论了你</p><p class="text-snow">' + content + '</p></div></div>'
 
                 }
                 $("#mymsgconnect").html(li)
@@ -1909,7 +1920,7 @@ function getmsg(pageindex, index) {
                 if (index == 0) {
                     getPage(pageindex, page)
                 }
-                
+
             } else if (data.Status == 40001) {
                 layer.msg(data.Result, {
                     icon: 5
@@ -1929,42 +1940,43 @@ function getmsg(pageindex, index) {
         }
     })
 }
+
 function transform(str) {
-	// str = str.replace(/</ig,'&lt;');
-	// str = str.replace(/>/ig,'&gt;');
-	str = str.replace(/\n/ig, '<br />');
-	str = str.replace(/\[code\](.+?)\[\/code\]/ig, function ($1, $2) {
-		return phpcode($2);
-	});
+    // str = str.replace(/</ig,'&lt;');
+    // str = str.replace(/>/ig,'&gt;');
+    str = str.replace(/\n/ig, '<br />');
+    str = str.replace(/\[code\](.+?)\[\/code\]/ig, function ($1, $2) {
+        return phpcode($2);
+    });
 
-	str = str.replace(/\[hr\]/ig, '<hr />');
-	str = str.replace(/\[\/(size|color|font|backcolor)\]/ig, '</font>');
-	str = str.replace(/\[(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '<$1>');
-	str = str.replace(/\[\/(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '</$1>');
-	str = str.replace(/\[\/align\]/ig, '</p>');
-	str = str.replace(/\[(\/)?h([1-6])\]/ig, '<$1h$2>');
+    str = str.replace(/\[hr\]/ig, '<hr />');
+    str = str.replace(/\[\/(size|color|font|backcolor)\]/ig, '</font>');
+    str = str.replace(/\[(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '<$1>');
+    str = str.replace(/\[\/(sub|sup|u|i|strike|b|blockquote|li)\]/ig, '</$1>');
+    str = str.replace(/\[\/align\]/ig, '</p>');
+    str = str.replace(/\[(\/)?h([1-6])\]/ig, '<$1h$2>');
 
-	str = str.replace(/\[align=(left|center|right|justify)\]/ig, '<p align="$1">');
-	str = str.replace(/\[size=(\d+?)\]/ig, '<font size="$1">');
-	str = str.replace(/\[color=([^\[\<]+?)\]/ig, '<font color="$1">');
-	str = str.replace(/\[backcolor=([^\[\<]+?)\]/ig, '<font style="background-color:$1">');
-	str = str.replace(/\[font=([^\[\<]+?)\]/ig, '<font face="$1">');
-	str = str.replace(/\[list=(a|A|1)\](.+?)\[\/list\]/ig, '<ol type="$1">$2</ol>');
-	str = str.replace(/\[(\/)?list\]/ig, '<$1ul>');
+    str = str.replace(/\[align=(left|center|right|justify)\]/ig, '<p align="$1">');
+    str = str.replace(/\[size=(\d+?)\]/ig, '<font size="$1">');
+    str = str.replace(/\[color=([^\[\<]+?)\]/ig, '<font color="$1">');
+    str = str.replace(/\[backcolor=([^\[\<]+?)\]/ig, '<font style="background-color:$1">');
+    str = str.replace(/\[font=([^\[\<]+?)\]/ig, '<font face="$1">');
+    str = str.replace(/\[list=(a|A|1)\](.+?)\[\/list\]/ig, '<ol type="$1">$2</ol>');
+    str = str.replace(/\[(\/)?list\]/ig, '<$1ul>');
 
-	// str = str.replace(/\[s:(\d+)\]/ig,function($1,$2){ return smilepath($2);});
-	str = str.replace(/\[img\]([^\[]*)\[\/img\]/ig, '<img src="$1" border="0" />');
-	str = str.replace(/\[url=([^\]]+)\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$2' + '</a>');
-	str = str.replace(/\[url\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$1' + '</a>');
-	str = str.replace(/\\n/g, "</br>");
-	str = str.replace(/\\r/g, "</br>");
-	str = str.replace(/\%/g, "%25");
-	return str;
+    // str = str.replace(/\[s:(\d+)\]/ig,function($1,$2){ return smilepath($2);});
+    str = str.replace(/\[img\]([^\[]*)\[\/img\]/ig, '<img src="$1" border="0" />');
+    str = str.replace(/\[url=([^\]]+)\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$2' + '</a>');
+    str = str.replace(/\[url\]([^\[]+)\[\/url\]/ig, '<a href="$1">' + '$1' + '</a>');
+    str = str.replace(/\\n/g, "</br>");
+    str = str.replace(/\\r/g, "</br>");
+    str = str.replace(/\%/g, "%25");
+    return str;
 }
 
 function replaceface(faces) {
-	for (i = 0; i < 60; i++) {
-		faces = faces.replace('<emt>' + (i + 1) + '</emt>', '<img src="images/face/' + (i + 1) + '.gif">');
-	}
-	return faces;
+    for (i = 0; i < 60; i++) {
+        faces = faces.replace('<emt>' + (i + 1) + '</emt>', '<img src="images/face/' + (i + 1) + '.gif">');
+    }
+    return faces;
 }

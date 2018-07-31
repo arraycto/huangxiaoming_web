@@ -7,18 +7,19 @@
 	var height = "";
 	var height1 = "";
 	isfirst = true;
-	function first(pageNumber){
+
+	function first(pageNumber) {
 		$.ajax({
-			type:"get",
-			url: mainurl+"XmImage/GetVideoList",
+			type: "get",
+			url: mainurl + "XmImage/GetVideoList",
 			async: false,
-			data:{
-				pageIndex:pageNumber,
-				pageSize:999,
-				classid:decodeURIComponent(imageID)
+			data: {
+				pageIndex: pageNumber,
+				pageSize: 999,
+				classid: decodeURIComponent(imageID)
 			},
-			success:function(data){
-				if(data.Status==1){
+			success: function (data) {
+				if (data.Status == 1) {
 					smlist = '';
 					biglist = '';
 					urllist = '';
@@ -27,51 +28,56 @@
 					}
 					if (isfirst == 1) {
 						for (var i = 0; i < data.Result.List.length; i++) {
-							smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter="+data.Result.List[i].ClassID+" id="+data.Result.List[i].ID+"><div class='thumbnail-type-4' data-lightgallery='item' data-lg-skin='lg-skin-center' data-poster="+data.Result.List[i]['CoverImage']+" data-html=#"+data.Result.List[i]['ID']+"><div class='thumbnail-img'><div class='thumbnail-play-icon'></div><img src="+data.Result.List[i]['CoverImage']+" style='width:100%;' class='imghei'></div><div class='caption'><h4>"+data.Result.List[i]['Title']+"</h4></div></div></div>"
+							smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter=" + data.Result.List[i].ClassID + " id=" + data.Result.List[i].ID + "><div class='thumbnail-type-4' data-lightgallery='item' data-lg-skin='lg-skin-center' data-poster=" + data.Result.List[i]['CoverImage'] + " data-html=#" + data.Result.List[i]['ID'] + "><div class='thumbnail-img'><div class='thumbnail-play-icon'></div><img src=" + data.Result.List[i]['CoverImage'] + " style='width:100%;' class='imghei'></div><div class='caption'><h4>" + data.Result.List[i]['Title'] + "</h4></div></div></div>"
 						}
-					}else{
+					} else {
 						height1 += 'px';
 						for (var i = 0; i < data.Result.List.length; i++) {
-							smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter="+data.Result.List[i].ClassID+" id="+data.Result.List[i].ID+"><div class='thumbnail-type-4' data-lightgallery='item' data-lg-skin='lg-skin-center' data-poster="+data.Result.List[i]['CoverImage']+" data-html=#"+data.Result.List[i]['ID']+"><div class='thumbnail-img'><div class='thumbnail-play-icon'></div><img src="+data.Result.List[i]['CoverImage']+" style='width:100%;height:"+height1+"' class='imghei'></div><div class='caption'><h4>"+data.Result.List[i]['Title']+"</h4></div></div></div>"
+							smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter=" + data.Result.List[i].ClassID + " id=" + data.Result.List[i].ID + "><div class='thumbnail-type-4' data-lightgallery='item' data-lg-skin='lg-skin-center' data-poster=" + data.Result.List[i]['CoverImage'] + " data-html=#" + data.Result.List[i]['ID'] + "><div class='thumbnail-img'><div class='thumbnail-play-icon'></div><img src=" + data.Result.List[i]['CoverImage'] + " style='width:100%;height:" + height1 + "' class='imghei'></div><div class='caption'><h4>" + data.Result.List[i]['Title'] + "</h4></div></div></div>"
 						}
 					}
-					$(".row").append(smlist);
+					$("#videolist").append(smlist);
 					height = $(".isotope-item").eq(0).width();
-					height1 = height/3*2;
-					$(".imghei").css('height',height1)
+					height1 = height / 3 * 2;
+					$(".imghei").css('height', height1)
 					$(".page-loader").addClass("loaded");
-			$('#animate').addClass('fadeInLeftBig' + ' animated');
-			setTimeout(removeClass, 1200);
-			function removeClass(){
-				$('#animate').removeClass('fadeInLeftBig' + ' animated');
-			}
-					$(".isotope-item").each(function(){
-						$(this).click(function(){
+					$('#animate').addClass('fadeInLeftBig' + ' animated');
+					setTimeout(removeClass, 1200);
+
+					function removeClass() {
+						$('#animate').removeClass('fadeInLeftBig' + ' animated');
+					}
+					$(".isotope-item").each(function () {
+						$(this).click(function () {
 							var videoid = $(this).attr("id")
 							$.ajax({
-								type:"get",
-								url: mainurl+"XmImage/VideoDetail",
-								data:{
-									id:videoid,
+								type: "get",
+								url: mainurl + "XmImage/VideoDetail",
+								data: {
+									id: videoid,
 								},
-								success:function(data){
-									if(data.Status==1){
-										detail = "<div id="+videoid+" style='display:none;'><div class='video-container'><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='controls' autoplay='autoplay' name='media' style='width:100%;margin:0;'><source src="+data.Result.VideoUrl+" type='video/mp4'></video></div></div>";
+								success: function (data) {
+									if (data.Status == 1) {
+										// var audio = document.getElementById("mymusic");
+										// console.log(audio)
+										// audio.pause();
+										// audio.load();
+										detail = "<div id=" + videoid + " style='display:none;'><div class='video-container'><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='controls' autoplay='autoplay' name='media' style='width:100%;margin:0;'><source src=" + data.Result.VideoUrl + " type='video/mp4'></video></div></div>";
 										$("#videourl").html(detail)
-
-									}else{
+									} else {
 										swal(data.Result)
 									}
 								}
 							})
 						})
 					})
-					
-					
-				}else{
+
+
+				} else {
 					$('#animate').addClass('fadeInLeftBig' + ' animated');
 					setTimeout(removeClass, 1200);
-					function removeClass(){
+
+					function removeClass() {
 						$('#animate').removeClass('fadeInLeftBig' + ' animated');
 					}
 					layer.msg(data.Result, {
@@ -81,17 +87,18 @@
 					$("section").html("<div class='shell' style='text-align:center;padding-top:80px;'><img src='images/kong.png'></div>");
 				}
 			},
-			error: function(){
+			error: function () {
 				$(".page-loader").addClass("loaded");
 				$('#animate').addClass('fadeInLeftBig' + ' animated');
 				setTimeout(removeClass, 1200);
-				function removeClass(){
+
+				function removeClass() {
 					$('#animate').removeClass('fadeInLeftBig' + ' animated');
 				}
 				$("section").html("");
 				layer.msg('服务器异常', {
-				icon: 5
-			});
+					icon: 5
+				});
 			}
 		})
 
@@ -99,7 +106,7 @@
 
 	first(1);
 
-	$("#showmore").click(function(){
+	$("#showmore").click(function () {
 		pageNumber++;
 		liid = $(".active").parent("li").index();
 		isfirst = false;
@@ -110,13 +117,12 @@
 		// })
 	})
 
-	window.onresize=function(){  
-		changeDivHeight();  
-	} 
-
-	function changeDivHeight(){
-		height = $(".imghei").eq(0).width();
-		height1 = height/3*2;
-		$(".imghei").css('height',height1)
+	window.onresize = function () {
+		changeDivHeight();
 	}
 
+	function changeDivHeight() {
+		height = $(".imghei").eq(0).width();
+		height1 = height / 3 * 2;
+		$(".imghei").css('height', height1)
+	}
