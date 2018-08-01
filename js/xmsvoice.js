@@ -33,7 +33,7 @@ function first(){
 					}
 					time += "<li><span></span>"+data.Result[i]['Time']+"</li>"
 				}
-				console.log(time)
+
 				$("#timelist>ul").html(time);
 				$(".parBd").html(message)
 				$("#timelist>ul>li:first").addClass("act")
