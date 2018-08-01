@@ -87,15 +87,21 @@
 					}else{
 						MsgCount = data.Result.MsgCount
 					}
-					if(MsgCount>0){
-						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+"</div>")
+					if ( data.Result.Zmsg > 99) {
+						Zmsg = "99+"
+					}else{
+						Zmsg = data.Result.Zmsg
+					}
+					if(MsgCount+Zmsg>0){
+						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+Zmsg+"</div>")
 					}else{
 						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
 					}
 					if (window.location.href.indexOf("user") >= 0) {
 						if(MsgCount>0){
-							$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+"</div>")
+							$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+Zmsg+"</div>")
 							$("#user-msg").html('<span class="user-sgCount">'+MsgCount+'</span>')
+							$("#user-msg").html('<span class="user-sgCount">'+Zmsg+'</span>')
 						}	
 					}
 					if (data.Result.EndTime == "不是") {

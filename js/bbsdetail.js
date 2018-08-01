@@ -245,13 +245,7 @@ function hqhf(pageNumber, isnew) {
 				$(".replybtn").each(function () {
 					$(this).click(function () {
 						if (token == -1) {
-							$(".activespan").css("color", "black");
-							$(".activespan").css("font-size", "22px");
-							$(".grey").css("font-size", "17px");
-							$(".grey").css("color", "#9a9a9a");
-							$(".registerbox").hide();
-							$(".loginbox").show();
-							$('#myModal').modal('show');
+							againlogin()
 							return;
 						}
 						if ($(this).parents('#Smohan_FaceBox').children("#Smohan_text").val() == "") {

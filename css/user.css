@@ -660,7 +660,16 @@ color: #0d0d0d;
 #mymsgconnect .msgicon{
     display: none;
 }
+#mymsgconnect .reply{
+	position: absolute;
+	right: 10px;
+    top:10px;
+    cursor: pointer;
+}
 @media (max-width: 768px){
+    #mymsgconnect .reply{
+        top: unset;
+    }
     #mymsgconnect .post-blog-sm .unit__body .text-snow {
         display: block;
     }
@@ -684,4 +693,17 @@ color: #0d0d0d;
 }
 #mymsgconnect .post-blog-sm:hover {
     color: #0d0d0d;
+}
+#mymsgconnect .offset-top-30{
+    position: relative;
+}
+
+#replymodal textarea{
+    height: 200px;
+}
+#replymodal #SmohanFaceBox{
+    top:0
+}
+#replymodal #Zones{
+    padding-bottom: 20px;
 }

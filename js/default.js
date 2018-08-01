@@ -173,6 +173,7 @@ function hidesub(n) {
             index = 0
             $("#infoXin").show();
             $("#infoXindetail").hide();
+            $("#Zmsg").hide()
             myMsg(pageindex, 0)
             listType = 4
             pageindex = 1
@@ -200,6 +201,8 @@ function hidesub(n) {
             getmsg(pageindex, 0)
             listType = 7
             pageindex = 1
+            $("#user-msg").hide()
+            $(".MsgCount").hide()
             $(".pagination-custom").show()
             break;
     }
@@ -1880,7 +1883,8 @@ $("#editorderimg").click(function () {
         }
     })
 })
-
+var repalyid = ''
+var repalypostID = '';
 // 收到的回复
 function getmsg(pageindex, index) {
     $.ajax({
@@ -1907,10 +1911,26 @@ function getmsg(pageindex, index) {
                     content = transform(content);
                     content = replaceface(content);
                     li +=
-                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id=' + list[i].PostID + '><div class="unit__left"><image src=' + url + list[i].Icon + '></image></div><div class="unit__body"><p class="text-snow"><image src=' + url + list[i].Icon + ' class="msgicon"></image>用户' + list[i].Username + '在你的主贴：<span class="subject">' + list[i].subject + '</span>评论了你</p><p class="text-snow">' + content + '</p></div></div>'
+                        '<div class="offset-top-30 bg-wans unit unit-horizontal unit-middle post-blog-sm" id=' + list[i].ComID + ' name='+list[i].PostID+'><div class="unit__left"><image src=' + url + list[i].Icon + '></image></div><div class="unit__body"><p class="text-snow"><image src=' + url + list[i].Icon + ' class="msgicon"></image>用户' + list[i].Username + '在你的主贴：<span class="subject">' + list[i].subject + '</span>评论了你</p><span class="reply">回复</span><p class="text-snow">' + content + '</p></div></div>'
 
                 }
                 $("#mymsgconnect").html(li)
+                $(".reply").each(function () {
+                    $(this).click(function () {
+                        repalyid = $(this).parents(".offset-top-30").attr("id");
+                        repalypostID = $(this).parents(".offset-top-30").attr("name");
+                        $('#reply').modal('show');
+                    })
+                })
+                //回复表情
+                $("a.face").each(function () {
+                    $(this).smohanfacebox({
+                        Event: "click", //触发事件	
+                        divid: "Smohan_FaceBox", //外层DIV ID
+                        textid: "Smohan_text" //文本框 ID
+                    });
+                })
+                
                 $(".text-snow>.subject").each(function () {
                     $(this).click(function () {
                         var bbsid = $(this).parents(".offset-top-30").attr("id");
@@ -1940,6 +1960,48 @@ function getmsg(pageindex, index) {
         }
     })
 }
+
+$("#replaycomment").click(function(){
+    if (token == -1) {
+        againlogin()
+        return;
+    }
+    if ($(this).parents('#Smohan_FaceBox').children("#Smohan_text").val() == "") {
+        layer.msg("请输入评论内容", {
+            icon: 5
+        });
+        return;
+    }
+    $.ajax({
+        type: "post",
+        url: mainurl + "BBS/CommentReply",
+        data: {
+            PostID: repalypostID,
+            CommentID: repalyid,
+            Content: $("#Smohan_text").val(),
+            token: token,
+            CommentImages: '-1'
+        },
+        success: function (data) {
+            if (data.Status == 1) {
+                $('#reply').modal('hide');
+                layer.msg("评论成功", {
+                    icon: 1
+                });
+                $("#Smohan_text").val('')
+            } else {
+                layer.msg(data.Result, {
+                    icon: 5
+                });
+            }
+        },
+        error: function () {
+            layer.msg('服务器异常', {
+                icon: 5
+            });
+        }
+    })
+})
 
 function transform(str) {
     // str = str.replace(/</ig,'&lt;');
