@@ -36,7 +36,7 @@
 							smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter=" + data.Result.List[i].ClassID + " id=" + data.Result.List[i].ID + "><div class='thumbnail-type-4' data-lightgallery='item' data-lg-skin='lg-skin-center' data-poster=" + data.Result.List[i]['CoverImage'] + " data-html=#" + data.Result.List[i]['ID'] + "><div class='thumbnail-img'><div class='thumbnail-play-icon'></div><img src=" + data.Result.List[i]['CoverImage'] + " style='width:100%;height:" + height1 + "' class='imghei'></div><div class='caption'><h4>" + data.Result.List[i]['Title'] + "</h4></div></div></div>"
 						}
 					}
-					$("#videolist").append(smlist);
+					$("#videolist").html(smlist);
 					height = $(".isotope-item").eq(0).width();
 					height1 = height / 3 * 2;
 					$(".imghei").css('height', height1)
@@ -58,11 +58,11 @@
 								},
 								success: function (data) {
 									if (data.Status == 1) {
-										// var audio = document.getElementById("mymusic");
-										// console.log(audio)
-										// audio.pause();
-										// audio.load();
-										detail = "<div id=" + videoid + " style='display:none;'><div class='video-container'><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='controls' autoplay='autoplay' name='media' style='width:100%;margin:0;'><source src=" + data.Result.VideoUrl + " type='video/mp4'></video></div></div>";
+										var audio = document.getElementById('mymusic');
+										if (audio !== null) {
+											audio.pause(); // 暂停
+										}
+										detail = "<div id=" + videoid + " style='display:none;'><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls=''><source src=" + data.Result.VideoUrl + " type='video/mp4'></video></div>";
 										$("#videourl").html(detail)
 									} else {
 										swal(data.Result)
