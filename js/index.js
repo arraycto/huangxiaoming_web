@@ -10,7 +10,7 @@ $.ajax({
 	async: false,
 	data:{
 		pageIndex:1,
-		pageSize:999,
+		pageSize:5,
 		type:type
 	},
 	success:function(data){

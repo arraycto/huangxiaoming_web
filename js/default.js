@@ -1933,7 +1933,7 @@ function getmsg(pageindex, index) {
                 
                 $(".text-snow>.subject").each(function () {
                     $(this).click(function () {
-                        var bbsid = $(this).parents(".offset-top-30").attr("id");
+                        var bbsid = $(this).parents(".offset-top-30").attr("name");
                         window.open("bbs-post.html?id=" + bbsid);
                     })
                 })

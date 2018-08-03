@@ -53,13 +53,7 @@
 
 	$(".rd-navbar-socials-toggle").click(function () {
 		if (token == '-1') {
-			$(".activespan").css("color", "black");
-			$(".activespan").css("font-size", "22px");
-			$(".grey").css("font-size", "17px");
-			$(".grey").css("color", "#9a9a9a");
-			$(".registerbox").hide();
-			$(".loginbox").show();
-			$('#myModal').modal('show');
+			againlogin()
 		} else {
 			window.location.href = "user.html"
 		}
@@ -92,17 +86,18 @@
 					}else{
 						Zmsg = data.Result.Zmsg
 					}
-					if(MsgCount+Zmsg>0){
-						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+Zmsg+"</div>")
+					if(Number(MsgCount)+Number(Zmsg)>0){
+						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ Number(Number(MsgCount)+Number(Zmsg))+"</div>")
 					}else{
 						$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'>")
 					}
 					if (window.location.href.indexOf("user") >= 0) {
-						if(MsgCount>0){
-							$(".rd-navbar-socials-toggle").html("<img src='" + url + data.Result.icon + "'><div class='MsgCount'>"+ MsgCount+Zmsg+"</div>")
+						if(Number(MsgCount)>0){
 							$("#user-msg").html('<span class="user-sgCount">'+MsgCount+'</span>')
-							$("#user-msg").html('<span class="user-sgCount">'+Zmsg+'</span>')
-						}	
+						}
+						if(Number(Zmsg)>0){
+							$("#Zmsg").html('<span class="user-sgCount">'+Zmsg+'</span>')
+						}
 					}
 					if (data.Result.EndTime == "不是") {
 						isvip = false;
