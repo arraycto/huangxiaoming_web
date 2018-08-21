@@ -16,6 +16,11 @@ $(function () {
 	hqhf(pageNumber, true);
 	modular()
 });
+function one(){
+	pageNumber = 1;
+	hqhf(pageNumber, true);
+	fenye()
+}
 // window.location.hash = "#commentlist";
 function hqhf(pageNumber, isnew) {
 	$.ajax({
@@ -76,7 +81,7 @@ function hqhf(pageNumber, isnew) {
 									});
 									setTimeout(
 										againlogin, 2000);
-									retuen;
+									return;
 								} else {
 									if (data.Result.EndTime == "不是") {
 										$(".page-loader").addClass("loaded");
@@ -94,7 +99,7 @@ function hqhf(pageNumber, isnew) {
 												window.location.href = "user.html?vip=true";
 											}
 										)
-										retuen;
+										return;
 									}
 								}
 							},
@@ -221,7 +226,6 @@ function hqhf(pageNumber, isnew) {
 				if (isnew) {
 					$('#animate').addClass('fadeInLeftBig' + ' animated');
 					setTimeout(removeClass, 1200);
-
 					function removeClass() {
 						$('#animate').removeClass('fadeInLeftBig' + ' animated');
 					}

@@ -21,7 +21,7 @@ function first(){
 		async:false,
 		success:function(data){
 			if(data.Status==1){
-				if (data.Result.IsOnline&&!data.Result.IsOnline) {
+				if (data.Result.IsOnline&&!data.Result.Ispass) {
 					$(".post-blog--single>h3").eq(0).html(""+data.Result.Title+"<button class='button button-sm button-default floatright' id='baoming'>立即报名</button>");
 				}else{
 					$(".post-blog--single>h3").eq(0).html(data.Result.Title);
@@ -48,10 +48,10 @@ function first(){
 				if (data.Result.ActivityList.length % 2 == 0) {
 					var num = data.Result.ActivityList.length/2
 				}else{
-					num = data.Result.ActivityList.length+1/2;
+					num = (data.Result.ActivityList.length+1)/2;
 				}
 
-				for (var x = 0; x <= num; x = x+2) {
+				for (var x = 0; x < num; x = x+2) {
 					var a = x+1;
 					other += "<li><div class='range range-xs-center range-30'><div class='cell-sm-6 cell-xs-10'><div class='post-blog' id="+data.Result.ActivityList[x]['ID']+"><div class='post-blog__media'></div><div class='post-blog__body bg-wans'> <div class='post-blog__title'>"+data.Result.ActivityList[x]['Title']+"</div><div class='post-blog__meta'><div class='post-blog__meta-date'>"+data.Result.ActivityList[x]['Time']+"</div><div class='post-blog__meta-views'>"+data.Result.ActivityList[x]['Browse']+"</div></div></div></div></div><div class='cell-sm-6 cell-xs-10'><div class='post-blog' id="+data.Result.ActivityList[a]['ID']+"><div class='post-blog__media'></div><div class='post-blog__body bg-wans'><div class='post-blog__title'>"+data.Result.ActivityList[a]['Title']+"</div><div class='post-blog__meta'><div class='post-blog__meta-date'>"+data.Result.ActivityList[a]['Time']+"</div><div class='post-blog__meta-views'>"+data.Result.ActivityList[a]['Browse']+"</div></div></div></div>"
 				}

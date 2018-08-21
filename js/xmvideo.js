@@ -10,7 +10,7 @@ $.ajax({
 			classlist = "<li id='all'><a class='active' data-isotope-filter='*' data-isotope-group='gallery'><span class='link-inner'>全部</span></a></li>"
 			for (var i = 0; i < data.Result.length; i++) {
 				for (var x = 0; x < data.Result[i].Book.length; x++) {
-					smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter="+data.Result[i]['ClassName']+"><ul class='lightgallery-album'><li><div class='thumbnail-type-3' id="+data.Result[i].Book[x]['Tag']+"><a class='thumbnail-img'><img src="+data.Result[i].Book[x]['Image']+" class='imghei' style='width:100%;'><div class='caption'><div class='caption-inner'><div class='caption-title'>"+data.Result[i].Book[x]['Tag']+"</div><hr/><div class='caption-date'>"+data.Result[i].Book[x]['Count']+"张</div></div></div></a></div></li></ul></div>"
+					smlist += "<div class='col-xs-12 col-sm-6 col-lg-4 isotope-item' data-filter="+data.Result[i]['ClassName']+"><ul class='lightgallery-album'><li><div class='thumbnail-type-3' id="+data.Result[i].Book[x]['Tag']+"><a class='thumbnail-img'><img src="+data.Result[i].Book[x]['Image']+" class='imghei' style='width:100%;'><div class='caption'><div class='caption-inner'><div class='caption-title'>"+data.Result[i].Book[x]['Tag']+"</div><hr/><div class='caption-date'>"+data.Result[i].Book[x]['Count']+"个</div></div></div></a></div></li></ul></div>"
 				}
 				classlist += "<li><a data-isotope-filter="+data.Result[i].ClassName+" data-isotope-group='gallery'><span class='link-inner'>"+data.Result[i].ClassName+"</span></a></li>"
 			}

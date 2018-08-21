@@ -44,7 +44,7 @@ function first(){
 				if (data.Result.NewList.length % 2 == 0) {
 					var num = data.Result.NewList.length/2
 				}else{
-					num = data.Result.NewList.length+1/2;
+					num = (data.Result.NewList.length+1)/2;
 				}
 				for (var x = 0; x <= num; x = x+2) {
 					var a = x+1;

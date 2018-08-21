@@ -23,13 +23,13 @@ function first(){
 				if (data.Result[0].Type == 1) {
 					message += "<div class='slideBox'><h3>"+decodeURIComponent(data.Result[0]['Content'])+"<div class='title-h-in'><span class='color_vice color_span'></span><div class='simpline bg_simpline' style='width:80%'></div></div></h3></div>"
 				}else if(data.Result[0].Type == 2){
-					message += "<div class='slideBox'><div class='title-h-in'><h3 class='color_main color_h'>"+decodeURIComponent(data.Result[0].Content)+"</h3><span class='color_vice color_span'></span><div class='simpline bg_simpline'></div></div><p><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='' style='width:100%;' poster='images/活动/微信图片_20171109093946.jpg'><source src="+data.Result[0]['Url']+" type='video/mp4'>您的浏览器不支持HTML5video标签</video></p></div>"
+					message += "<div class='slideBox'><div class='title-h-in'><h3 class='color_main color_h'>"+decodeURIComponent(data.Result[0].Content)+"</h3><span class='color_vice color_span'></span><div class='simpline bg_simpline'></div><p>版权所有，禁止外传，违者必究</p></div><p><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='' style='width:100%;' poster='images/活动/微信图片_20171109093946.jpg'><source src="+data.Result[0]['Url']+" type='video/mp4'>您的浏览器不支持HTML5video标签</video></p></div>"
 				}
 				for (var i = 1; i < data.Result.length; i++) {
 					if (data.Result[i].Type == 1) {
 						message += "<div class='slideBox' style='display: none;'><h3>"+decodeURIComponent(data.Result[i]['Content'])+"</h3><div class='title-h-in'><span class='color_vice color_span'></span><div class='simpline bg_simpline' style='width:80%'></div></div></div>"
 					}else if(data.Result[i].Type == 2){
-						message += "<div class='slideBox' style='display: none;'><div class='title-h-in'><h3 class='color_main color_h'>"+decodeURIComponent(data.Result[i].Content)+"</h3><span class='color_vice color_span'></span><div class='simpline bg_simpline'></div></div><p><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='' style='width:100%;' poster='images/活动/微信图片_20171109093946.jpg'><source src="+data.Result[i]['Url']+" type='video/mp4'>您的浏览器不支持HTML5video标签</video></p></div>"
+						message += "<div class='slideBox' style='display: none;'><div class='title-h-in'><h3 class='color_main color_h'>"+decodeURIComponent(data.Result[i].Content)+"</h3><span class='color_vice color_span'></span><div class='simpline bg_simpline'></div><p>版权所有，禁止外传，违者必究</p></div><p><video class='lg-video-object lg-html5 video-js vjs-default-skin' controls='' style='width:100%;' poster='images/活动/微信图片_20171109093946.jpg'><source src="+data.Result[i]['Url']+" type='video/mp4'>您的浏览器不支持HTML5video标签</video></p></div>"
 					}
 					time += "<li><span></span>"+data.Result[i]['Time']+"</li>"
 				}
