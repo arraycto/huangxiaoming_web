@@ -16,10 +16,12 @@ $(function () {
 	hqhf(pageNumber, true);
 	modular()
 });
-function one(){
-	pageNumber = 1;
-	hqhf(pageNumber, true);
-	fenye()
+
+function one() {
+	window.location.href = "bbs-post.html?id=" + blogID
+	// pageNumber = 1;
+	// hqhf(pageNumber, true);
+	// fenye()
 }
 // window.location.hash = "#commentlist";
 function hqhf(pageNumber, isnew) {
@@ -36,7 +38,7 @@ function hqhf(pageNumber, isnew) {
 			if (data.Status == 1) {
 				commit = "";
 				FenghuiPage = data.Result.page;
-				
+
 				//地址栏
 				if (data.Result.post.isNew == 3) {
 					data.Result.post['Content'] = decodeURIComponent(data.Result.post['Content']);
@@ -47,7 +49,7 @@ function hqhf(pageNumber, isnew) {
 				$("#contentbox>p").html(data.Result.post['Content']);
 				thisadd = data.Result.post['Class']
 				thisurl = data.Result.post['Modular']
-				$(".post-blog--single>h3").html('' + data.Result.post['Title'] + '<button class="button button-default floatright" id="pinglun">评论</button>')
+				$(".post-blog--single>h3").html('<span onclick="one()">' + data.Result.post['Title'] + '</span><button class="button button-default floatright" id="pinglun">评论</button>')
 				document.title = data.Result.post['Title'];
 				// 站务专区、vip专区代码
 				if (data.Result.post['ClassID'] == "29f54fe2-dddf-e711-ad57-c74e1272e605") {
@@ -219,19 +221,20 @@ function hqhf(pageNumber, isnew) {
 							replycom += "<div class='comment comment-reply'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left' id='pchide'><img src=" + url + reply.Icon + " style='width:50px;height:50px;border-radius:50%'></div><div class='unit__body'><div class='comment-top-panel'><img src=" + url + reply.Icon + " style='width:50px;height:50px;border-radius:50%'><h5 class='comment__author'>" + reply.Username + "</h5><div class='comment__date'>" + reply.CreaTime + "</div></div><p>" + reply.Content + "</p></div></div></div>"
 						}
 						// commit += "<div class='comment'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div class='col-md-10'><textarea class='form-control' id='erea' rows='1' cols='10' onkeyup='changerow()'></textarea></div><div class='col-md-2'><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></div></div></div></div></div></div>"
-						commit += "<div class='comment' id='conment"+i+"'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div id='Smohan_FaceBox'><textarea name='text' id='Smohan_text' class='form-control'></textarea><p><a href='javascript:void(0)' class='face' title='表情'></a><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></p></div><div id='Zones'></div></div></div></div></div></div></div>"
+						commit += "<div class='comment' id='conment" + i + "'><div class='unit unit-xs-horizontal unit-sm-horizontal unit-md-horizontal unit-lg-horizontal'><div class='unit__left'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:100px;height:100px;border-radius:50%'><h4>" + data.Result.post.comment[i]['author'] + "</h4><ul class='list-marked list-marked-variant-2'><li><span>发帖</span><span>" + data.Result.post.comment[i]['Postnum'] + "</span></li><li><span>铜币</span><span>" + data.Result.post.comment[i]['money'] + "</span></li><li><span>威望</span><span>" + data.Result.post.comment[i]['Rvrc'] + "</span></li><li><span>贡献值</span><span>" + data.Result.post.comment[i]['credit'] + "</span></li></ul></div><div class='unit__body'><div class='comment-top-panel'><h5 class='comment__author'><img src=" + data.Result.post.comment[i]['icon'] + " style='width:66px;height:66px;border-radius:50%'><span>" + data.Result.post.comment[i]['floor'] + "楼</span></h5><div class='comment__date'>" + data.Result.post.comment[i]['creatime'] + "</div></div><div class='contentdetail'><p>" + content + "</p></div>" + replycom + "<div class='comment__footer'><div class='comment-top-panel'><a class='comment__reply'>回复</a></div><div class='replybox fadeInDown animated row' style='display: none;'><div id='Smohan_FaceBox'><textarea name='text' id='Smohan_text' class='form-control'></textarea><p><a href='javascript:void(0)' class='face' title='表情'></a><button type='button' class='btn btn-warning replybtn' name=" + data.Result.post.comment[i]['ID'] + ">评论</button></p></div><div id='Zones'></div></div></div></div></div></div></div>"
 					}
 					$("#commentlist").html(commit)
 				}
 				if (isnew) {
 					$('#animate').addClass('fadeInLeftBig' + ' animated');
 					setTimeout(removeClass, 1200);
+
 					function removeClass() {
 						$('#animate').removeClass('fadeInLeftBig' + ' animated');
 					}
 					fenye()
 				}
-				
+
 				$(".page-loader").addClass("loaded");
 				$(".comment__reply").each(function () {
 					$(this).click(function () {
@@ -274,8 +277,7 @@ function hqhf(pageNumber, isnew) {
 										icon: 1
 									});
 									$(".replybox").val('')
-									hqhf(pageNumber, false)
-									fenye()
+									
 								} else {
 									layer.msg(data.Result, {
 										icon: 5
@@ -382,7 +384,7 @@ if (token == '-1') {
 }
 
 $("#bbscomment").click(function () {
-	
+
 	if (token == -1) {
 		$(".activespan").css("color", "black");
 		$(".activespan").css("font-size", "22px");
@@ -416,8 +418,8 @@ $("#bbscomment").click(function () {
 				});
 				// pageNumber = 1;
 				ue.setContent(decodeURIComponent(""));
-				hqhf(pageNumber, false);
-				fenye()
+				console.log(FenghuiPage)
+				window.location.href = "bbs-post.html?id=" + blogID + "&page-" + FenghuiPage
 			} else {
 				layer.msg(data.Result, {
 					icon: 5

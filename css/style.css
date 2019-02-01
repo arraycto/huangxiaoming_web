@@ -12143,7 +12143,7 @@ html.tablet .ui-to-top {
 		align-items: stretch;
 		margin-left: auto;
 	    margin-right: auto;
-	    width: 80%;
+	    /* width: 80%; */
 	}
 	.tabs-custom.tabs-vertical .nav-custom-tabs {
 		display: -ms-flexbox;
@@ -31814,9 +31814,11 @@ img#voice {
 	.tab-content #tabs--1-1{
 		margin: 0 0 0 -140px;
 	}
+	#tabs-2 .nav-custom-tabs.tab2{
+		height: 300px;
+	}
 }
 #tabs-2 .nav-custom-tabs.tab2{
-	height: 300px;
 	overflow: auto;
 }
 
